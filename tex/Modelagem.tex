@@ -1,0 +1,97 @@
+\documentclass[letterpaper,12pt]{article}
+\oddsidemargin 0cm
+\evensidemargin 0cm
+\textwidth 17 cm
+\topmargin 0cm
+\textheight 22.1 cm
+\unitlength=1cm
+
+%%%%Pacotes%%%%%%%%%
+\usepackage[brazil,portuges]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amssymb,amscd,latexsym,amsthm}
+%\usepackage{color}
+%\usepackage{pstricks}
+%\usepackage{ulem}
+%\usepackage{ifsym}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+%\usepackage{pslatex}
+\usepackage{pxfonts}
+%\usepackage{graphicx}
+%\usepackage{wrapfig}
+%\pagestyle{empty}
+%\input{setbmp}
+
+
+
+
+
+
+\def\dd{\displaystyle}
+\newcommand{\mc}[1]{{\mathcal #1}}
+\newcommand{\mf}[1]{{\mathfrak #1}}
+\newcommand{\mb}[1]{{\mathbf #1}}
+\newcommand{\bb}[1]{{\mathbb #1}}
+\newcommand{\bs}[1]{{\boldsymbol #1}}
+\def\p{\partial}
+
+
+\begin{document}
+
+\begin{center}
+\textbf{\large{Limite Hidrodin\^amico}}\\
+\end{center}
+
+Caso simples.\\
+
+\begin{itemize}
+ \item $\rho:\mathbb {T}\rightarrow [0,1]$ cont\'inua. $\mathbb{T}$ \'e
+o toro identificando o zero com o um.
+\item Divide o toro em $N$ s\'itios, N bem grande. Sorteia se h\'a part\'icula no
+k-\'esimo s\'itio segundo bernoulli($\rho(\frac{k}{N})$).
+\item Cada s\'itio tem rel\'ogio exponencial independente. Quando toca, a 
+part\'icula joga moeda honesta e olha para o lado. Se n\~ao h\'a part\'icula,
+ela pula. 
+\item Olha agora a configura\c c\~ao final no tempo $N^2t$. Repete a simula\c c\~ao
+v\'arias vezes e constr\'oi a fun\c c\~ao que em cada s\'itio vale o n\'umero de vezes que apareceu part\'icula
+no final dividido pelo n\'umero de simula\c c\~oes.\\
+\end{itemize}
+
+
+Generaliza\c c\~oes:\\
+
+\begin{itemize}
+ \item Escala de tempo pode ser $N^\alpha t$.
+\item Mais part\'iculas por s\'itio.
+\item O par\^ametro do rel\'ogio depende da configura\c c\~ao toda, ou seja, se o processo est\'a
+em $\eta\in \bb{N}^{\bb{T}}$, o par\^ametro do rel\'ogio \'e $f(\eta)$. Quando o rel\'ogio toca, a configura\c c\~ao muda, com um salto de uma part\'icula (n\~ao precisa mais de ser para vizinho). A escolha $\eta\mapsto\eta^{x,y}$, onde $\eta^{x,y}$
+significa que uma part\'icula pulou do s\'itio $x$ para o s\'itio $y$, \'e proporcional a 
+$p(x,y)g(\eta)$. Em geral $g$ depende s\'o de $\eta(x)$, $\eta(y)$ e vizinhos de $x$ e $y$.\\
+\end{itemize}
+
+Caso que eu sugiro para teste, o resultado tem comportamento simples de ver.\\
+
+\begin{itemize}
+ \item O rel\'ogio depende s\'o do n\'umero total de part\'iculas e o par\^ametro \'e
+$\dd\sum_x \eta(x)$. 
+\item N\'umero de part\'iculas em cada s\'itio \'e livre.
+\item A escala de tempo \'e $Nt$. Aten\c c\~ao, esse \'e $Nt$ mesmo, ao contr\'ario do $N^2t$ anterior.
+\item Quando toca o rel\'ogio, a probabilidade com que $\eta\mapsto\eta^{x,x+1}$ \'e proporcional a $p\eta(x)$a probabilidade com que $\eta\mapsto\eta^{x,x+1}$ \'e proporcional a $(1-p)\eta(x)$ (passeios aleat\'orios independentes
+assim\'etricos). 
+\item A $\rho$ final \'e solu\c c\~ao da equa\c c\~ao do transporte, ou seja, a $\rho$ final \'e
+simplesmente a $\rho$ inicial translada pra direita (se $p>\frac{1}{2}$) ou esquerda (se $p<\frac{1}{2}$).
+\item Se $p=\frac{1}{2}$ a $\rho$ final \'e a $\rho$ inicial.
+\end{itemize}
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
