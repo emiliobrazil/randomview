@@ -70,7 +70,6 @@ clocks::initialize(  uint32 N , real t , real alpha )
 		bool thereIsParticleInTime = true
 		std::vector<real> clock( N , 0.0f )
 		std::vector<uint32> indexOrder;
-		for( uint32 j = 0 ; j < N ; ++j) clock[j]= exponential( 1.0 )
 		while( thereIsParticleInTime )
 		{
 			std::pair<index,real> minTest
