@@ -1,29 +1,38 @@
 
-#include "random_functions"
-
 #include <math.h>
-#include "primitives_const.h"
+#include <stdlib.h>
 
-real unifor01( uint32 seed )
+#include "random_functions.h"
+
+#include "primitive_const.h"
+
+void setSeed( unsigned int seed )
 {
-  return rand()/RAND_MAX;
+  srand( seed ) ;
 }
 
-uint32 unifor1max( uint32 max );
+real unifor01( void )
 {
-  return rand % max + 1 ;
+  return (real)rand()/(real)RAND_MAX;
+}
+
+uint32 unifor1max( uint32 max )
+{
+  return (rand() % max) + 1 ;
 }
 
 real uniforAB( real A , real B )
 {
   real r = unifor01() ;
-  return A + r * ( B - A ) ; 
+  return A + r * ( B - A ) ;
 }
 
 uint32 bernoulli( real p )
 {
   real r = unifor01( );
-  return ( r <= p ) ? 1 : 0 ;    
+  uint32 b = 0 ;
+  if ( r <= p ) b = 1 ; 
+  return  b ;
 }
 
 real exponential( real lambda )
