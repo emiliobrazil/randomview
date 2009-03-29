@@ -1,16 +1,23 @@
 #include "Clocks.hpp"
 
+#include <math.h>
+
+std::pair<uint32,real> minimun( const std::vector<real>& clock );
+
 Clocks::Clocks(  uint32 N , real t , real alpha )
 {
 	this->_actualTime = 0 ;
-	for(uint32 i = 0 , i < N , ++i )
+	for(uint32 i = 0 ; i < N ; ++i )
 	{
-		real timeLimite = (N^alpha)*t;
-		bool thereIsParticleInTime = true;
+		real timeLimite =  pow(N,alpha) * t ;
+		bool thereIsParticleInTime = true ;
 		this-> _indexOrder = std::vector<uint32>() ;
 
 		std::vector<real> clock( N , 0.0f );
-		for( uint32 j = 0 ; j < N ; ++j ) clock[j] = exponential(1.0) ;
+		for( uint32 j = 0 ; j < N ; ++j )
+		{
+			clock[j] = exponential( 1.0 ) ;
+		}
 
 		while( thereIsParticleInTime )
 		{
@@ -33,7 +40,7 @@ Clocks::~Clocks( void )
 
 bool Clocks::isEmpty( void )
 {
-	return ( this->_actualTime >= this->_indexOrder ) ;
+	return ( (this->_actualTime) >= ( this->_indexOrder.size() ) ) ;
 }
 
 uint32 Clocks::findNext( void )
