@@ -10,6 +10,7 @@
 class Clocks
 {
 public:
+	Clocks( void ){ }
 	Clocks(  uint32 N , real t , real alpha );
 	~Clocks( void );
 
@@ -19,8 +20,7 @@ public:
 private:
 	std::vector<uint32> _indexOrder;
 	uint32 _actualTime;
-}
+};
 
-std::pair<uint32,real> minimun( const std::vector<real>& clock );
 
 #endif //_CLOCKS_HPP_

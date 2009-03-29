@@ -4,7 +4,7 @@
 #include "primitive_types.h"
 
 void setSeed( unsigned int seed );
-real unifor01( void );
+real uniform01( void );
 real uniforAB( real A , real B );
 uint32 unifor1max( uint32 max );
 uint32 bernoulli( real p );

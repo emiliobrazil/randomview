@@ -9,30 +9,31 @@
 class ParticlesCounter
 {
 public:
-  ParticlesCounter( uint32 N ) { this->_sites = vector<real>( N , 0.0 ); }
-  ParticlesCounter( const ParticlesCounter& counter ) { this->_sites = counter; }
+	ParticlesCounter( uint32 N ) { this->_sites = std::vector<real>( N , 0.0 ); }
+	ParticlesCounter( const ParticlesCounter& counter ) { this->_sites = counter.vector(); }
 
-  ~ParticlesCounter( void ){}
+	~ParticlesCounter( void ){}
 
-  std::vector<real>& vector( void ) const { return this->_sites }
-  uint32 size( void ){ return this->_sites.size(); }
+	const std::vector<real>& vector( void ) const { return this->_sites ; }
+	uint32 size( void ){ return this->_sites.size(); }
 
-  inline real at( uint32 i ){ return this->_sites[i] ; }
-  inline void set( uint32 i , real x){ this->_sites[i] = x ; }
-  
-  const ParticlesCounter &operator=( const ParticlesCounter &counter ) { return ParticlesCounter( counter ) ; }
-  const ParticlesCounter  operator+( const ParticlesCounter &counter ) const ;
-  const ParticlesCounter  operator-( const ParticlesCounter &counter ) const ;
-  const ParticlesCounter  operator*( real alpha ) const ;
-  friend const ParticlesCounter  operator*( real alpha , const ParticlesCounter &counter );
-  const ParticlesCounter &operator*=( real alpha );
-  const ParticlesCounter &operator+=( const ParticlesCounter &counter );
-  const ParticlesCounter &operator-=( const ParticlesCounter &counter );
+	inline real at( uint32 i ){ return this->_sites[i] ; }
+	inline void set( uint32 i , real x ){ this->_sites[i] = x ; }
+	inline const real get( uint32 i ) const { return this->_sites[i] ; }
+
+	const ParticlesCounter &operator=( const ParticlesCounter &counter ) ;
+	const ParticlesCounter  operator+( const ParticlesCounter &counter ) const;
+	const ParticlesCounter  operator-( const ParticlesCounter &counter ) const ;
+	const ParticlesCounter  operator*( real alpha ) const ;
+	friend const ParticlesCounter  operator*( real alpha , const ParticlesCounter &counter );
+	const ParticlesCounter &operator*=( real alpha );
+	const ParticlesCounter &operator+=( const ParticlesCounter &counter );
+	const ParticlesCounter &operator-=( const ParticlesCounter &counter );
 
 private:
-  std::vector<real> _sites;
+	std::vector<real> _sites;
 
-}
+};
 
 #endif // _PARTICLESCOUNTER_HPP_
 
