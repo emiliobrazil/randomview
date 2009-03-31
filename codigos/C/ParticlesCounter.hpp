@@ -2,6 +2,7 @@
 #define _PARTICLESCOUNTER_HPP_
 
 #include <vector>
+#include <iostream>
 
 #include "primitive_types.h"
 
@@ -29,6 +30,8 @@ public:
 	const ParticlesCounter &operator*=( real alpha );
 	const ParticlesCounter &operator+=( const ParticlesCounter &counter );
 	const ParticlesCounter &operator-=( const ParticlesCounter &counter );
+
+	void print( void );
 
 private:
 	std::vector<real> _sites;

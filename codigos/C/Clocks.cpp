@@ -2,10 +2,20 @@
 
 #include <math.h>
 
+#include <iostream>
+#include <time.h>
+
+
 std::pair<uint32,real> minimun( const std::vector<real>& clock );
 
 Clocks::Clocks(  uint32 N , real t , real alpha )
 {
+	time_t start,end;
+	time (&start);
+	std::cerr << "Setting Clocks ... " << std::endl;
+
+	setSeed(  time(NULL) );
+
 	this->_actualTime = 0 ;
 	for(uint32 i = 0 ; i < N ; ++i )
 	{
@@ -31,6 +41,12 @@ Clocks::Clocks(  uint32 N , real t , real alpha )
 			else thereIsParticleInTime = false;
 		}
 	}
+
+	double dif;
+ 	time (&end);
+	dif = difftime (end,start);
+
+	std::cerr << "Clocks Seted in " << dif << " Seconds; number of cloks = " << this->_indexOrder.size() << std::endl;
 }
 
 Clocks::~Clocks( void )
