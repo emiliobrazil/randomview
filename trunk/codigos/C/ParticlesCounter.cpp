@@ -80,4 +80,13 @@ const ParticlesCounter &ParticlesCounter::operator*=( real alpha )
 	return *this;
 }
 
+void ParticlesCounter::print( void )
+{
+	for( uint32 i = 0 ; i < this->size() ; ++i )
+	{
+		fprintf( stdout , "%f " , this->get(i) ) ;
+	}
+	fprintf( stdout , "\n" ) ;
+}
+
 //  std::vector<real> _sites;
