@@ -4,49 +4,26 @@
 
 #include <iostream>
 #include <time.h>
+#include <math.h>
+#include <vector>
 
+
+#include "random_functions.h"
 
 std::pair<uint32,real> minimun( const std::vector<real>& clock );
 
 Clocks::Clocks(  uint32 N , real t , real alpha )
 {
-	time_t start,end;
-	time (&start);
-	std::cerr << "Setting Clocks ... " << std::endl;
-
 	setSeed(  time(NULL) );
 
 	this->_actualTime = 0 ;
-	for(uint32 i = 0 ; i < N ; ++i )
-	{
-		real timeLimite =  pow(N,alpha) * t ;
-		bool thereIsParticleInTime = true ;
-		this-> _indexOrder = std::vector<uint32>() ;
 
-		std::vector<real> clock( N , 0.0f );
-		for( uint32 j = 0 ; j < N ; ++j )
-		{
-			clock[j] = exponential( 1.0 ) ;
-		}
+	real tmp = pow( (real)N , alpha ) * t;
+	tmp += tmp*( 0.10*(uniform01()-0.5) );
 
-		while( thereIsParticleInTime )
-		{
-			std::pair<uint32,real> minTest;
-			minTest = minimun( clock );
-			if( minTest.second < timeLimite )
-			{
-				this->_indexOrder.push_back( minTest.first );
-				clock[minTest.first]+=exponential(1.0);
-			}
-			else thereIsParticleInTime = false;
-		}
-	}
+	this->_numberOfEvents = (uint32)tmp ;
 
-	double dif;
- 	time (&end);
-	dif = difftime (end,start);
-
-	std::cerr << "Clocks Seted in " << dif << " Seconds; number of cloks = " << this->_indexOrder.size() << std::endl;
+	this->_N = N;
 }
 
 Clocks::~Clocks( void )
@@ -56,13 +33,13 @@ Clocks::~Clocks( void )
 
 bool Clocks::isEmpty( void )
 {
-	return ( (this->_actualTime) >= ( this->_indexOrder.size() ) ) ;
+	return ( (this->_actualTime) >= ( this->_numberOfEvents) ) ;
 }
 
 uint32 Clocks::findNext( void )
 {
 	++(this->_actualTime);
-	return this->_indexOrder[ _actualTime - 1 ];
+	return (uint32)( rand() % this->_N );
 }
 
 std::pair<uint32,real> minimun( const std::vector<real>& clock )

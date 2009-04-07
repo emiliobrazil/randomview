@@ -1,9 +1,6 @@
 #ifndef _CLOCKS_HPP_
 #define _CLOCKS_HPP_
 
-#include <vector>
-
-#include "random_functions.h"
 #include "primitive_types.h"
 
 
@@ -18,8 +15,9 @@ public:
 
 	uint32 findNext( void );
 private:
-	std::vector<uint32> _indexOrder;
 	uint32 _actualTime;
+	uint32 _numberOfEvents;
+	uint32 _N;
 };
 
 
