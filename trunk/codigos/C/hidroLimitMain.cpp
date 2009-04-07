@@ -5,8 +5,8 @@
 
 int main( void )
 {
-	uint32 D = 100, N = 100;
-	real t = 0.1f , alpha = 1.0f ;
+	uint32 D = 1000, N = 1000;
+	real t = 1.0f , alpha = 1.0f ;
 	FDP function;
 	
 std::cerr << "initialize counter " << std::endl;
