@@ -19,7 +19,6 @@ Clocks::Clocks(  uint32 N , real t , real alpha )
 	this->_actualTime = 0 ;
 
 	real tmp = pow( (real)N , alpha ) * t;
-	tmp += tmp*( 0.10*(uniform01()-0.5) );
 
 	this->_numberOfEvents = (uint32)tmp ;
 
@@ -38,7 +37,7 @@ bool Clocks::isEmpty( void )
 
 uint32 Clocks::findNext( void )
 {
-	++(this->_actualTime);
+        this->_actualTime += exponential( 1.0 );
 	return (uint32)( rand() % this->_N );
 }
 
