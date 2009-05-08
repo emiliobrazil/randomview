@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>972</width>
-    <height>572</height>
+    <width>880</width>
+    <height>475</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,19 +19,12 @@
      <rect>
       <x>0</x>
       <y>10</y>
-      <width>806</width>
-      <height>411</height>
+      <width>878</width>
+      <height>441</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QPushButton" name="quitButton">
-       <property name="text">
-        <string>Quit</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="11">
+     <item row="0" column="13">
       <widget class="QSpinBox" name="numberOfParticleSpinBox">
        <property name="minimum">
         <number>21</number>
@@ -44,7 +37,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="10">
+     <item row="0" column="12">
       <widget class="QLabel" name="label">
        <property name="text">
         <string>Number of Particle</string>
@@ -75,16 +68,6 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="0" colspan="12">
-      <widget class="QFrame" name="frame">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="4">
       <spacer name="horizontalSpacer">
        <property name="orientation">
@@ -92,20 +75,58 @@
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>40</width>
+         <width>30</width>
          <height>20</height>
         </size>
        </property>
       </spacer>
      </item>
      <item row="0" column="9">
-      <widget class="QDoubleSpinBox" name="timeSpinBox"/>
+      <widget class="QDoubleSpinBox" name="timeSpinBox">
+       <property name="value">
+        <double>0.500000000000000</double>
+       </property>
+      </widget>
      </item>
      <item row="0" column="8">
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Time</string>
+        <string>t</string>
        </property>
+      </widget>
+     </item>
+     <item row="2" column="13">
+      <widget class="QPushButton" name="quitButton">
+       <property name="text">
+        <string>Quit</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="11">
+      <widget class="QDoubleSpinBox" name="alphaSpinBox">
+       <property name="value">
+        <double>2.000000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="10">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>alpha</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2" colspan="11">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2" colspan="12">
+      <widget class="QWidget" name="widget" native="true">
+       <zorder>quitButton</zorder>
+       <zorder>quitButton</zorder>
       </widget>
      </item>
     </layout>
@@ -118,7 +139,6 @@
   <tabstop>timeSpinBox</tabstop>
   <tabstop>numberOfParticleSpinBox</tabstop>
   <tabstop>stopButton</tabstop>
-  <tabstop>quitButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>

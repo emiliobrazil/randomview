@@ -20,7 +20,7 @@ public:
 
 	inline real at( uint32 i ){ return this->_sites[i] ; }
 	inline void set( uint32 i , real x ){ this->_sites[i] = x ; }
-	inline const real get( uint32 i ) const { return this->_sites[i] ; }
+        inline real get( uint32 i ) const { return this->_sites[i] ; }
 
 	const ParticlesCounter &operator=( const ParticlesCounter &counter ) ;
 	const ParticlesCounter  operator+( const ParticlesCounter &counter ) const;
