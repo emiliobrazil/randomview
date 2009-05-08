@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "ui_interface.h"
 #include <QtGui/QMainWindow>
 
 namespace Ui
@@ -17,6 +18,7 @@ public:
     ~MainWindow();
 
 private:
+    Ui::MainWindow ui;
 
 };
 

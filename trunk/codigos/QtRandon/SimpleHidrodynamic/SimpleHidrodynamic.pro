@@ -21,4 +21,4 @@ HEADERS += mainwindow.h \
     HidrodinamicsParticles.hpp \
     FDP.hpp \
     Clocks.hpp
-FORMS += 
+FORMS += interface.ui
