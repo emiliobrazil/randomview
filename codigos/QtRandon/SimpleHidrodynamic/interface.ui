@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>880</width>
-    <height>475</height>
+    <width>908</width>
+    <height>617</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,11 +19,14 @@
      <rect>
       <x>0</x>
       <y>10</y>
-      <width>878</width>
-      <height>441</height>
+      <width>905</width>
+      <height>584</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
+     <property name="margin">
+      <number>2</number>
+     </property>
      <item row="0" column="13">
       <widget class="QSpinBox" name="numberOfParticleSpinBox">
        <property name="minimum">
@@ -44,10 +47,10 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="6">
+     <item row="0" column="7">
       <widget class="QLCDNumber" name="lcdNumber"/>
      </item>
-     <item row="0" column="5">
+     <item row="0" column="6">
       <widget class="QLabel" name="label_2">
        <property name="text">
         <string>Number of Iterations</string>
@@ -62,36 +65,19 @@
       </widget>
      </item>
      <item row="0" column="3">
-      <widget class="QPushButton" name="stopButton">
+      <widget class="QPushButton" name="pauseButton">
        <property name="text">
-        <string>Stop</string>
+        <string>Pause</string>
        </property>
       </widget>
-     </item>
-     <item row="0" column="4">
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>30</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
      </item>
      <item row="0" column="9">
-      <widget class="QDoubleSpinBox" name="timeSpinBox">
+      <widget class="QDoubleSpinBox" name="tSpinBox">
+       <property name="singleStep">
+        <double>0.050000000000000</double>
+       </property>
        <property name="value">
         <double>0.500000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="8">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>t</string>
        </property>
       </widget>
      </item>
@@ -104,6 +90,9 @@
      </item>
      <item row="0" column="11">
       <widget class="QDoubleSpinBox" name="alphaSpinBox">
+       <property name="singleStep">
+        <double>0.050000000000000</double>
+       </property>
        <property name="value">
         <double>2.000000000000000</double>
        </property>
@@ -116,17 +105,41 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="4">
+      <widget class="QPushButton" name="resetButton">
+       <property name="text">
+        <string>Reset</string>
+       </property>
+      </widget>
+     </item>
      <item row="2" column="2" colspan="11">
-      <widget class="QLabel" name="label_5">
+      <widget class="QLabel" name="status_label">
        <property name="text">
         <string>TextLabel</string>
        </property>
       </widget>
      </item>
+     <item row="0" column="8">
+      <widget class="QLabel" name="label_t">
+       <property name="text">
+        <string>t</string>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="2" colspan="12">
-      <widget class="QWidget" name="widget" native="true">
-       <zorder>quitButton</zorder>
-       <zorder>quitButton</zorder>
+      <widget class="QFrame" name="frame">
+       <property name="minimumSize">
+        <size>
+         <width>600</width>
+         <height>512</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Sunken</enum>
+       </property>
       </widget>
      </item>
     </layout>
@@ -136,9 +149,9 @@
  </widget>
  <tabstops>
   <tabstop>startButton</tabstop>
-  <tabstop>timeSpinBox</tabstop>
+  <tabstop>tSpinBox</tabstop>
   <tabstop>numberOfParticleSpinBox</tabstop>
-  <tabstop>stopButton</tabstop>
+  <tabstop>pauseButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>
