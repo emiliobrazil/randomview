@@ -10,6 +10,8 @@
 class ParticlesCounter
 {
 public:
+        ParticlesCounter( void ){ this->_sites = std::vector<real>( ); }
+
 	ParticlesCounter( uint32 N ) { this->_sites = std::vector<real>( N , 0.0 ); }
 	ParticlesCounter( const ParticlesCounter& counter ) { this->_sites = counter.vector(); }
 

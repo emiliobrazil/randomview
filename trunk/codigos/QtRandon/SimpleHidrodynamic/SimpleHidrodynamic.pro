@@ -7,9 +7,9 @@ TARGET = SimpleHidrodynamic
 TEMPLATE = app
 SOURCES += main.cpp \
     mainwindow.cpp \
-    random_functions.c \
     ParticlesCounter.cpp \
     HidrodinamicsSystem.cpp \
+    random_functions.cpp \
     HidrodinamicsParticles.cpp \
     Clocks.cpp
 HEADERS += mainwindow.h \
