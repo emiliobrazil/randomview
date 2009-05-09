@@ -24,7 +24,13 @@ private slots:
     void pause( void );
     void start( void );
     void reset( void );
+    void setMaxIteration( int mI );
+    void setNunberOfSites( int noS );
+    void setAlpha( double a );
+    void setT( double tl );
 
+signals:
+    void sendIteration( int itr );
 
 private:
     Ui::MainWindow ui;
@@ -32,7 +38,7 @@ private:
     ParticlesCounter counter;
     real t, alpha;
     FDP function;
-    uint32 numberOfPartices;
+    uint32 numberOfSites , numberOfIterations , maxIteration ;
 
     bool isPaused;
     bool isRuning;
