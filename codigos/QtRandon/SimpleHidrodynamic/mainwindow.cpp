@@ -74,10 +74,19 @@ void MainWindow::start( void )
             HidrodinamicsSystem system(  this->numberOfSites ,  this->t ,  this->alpha ,  this->function );
             counter += system.process();
             ++this->numberOfIterations;
-            emit sendIteration( this->numberOfIterations + 1 );
+            emit sendIteration( this->numberOfIterations);
 
             qApp->processEvents();
         }
+        this->isPaused = false;
+        this->isRuning = false;
+        this->isReseted = true;
+
+        ui.maxIterationSpinBox->setReadOnly( false );
+        ui.tSpinBox->setReadOnly( false );
+        ui.numberOfSitesSpinBox->setReadOnly( false );
+        ui.alphaSpinBox->setReadOnly( false );
+        ui.status_label->setText(tr("waiting"));
     }
 
 }
@@ -96,6 +105,7 @@ void MainWindow::reset( void )
 
     this->numberOfIterations = 0;
     this->counter = ParticlesCounter( this->numberOfSites );
+    emit sendIteration( this->numberOfIterations);
 }
 
 void MainWindow::setMaxIteration( int mI )
