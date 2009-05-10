@@ -2,8 +2,8 @@
 
 const ParticlesCounter &ParticlesCounter::operator=( const ParticlesCounter &counter )
 {
-	ParticlesCounter *tmp = new ParticlesCounter( counter );
-	return  *tmp;
+        this->_sites = counter._sites;
+        return  (*this);
 }
 
 const ParticlesCounter  ParticlesCounter::operator+( const ParticlesCounter &counter ) const 

@@ -4,6 +4,7 @@
 #include <QGridLayout>
 #include <QtGui>
 
+
 MainWindow::MainWindow( void )
 {
     ui.setupUi(this);
@@ -19,6 +20,9 @@ MainWindow::MainWindow( void )
     connect( ui.maxIterationSpinBox  , SIGNAL( valueChanged( int  ) ) , this , SLOT( setMaxIteration( int )) );
 
     connect( this , SIGNAL( sendIteration( int ) ) , ui.lcdNumber , SLOT( display ( int ) ) ) ;
+
+    CV = new CounterViewer;
+    ui.spaceGrid->addWidget( CV );
 
     this->isPaused = false;
     this->isRuning = false;
@@ -75,20 +79,23 @@ void MainWindow::start( void )
             counter += system.process();
             ++this->numberOfIterations;
             emit sendIteration( this->numberOfIterations);
-
+            this->CV->draw( counter*(1.0/(real)this->numberOfIterations) );
             qApp->processEvents();
         }
-        this->isPaused = false;
-        this->isRuning = false;
-        this->isReseted = true;
 
-        ui.maxIterationSpinBox->setReadOnly( false );
-        ui.tSpinBox->setReadOnly( false );
-        ui.numberOfSitesSpinBox->setReadOnly( false );
-        ui.alphaSpinBox->setReadOnly( false );
-        ui.status_label->setText(tr("waiting"));
+        if( this->numberOfIterations == this->maxIteration )
+        {
+            this->isPaused = false;
+            this->isRuning = false;
+            this->isReseted = true;
+
+            ui.maxIterationSpinBox->setReadOnly( false );
+            ui.tSpinBox->setReadOnly( false );
+            ui.numberOfSitesSpinBox->setReadOnly( false );
+            ui.alphaSpinBox->setReadOnly( false );
+            ui.status_label->setText(tr("waiting"));
+        }
     }
-
 }
 
 void MainWindow::reset( void )

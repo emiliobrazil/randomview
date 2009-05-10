@@ -40,7 +40,7 @@
      <item row="0" column="10">
       <widget class="QDoubleSpinBox" name="alphaSpinBox">
        <property name="singleStep">
-        <double>0.050000000000000</double>
+        <double>0.100000000000000</double>
        </property>
        <property name="value">
         <double>2.000000000000000</double>
@@ -94,13 +94,13 @@
         <number>1</number>
        </property>
        <property name="maximum">
-        <number>10000</number>
+        <number>100000</number>
        </property>
        <property name="singleStep">
-        <number>20</number>
+        <number>1000</number>
        </property>
        <property name="value">
-        <number>100</number>
+        <number>10000</number>
        </property>
       </widget>
      </item>
@@ -131,16 +131,16 @@
      <item row="0" column="14">
       <widget class="QSpinBox" name="numberOfSitesSpinBox">
        <property name="minimum">
-        <number>15</number>
+        <number>64</number>
        </property>
        <property name="maximum">
-        <number>999</number>
+        <number>1024</number>
        </property>
        <property name="singleStep">
-        <number>10</number>
+        <number>64</number>
        </property>
        <property name="value">
-        <number>20</number>
+        <number>256</number>
        </property>
       </widget>
      </item>
@@ -162,20 +162,7 @@
       <widget class="QLCDNumber" name="lcdNumber"/>
      </item>
      <item row="1" column="2" colspan="13">
-      <widget class="QFrame" name="frame">
-       <property name="minimumSize">
-        <size>
-         <width>400</width>
-         <height>400</height>
-        </size>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="spaceGrid"/>
      </item>
     </layout>
    </widget>
