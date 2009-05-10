@@ -3,6 +3,7 @@
 
 #include "ui_interface.h"
 #include "HidrodinamicsSystem.hpp"
+#include "counterviewer.h"
 
 
 #include <QtGui/QMainWindow>
@@ -39,6 +40,7 @@ private:
     real t, alpha;
     FDP function;
     uint32 numberOfSites , numberOfIterations , maxIteration ;
+    CounterViewer *CV;
 
     bool isPaused;
     bool isRuning;
