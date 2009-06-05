@@ -9,7 +9,7 @@ HidrodinamicsParticles::HidrodinamicsParticles( uint32 N , FDP function )
 
 	for( uint32 i = 0 ; i < N ; ++i )
 	{
-		if( function.eval( i*delta ) < ( max * uniform01() ) ) this->_particles[i] = true;
+                if( function.eval( i*delta ) >= ( max * uniform01() ) ) this->_particles[i] = true;
 	}
 }
 
