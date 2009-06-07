@@ -7,7 +7,19 @@ TARGET = cornerPercolation
 TEMPLATE = app
 SOURCES += main.cpp \
     mainwindow.cpp \
-    site.cpp
+    pathviewer.cpp \
+    percolationviewer.cpp \
+    site.cpp \
+    percolation_process.cpp \
+    path.cpp \
+    edge.cpp
 HEADERS += mainwindow.h \
-    site.h
+    pathviewer.h \
+    percolationviewer.h \
+    types.hpp \
+    site.hpp \
+    percolation_process.hpp \
+    path.hpp \
+    particle.hpp \
+    edge.hpp
 FORMS += mainwindow.ui
