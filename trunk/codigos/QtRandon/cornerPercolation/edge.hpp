@@ -1,8 +1,8 @@
 #include "types.hpp"
 #include "site.hpp"
 
-#ifndef _EDGE_HPP
-#define _EDGE_HPP
+#ifndef EDGE_HPP
+#define EDGE_HPP
 
 class Edge
 {
@@ -17,8 +17,8 @@ public:
 
     Edge& operator=( const Edge& );
 
-    ORIENTATION orientation( void );
-    Site position( void );
+    const ORIENTATION orientation( void ) const;
+    const Site& position( void ) const;
 };
 
 #endif

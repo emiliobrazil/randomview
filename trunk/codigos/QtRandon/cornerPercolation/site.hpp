@@ -1,7 +1,7 @@
 #include "types.hpp"
 
-#ifndef _SITE_HPP
-#define _SITE_HPP
+#ifndef SITE_HPP
+#define SITE_HPP
 
 class Site
 {

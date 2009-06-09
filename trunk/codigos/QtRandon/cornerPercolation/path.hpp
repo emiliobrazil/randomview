@@ -1,10 +1,13 @@
 #include "types.hpp"
 #include "site.hpp"
 #include "edge.hpp"
-#include<vector>
+#include <cassert>
+#include <vector>
+#include <set>
+#include <utility>
 
-#ifndef _PATH_HPP
-#define _PATH_HPP
+#ifndef PATH_HPP
+#define PATH_HPP
 
 class Path
 {
@@ -12,6 +15,10 @@ class Path
 public:
     Path( void );
     Path( const Site& startPosition );
+
+    // Path is more intuitive if we think about edges
+    Path( const Edge& startPosition );
+
     Path( const Path& );
 
     Path& operator=( const Path& p );
@@ -22,9 +29,13 @@ public:
     bool isClosed( void ) const;
     const Site& getSite( int index ) const; 
 
+    // helper functions -- exists only because Path is a vector of Site
+private:
+    ORIENTATION getHead( const Site&, const Site& ) const;
+
 private:
     std::vector<Site> pPath;
-    std::vector<Site>::iterator iterator;
+//    std::vector<Site>::iterator iterator;
     bool pIsClosed;
 };
 
