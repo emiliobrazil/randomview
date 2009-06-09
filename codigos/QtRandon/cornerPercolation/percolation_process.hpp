@@ -3,8 +3,8 @@
 #include "edge.hpp" 
 #include <vector>
 
-#ifndef _PERCOLATION_PROCESS_HPP
-#define _PERCOLATION_PROCESS_HPP
+#ifndef PERCOLATION_PROCESS_HPP
+#define PERCOLATION_PROCESS_HPP
 
 class PercolationProcess
 {

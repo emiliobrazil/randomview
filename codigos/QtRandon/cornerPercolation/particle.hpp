@@ -1,7 +1,7 @@
 #include "types.hpp"
 
-#ifndef _PARTICLE_HPP
-#define _PARTICLE_HPP
+#ifndef PARTICLE_HPP
+#define PARTICLE_HPP
 
 class Particle
 {

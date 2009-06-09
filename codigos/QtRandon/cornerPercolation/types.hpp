@@ -1,5 +1,5 @@
-#ifndef _TYPES_HPP
-#define _TYPES_HPP
+#ifndef TYPES_HPP
+#define TYPES_HPP
 
 enum PERCOLATION { CORNER }; 
 enum ORIENTATION { H , V }; 

@@ -20,6 +20,6 @@ Edge& Edge::operator=( const Edge& e) {
     return (*this);
 } 
 
-ORIENTATION Edge::orientation( void ) { return head; } 
+const ORIENTATION Edge::orientation( void ) const { return head; }
 
-Site Edge::position( void ) { return base; } 
+const Site& Edge::position( void ) const { return this->base; }
