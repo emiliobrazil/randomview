@@ -16,9 +16,9 @@ Clocks::Clocks(  uint32 N , real t , real alpha )
 
         this->_actualTime = 0 ;
 
-        real tmp = pow( (real)N , alpha ) * t;
+        real tmp = pow( (real)N , alpha )  * t;
 
-        this->_numberOfEvents = (uint32)tmp ;
+        this->_numberOfEvents = (uint32)tmp*N ;
 
         this->_N = N;
 }
