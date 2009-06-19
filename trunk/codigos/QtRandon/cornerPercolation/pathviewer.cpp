@@ -15,10 +15,10 @@ void PathViewer::draw()
 
 void PathViewer::paintEvent( QPaintEvent *event )
 {
-    qreal scale = 5.0;
+    qreal scale = 30.0;
     QPainter painter(this);
     painter.setWindow( -500 , -500 , 1000 , 1000 );
-    painter.setTransform( QTransform( scale , 0 , 0 , 0 , -scale , 0 , 0 , 1 ) );
+    painter.setTransform( QTransform( scale , 0 , 0 , 0 , -scale , 0 , -200 , -30 , 1 ) );
     drawPath( painter );
 }
 
