@@ -12,7 +12,8 @@ SOURCES += main.cpp \
     site.cpp \
     percolation_process.cpp \
     path.cpp \
-    edge.cpp
+    edge.cpp \
+    percolationdrawerqt.cpp
 HEADERS += mainwindow.h \
     pathviewer.h \
     percolationviewer.h \
@@ -21,5 +22,6 @@ HEADERS += mainwindow.h \
     percolation_process.hpp \
     path.hpp \
     particle.hpp \
-    edge.hpp
+    edge.hpp \
+    percolationdrawerqt.h
 FORMS += mainwindow.ui
