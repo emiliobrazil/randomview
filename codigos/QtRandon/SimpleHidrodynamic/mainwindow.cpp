@@ -4,6 +4,7 @@
 #include <QGridLayout>
 #include <QtGui>
 
+#include <time.h>
 
 MainWindow::MainWindow( void )
 {
@@ -66,6 +67,8 @@ void MainWindow::start( void )
 
         if( !this->isPaused )
         {
+  	    srand ( time(NULL) );
+	    fprintf(stderr, "alea = %d", rand() );
             this->numberOfIterations = 0;
             this->counter = ParticlesCounter( this->numberOfSites );
         }
