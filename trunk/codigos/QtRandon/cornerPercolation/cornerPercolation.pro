@@ -8,7 +8,6 @@ TEMPLATE = app
 SOURCES += main.cpp \
     mainwindow.cpp \
     pathviewer.cpp \
-    percolationviewer.cpp \
     site.cpp \
     percolation_process.cpp \
     path.cpp \
@@ -16,7 +15,6 @@ SOURCES += main.cpp \
     percolationdrawerqt.cpp
 HEADERS += mainwindow.h \
     pathviewer.h \
-    percolationviewer.h \
     types.hpp \
     site.hpp \
     percolation_process.hpp \
