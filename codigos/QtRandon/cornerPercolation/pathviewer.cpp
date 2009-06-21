@@ -18,11 +18,19 @@ void PathViewer::draw()
 void PathViewer::paintEvent( QPaintEvent *event )
 {
 //    qreal scale = 30.0;
+    PercolationProcess process;
     QPainter painter(this);
-//    painter.setTransform( QTransform( scale , 0 , 0 , 0 , -scale , 0 , 10*scale , 10*scale , 1 ) );
     PercolationDrawerQT drawertmp;
-    drawertmp.setWindow( painter , frameSize.width() , frameSize.height() , -14 , 20 , -14 , 20 );
-    drawPath( painter );
+    drawertmp.setWindow( painter , frameSize.width() , frameSize.height() , -15 , 15 , -5 , 5 );
+
+//    drawPath( painter );
+
+    drawertmp.drawSistemEdges( painter , process);
+    drawertmp.drawSistemSites( painter , process);
+
+    painter.setPen( QPen( QBrush( Qt::green ), 0.2f ) );
+    painter.drawPoint( 0 , 0 );
+
 }
 
 void PathViewer::drawPath( QPainter &painter )
