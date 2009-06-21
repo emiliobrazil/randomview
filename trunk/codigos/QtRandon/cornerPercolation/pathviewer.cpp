@@ -21,7 +21,7 @@ void PathViewer::paintEvent( QPaintEvent *event )
     QPainter painter(this);
 //    painter.setTransform( QTransform( scale , 0 , 0 , 0 , -scale , 0 , 10*scale , 10*scale , 1 ) );
     PercolationDrawerQT drawertmp;
-    drawertmp.setWindow( painter , frameSize.width() , frameSize.height() , -10 , 10 , -16 , 6 );
+    drawertmp.setWindow( painter , frameSize.width() , frameSize.height() , -14 , 20 , -14 , 20 );
     drawPath( painter );
 }
 
