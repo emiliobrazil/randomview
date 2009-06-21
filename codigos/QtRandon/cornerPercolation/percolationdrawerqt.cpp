@@ -18,7 +18,7 @@ void PercolationDrawerQT::setWindow( QPainter &painter , int windowWidh , int wi
     qreal scale = (widhFactor<heightFactor)? widhFactor : heightFactor ;
 
     this->transform.scale( scale , -scale );
-    this->transform.translate( -systemStartX , systemStartY );
+    this->transform.translate( -systemStartX ,  -systemEndY );
 
     painter.setTransform( this->transform );
 }
