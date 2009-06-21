@@ -13,11 +13,15 @@ public:
     void addPath( Path& path );
 
     void draw ( void );
-    void drawPath( QPainter &painter );
-    void drawPath( QPainter &painter , Path& path );
+
+    void setSize( QSize size ) { this->frameSize = size ;}
 
 private:
     void paintEvent( QPaintEvent *event );
+
+    void drawPath( QPainter &painter );
+
+    QSize frameSize;
 
     std::vector<Path> allPath;
 };

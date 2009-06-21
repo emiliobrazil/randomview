@@ -19,30 +19,38 @@ MainWindow::MainWindow( void )
 
     Site tmp;
 
-    for(int i = 0 ; i < 100 ; ++i )
-    {
-        int step = 1;
+    this->path.add( tmp );
 
-        step = ( (float) rand() ) / RAND_MAX > 1.0/2 ? 1 : -1;
-
-        ( (float) rand() ) / RAND_MAX > 1.0/2 ? tmp.addX(step) : tmp.addY(step);
-
-        this->path.add( tmp );
-
-    }
-
-    for( unsigned int i = 0 ;  i < path.size() ; ++i)
-    {
-        fprintf( stderr , "P%d = ( %d , %d )\n", i , path.getSite(i).X() , path.getSite(i).Y() );
-    }
-
-    // nao use printf's para debugar!!! :p
-    if( path.isClosed() ) {
-        fprintf( stderr , "The path is closed." );
-    }
-
+    tmp.addX(1)  ;this->path.add( tmp ); tmp.addY(1); this->path.add( tmp );
+    tmp.addX(1)  ;this->path.add( tmp ); tmp.addY(1);this->path.add( tmp );
+    tmp.addX(-1) ;this->path.add( tmp ); tmp.addY(1);this->path.add( tmp );
+    tmp.addX(-1) ;this->path.add( tmp ); tmp.addY(1);this->path.add( tmp );
+    tmp.addX(-1) ;this->path.add( tmp ); tmp.addY(-1);this->path.add( tmp );
+    tmp.addX(-1) ;this->path.add( tmp ); tmp.addY(1);this->path.add( tmp );
+    tmp.addX(-1) ;this->path.add( tmp ); tmp.addY(1);this->path.add( tmp );
+    tmp.addX(-1) ;this->path.add( tmp ); tmp.addY(-1);this->path.add( tmp );
+    tmp.addX(-1) ;this->path.add( tmp ); tmp.addY(1);this->path.add( tmp );
+        
 
     this->viewer->addPath( path );
+
+    tmp.setX(0) ; tmp.setY(1);
+
+    Path p2( tmp );
+    tmp.addX(-1)  ; p2.add( tmp ); tmp.addY(1); p2.add( tmp );
+    tmp.addX(1)  ; p2.add( tmp ); tmp.addY(-1);p2.add( tmp );
+
+    this->viewer->addPath( p2 );
+
+    tmp.setX(-10) ; tmp.setY(-10);
+
+    Path p3( tmp );
+    for( int i = 0 ; i < 50 ; ++i)
+    {
+        tmp.addX(1)  ; p3.add( tmp ); tmp.addY(1); p3.add( tmp );
+    }
+        this->viewer->addPath( p3 );
+
     this->viewer->draw( );
 }
 
