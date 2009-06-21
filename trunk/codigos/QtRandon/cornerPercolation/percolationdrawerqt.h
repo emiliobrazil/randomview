@@ -11,23 +11,27 @@
 class PercolationDrawerQT
 {
 public:
-    PercolationDrawerQT();
+    PercolationDrawerQT( void );
 
-    void setWindow( QPainter &painter , int windowWidh , int windowHeight ,
+    void setWindow( QPainter& painter , int windowWidh , int windowHeight ,
                                         int systemStartX , int systemEndX ,
                                         int systemStartY , int systemEndY );
-    void setWindow( QPainter &painter );
-    void setWindow( QPainter &painter , QTransform& tranform );
+    void setWindow( QPainter& painter );
+    void setWindow( QPainter& painter , QTransform& transform );
 
-    QTransform& getWindowTranform( void );
-    void setWindowTranform( const QTransform& tranform );
+    QTransform& getTransform( void );
+    void setTransform( const QTransform& transform );
 
-    void drawPath( QPainter &painter , Path& path);
-    void drawSistemEdges( QPainter &painter , PercolationProcess& process );
-    void drawSistemSites( QPainter &painter , PercolationProcess& process );
+    void drawPath( QPainter& painter , QPolygon& path );
+    void drawPath( QPainter& painter , Path& path );
+
+    void drawSistemEdges( QPainter& painter , PercolationProcess& process );
+
+    void drawSistemSites( QPainter& painter , PercolationProcess& process );
 
 private:
-    QTransform tranform;
+    QTransform transform;
+
 
 };
 
