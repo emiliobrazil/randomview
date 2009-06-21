@@ -3,6 +3,8 @@
 #include "edge.hpp" 
 #include <vector>
 
+#include <stdlib.h>
+
 #ifndef PERCOLATION_PROCESS_HPP
 #define PERCOLATION_PROCESS_HPP
 
@@ -19,14 +21,14 @@ private:
     std::vector<bool>  pKeysOfSitesVisited;
 
 public:
-    PercolationProcess();
+    PercolationProcess(){}
     PercolationProcess( unsigned int radiusX , unsigned int radiusY );
     PercolationProcess( const PercolationProcess& );
 
     PercolationProcess& operator=( const PercolationProcess& );
 
-    bool isOpen( Edge ) const;
-    bool isOpen( Site ) const; // key
+    bool isOpen( Edge ) const { return ((double)rand()/(double)RAND_MAX) < 0.4;}
+    bool isOpen( Site ) const  { return((double)rand()/(double)RAND_MAX) < 0.4;} // key
     bool isVisited( Site ) const;
     bool dualX( int i ) const;
     bool dualY( int j ) const;

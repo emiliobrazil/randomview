@@ -32,7 +32,8 @@ public:
 private:
     QTransform transform;
 
-
+    int widh , heiht, startX, startY;
+    qreal scale;
 };
 
 #endif // PERCOLATIONDRAWERQT_H
