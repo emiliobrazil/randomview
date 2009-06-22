@@ -1,4 +1,5 @@
 #include "percolation_process.hpp"
+#include <iostream>
 
 //class PercolationProcess
 //{
@@ -16,7 +17,7 @@
 
 /* Implementation */
 PercolationProcess::PercolationProcess() {
-    PercolationProcess tmp( 200, 200 );
+    PercolationProcess tmp( 100, 100 );
     (*this) = tmp;
 }
 
@@ -24,6 +25,9 @@ PercolationProcess::PercolationProcess( unsigned int radiusX , unsigned int radi
 
     pRadiusX = radiusX;
     pRadiusY = radiusY;
+    pType = CORNER;
+
+    int n, coin, signal;
 
     const unsigned int size = (pRadiusX + 1) * (pRadiusY + 1);
 
@@ -32,12 +36,22 @@ PercolationProcess::PercolationProcess( unsigned int radiusX , unsigned int radi
         pKeysOfSitesVisited.push_back( false );
     }
 
-    for( int i = 0; i <= pRadiusX; ++i ) {
-        pPrimalX.push_back( (rand() / (double) RAND_MAX < 0.5) ? -1 : 1 );
+    for( int i = 0; i < (2*pRadiusX+1); ++i ) {
+         coin = ( (double) rand() / (double) RAND_MAX ) < 0.5 ? 1 : -1;
+        pPrimalX.push_back( coin == 1 );
+
+        n = i - pRadiusX;
+        signal = (n + 1) % 2 == 0 ? 1 : -1;
+        pDualX.push_back( (signal * coin) == 1 );
     }
 
-    for( int i = 0; i <= pRadiusY; ++i ) {
-        pPrimalY.push_back( (rand() / (double) RAND_MAX < 0.5) ? -1 : 1 );
+    for( int i = 0; i < (2*pRadiusY+1); ++i ) {
+        coin = ( (double) rand() / (double) RAND_MAX ) < 0.5 ? 1 : -1;
+        pPrimalY.push_back( coin == 1 );
+
+        n = i - pRadiusY;
+        signal = n % 2 == 0 ? 1 : -1;
+        pDualY.push_back( (signal * coin) == 1 );
     }
 }
 
@@ -58,42 +72,37 @@ PercolationProcess& PercolationProcess::operator=( const PercolationProcess& p )
     return (*this);
 }
 
-// IMPLEMATATION BEGIN
-//bool PercolationProcess::isOpen( Edge edge )
-//{
-//    Site pos = edge.position();
-//    switch ( edge.orientation() )
-//    {
-//    case H:
-//        if ( ( pos.X() + pos.Y() ) % 2 == 0 )
-//        {
-//            if( dualX( pos.X() ) ) return true;
-//            else return false;
-//        }
-//        else
-//        {
-//            if( dualX( pos.X() ) ) return false;
-//            else return true;
-//        }
-//        break;
-//    case V:
-//        if ( ( pos.X() + pos.Y() ) % 2 == 0 )
-//        {
-//            if( dualY(  pos.Y() ) ) return true;
-//            else return false;
-//        }
-//        else
-//        {
-//            if( dualY( pos.Y() ) ) return false;
-//            else return true;
-//        }
-//        break;
-//    default:
-//        return false;
-//    }
-//}
-// IMPLEMATATION END
-bool PercolationProcess::isOpen( const Edge& e ) const { return false; }
+bool PercolationProcess::isOpen( const Edge& e ) const {
+
+    Site s = e.position();
+
+    switch( e.orientation() ) {
+
+    case H:
+        if( dualY( s.Y() ) ) {
+            return ( abs( s.X() ) % 2 == 0 ) ? true : false;
+        }
+        else
+        {
+            return ( abs( s.X() ) % 2 == 0 ) ? false : true;
+        }
+        break;
+
+    case V:
+        if( dualX( s.X() ) ) {
+            return ( abs( s.Y() ) % 2 == 0 ) ? true : false;
+        }
+        else
+        {
+            return ( abs( s.Y() ) % 2 == 0 ) ? false : true;
+        }
+        break;
+
+    default: break;
+    }
+
+    return false;
+}
 
 
 bool PercolationProcess::isOpen( const Site& s ) const { //return true; } // key
@@ -110,26 +119,22 @@ bool PercolationProcess::isVisited( Site s ) const {
 
 bool PercolationProcess::dualX( int i ) const {
 
-    assert( abs(i) <= pRadiusX );
-    return pDualX[  i + pRadiusX  ];
+    return pDualX[ getX(i) ];
 }
 
 bool PercolationProcess::dualY( int j ) const {
 
-   assert( abs(j) <= pRadiusY );
-   return pPrimalY[ j + pRadiusY ];
+   return pDualY[ getY(j) ];
 }
 
 bool PercolationProcess::primalX( int i  ) const {
 
-    assert( abs(i) <= pRadiusX );
-    return pPrimalX[ i + pRadiusX ];
+    return pPrimalX[ getX(i) ];
 }
 
 bool PercolationProcess::primalY( int j ) const {
 
-    assert( abs(j) <= pRadiusY );
-    return pPrimalY[ j + pRadiusY ];
+    return pPrimalY[ getY(j) ];
 }
 
 bool PercolationProcess::visit( const Site &s ) {
@@ -145,6 +150,18 @@ bool PercolationProcess::visit( const Site &s ) {
 unsigned int PercolationProcess::getIndex( const Site& s ) const {
 
     return ( s.X() + s.Y() * (2 * pRadiusX + 1) + pRadiusX + pRadiusY * (2 * pRadiusX + 1) );
+}
+
+unsigned int PercolationProcess::getX( int i ) const {
+
+    assert( abs(i) <= pRadiusX );
+    return ( i + pRadiusX );
+}
+
+unsigned int PercolationProcess::getY( int j ) const {
+
+    assert( abs(j) <= pRadiusY );
+    return ( j + pRadiusY );
 }
 
 bool PercolationProcess::inBox( const Site &s ) const {

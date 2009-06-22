@@ -41,6 +41,8 @@ public:
     // Helper functions: as long as the box is fixed
 private:
     unsigned int getIndex( const Site& s ) const;
+    unsigned int getX( int i ) const;
+    unsigned int getY( int j ) const;
     bool inBox( const Site & ) const;
 };
 
