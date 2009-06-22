@@ -3,7 +3,8 @@
 #include "edge.hpp" 
 #include <vector>
 
-#include <stdlib.h>
+#include <cstdlib>
+#include <cassert>
 
 #ifndef PERCOLATION_PROCESS_HPP
 #define PERCOLATION_PROCESS_HPP
@@ -17,23 +18,31 @@ private:
     std::vector<bool> pDualX;
     std::vector<bool> pDualY;
     unsigned int pRadiusX , pRadiusY;
-    std::vector<Site> pVisitedSites;
+    std::vector<bool> pVisitedSites;
     std::vector<bool>  pKeysOfSitesVisited;
 
 public:
-    PercolationProcess(){}
-    PercolationProcess( unsigned int radiusX , unsigned int radiusY );
+    PercolationProcess();
+    PercolationProcess( unsigned int radiusX, unsigned int radiusY );
     PercolationProcess( const PercolationProcess& );
 
     PercolationProcess& operator=( const PercolationProcess& );
 
-    bool isOpen( Edge ) const { return ((double)rand()/(double)RAND_MAX) < 0.4;}
-    bool isOpen( Site ) const  { return((double)rand()/(double)RAND_MAX) < 0.4;} // key
+    bool isOpen( const Edge& ) const;// { return ((double)rand()/(double)RAND_MAX) < 0.4;}
+    bool isOpen( const Site& ) const;//  { return((double)rand()/(double)RAND_MAX) < 0.4;} // key
     bool isVisited( Site ) const;
     bool dualX( int i ) const;
     bool dualY( int j ) const;
     bool primalX( int i  ) const;
     bool primalY( int j ) const;
+
+    bool visit( const Site & );
+
+    // Helper functions: as long as the box is fixed
+private:
+    unsigned int getIndex( const Site& s ) const;
+    bool inBox( const Site & ) const;
 };
+
 
 #endif
