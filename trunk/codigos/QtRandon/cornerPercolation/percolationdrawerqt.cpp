@@ -98,8 +98,14 @@ void PercolationDrawerQT::drawSistemSites( QPainter& painter , PercolationProces
         {
             int tmpX = i + startX - 5;
             int tmpY = j + startY - 5;
+
             bool otherColor;
+
+            // DON'T PASS A CLASS DEFINITION!!!
             otherColor = process.isOpen( Site( tmpX , tmpY )  );
+
+           /* Site s( tmpX, tmpY );
+            otherColor = process.isOpen( s );*/
 
             painter.setPen( QPen( QBrush( Qt::darkRed ), 4.0f/scale ) );
             if(otherColor) painter.setPen( QPen( QBrush( Qt::darkGreen ), 4.0f/scale ) );
