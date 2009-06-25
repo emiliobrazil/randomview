@@ -20,4 +20,13 @@
 	typedef sint32   word;
 	typedef fp32     real;
 
+        enum FDP_FUNC {
+                        QUADRATIC ,
+                        LINEAR ,
+                        PIECEWISE_LINEAR_01 ,
+                        PIECEWISE_LINEAR_02 ,
+                        NON_CONTINUOS ,
+                        GAUSIAN
+                    };
+
 #endif  // __PRIMITIVE_TYPES_HPP__
