@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>938</width>
-    <height>510</height>
+    <width>942</width>
+    <height>505</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -151,7 +151,7 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="3" colspan="12">
+     <item row="2" column="3" colspan="8">
       <widget class="QLabel" name="status_label">
        <property name="text">
         <string>TextLabel</string>
@@ -163,6 +163,50 @@
      </item>
      <item row="1" column="2" colspan="13">
       <layout class="QHBoxLayout" name="spaceGrid"/>
+     </item>
+     <item row="2" column="11" colspan="2">
+      <widget class="QLabel" name="label_5">
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="text">
+        <string>Initial Function</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="13" colspan="2">
+      <widget class="QComboBox" name="comboBox">
+       <item>
+        <property name="text">
+         <string>Quadratic</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Linear</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Piecewise Linear 0.5</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Piecewise Linear 0.2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Non Continuos</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Gausian</string>
+        </property>
+       </item>
+      </widget>
      </item>
     </layout>
    </widget>
