@@ -14,7 +14,13 @@ class FDP
 public:
     FDP( void ){ func = QUADRATIC;}
     FDP( FDP_FUNC func ){ this->func = func; }
+    FDP( const FDP& fdp ){ (*this) = fdp ;}
     ~FDP( void ){}
+
+    FDP &operator=(const FDP &fdp){func = fdp.func;
+                                    return (*this); }
+
+    void set(FDP_FUNC func){ this->func = func; }
 
     real eval( real x)
     {

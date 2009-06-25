@@ -29,6 +29,7 @@ private slots:
     void setNunberOfSites( int noS );
     void setAlpha( double a );
     void setT( double tl );
+    void changeInitialFunc( int index );
 
 signals:
     void sendIteration( int itr );
@@ -38,13 +39,14 @@ private:
 
     ParticlesCounter counter;
     real t, alpha;
-    FDP function;
     uint32 numberOfSites , numberOfIterations , maxIteration ;
     CounterViewer *CV;
 
     bool isPaused;
     bool isRuning;
     bool isReseted;
+
+    FDP_FUNC initialFunc ;
 
 };
 

@@ -19,7 +19,8 @@ public:
     CounterViewer( QWidget *parent = 0 ) ;
 
     void draw( ParticlesCounter counter  );
-    void draw(  FDP fanction  );
+    void draw(  FDP function  );
+    void setFunc( FDP function  ) { aFunction = function ;}
 
 private:
     void paintEvent( QPaintEvent *event );

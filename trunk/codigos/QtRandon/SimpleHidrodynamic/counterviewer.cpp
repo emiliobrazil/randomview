@@ -7,7 +7,7 @@ CounterViewer::CounterViewer( QWidget *parent ) : QWidget(parent)
 
 void CounterViewer::paintEvent( QPaintEvent *event )
 {
-    QPainter painter(this);
+    QPainter painter( this );
     drawCounter( painter );
 }
 
@@ -42,7 +42,7 @@ void CounterViewer::drawCounter( QPainter &painter )
     }
 
     QPolygon functionPolyline;
-    for( int i = 0 ; i < numberOfSites ; ++i )
+    for( int i = 0 ; i < numberOfSites+1 ; ++i )
     {
         int dX = (int)( delta * i );
         int dY = (int)( maxHeigth *( 1.0 - aFunction.eval( i / (real)(numberOfSites-1)) ) ) + marginHeight;

@@ -22,8 +22,12 @@ MainWindow::MainWindow( void )
 
     connect( this , SIGNAL( sendIteration( int ) ) , ui.lcdNumber , SLOT( display ( int ) ) ) ;
 
+    connect( ui.comboBox , SIGNAL( currentIndexChanged( int ) ) , this , SLOT( changeInitialFunc( int )) );
+
     CV = new CounterViewer;
     ui.spaceGrid->addWidget( CV );
+
+    this->initialFunc = LINEAR;
 
     this->isPaused = false;
     this->isRuning = false;
@@ -67,8 +71,8 @@ void MainWindow::start( void )
 
         if( !this->isPaused )
         {
-  	    srand ( time(NULL) );
-	    fprintf(stderr, "alea = %d", rand() );
+//  	    srand ( time(NULL) );
+//            fprintf(stderr, "alea = %d", rand() );
             this->numberOfIterations = 0;
             this->counter = ParticlesCounter( this->numberOfSites );
         }
@@ -78,10 +82,11 @@ void MainWindow::start( void )
         this->isReseted = false;
         while( ( !this->isPaused && !this->isReseted ) && ( this->numberOfIterations < this->maxIteration ) )
         {
-            HidrodinamicsSystem system(  this->numberOfSites ,  this->t ,  this->alpha ,  this->function );
+            HidrodinamicsSystem system(  this->numberOfSites ,  this->t ,  this->alpha ,  FDP( this->initialFunc ) );
             counter += system.process();
             ++this->numberOfIterations;
             emit sendIteration( this->numberOfIterations);
+            this->CV->setFunc( FDP( this->initialFunc ) ) ;
             this->CV->draw( counter*(1.0/(real)this->numberOfIterations) );
             qApp->processEvents();
         }
@@ -138,3 +143,38 @@ void MainWindow::setT( double tl )
     this->t = tl;
 }
 
+void MainWindow::changeInitialFunc( int index )
+{
+            fprintf(stderr,"ddddd\n");
+
+    switch (index)
+    {
+    case 0:
+        this->initialFunc = QUADRATIC;
+        fprintf(stderr,"QUADRATIC\n");
+        break;
+    case 1:
+        this->initialFunc = LINEAR;
+        fprintf(stderr,"LINEAR\n");
+        break;
+    case 2:
+        this->initialFunc = PIECEWISE_LINEAR_01;
+        fprintf(stderr,"PIECEWISE_LINEAR_01\n");
+        break;
+    case 3:
+        this->initialFunc = PIECEWISE_LINEAR_02;
+        fprintf(stderr,"PIECEWISE_LINEAR_02\n");
+        break;
+    case 4:
+        this->initialFunc = NON_CONTINUOS;
+        fprintf(stderr,"NON_CONTINUOS\n");
+        break;
+    case 5:
+        this->initialFunc = GAUSIAN;
+        fprintf(stderr,"GAUSIAN\n");
+        break;
+    default:
+        this->initialFunc = GAUSIAN;
+        break;
+    }
+}
