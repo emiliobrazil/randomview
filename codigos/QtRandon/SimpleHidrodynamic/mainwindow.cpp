@@ -27,7 +27,7 @@ MainWindow::MainWindow( void )
     CV = new CounterViewer;
     ui.spaceGrid->addWidget( CV );
 
-    this->initialFunc = LINEAR;
+    this->initialFunc = QUADRATIC;
 
     this->isPaused = false;
     this->isRuning = false;
