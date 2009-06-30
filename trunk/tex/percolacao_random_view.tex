@@ -1,10 +1,10 @@
 \documentclass[letterpaper,12pt]{article}
-\oddsidemargin 0cm
-\evensidemargin 0cm
-\textwidth 17 cm
-\topmargin 0cm
-\textheight 22.1 cm
-\unitlength=1cm
+% \oddsidemargin 0cm
+% \evensidemargin 0cm
+% \textwidth 17 cm
+% \topmargin 0cm
+% \textheight 22.1 cm
+% \unitlength=1cm
 
 %%%%Pacotes%%%%%%%%%
 \usepackage[brazil,portuges]{babel}
@@ -30,7 +30,7 @@ es-pe-ci-a-li-za-dos con-ti-nua-men-te ne-nhu-ma ins-tan-te}
 \def\cqd{$\hfill\square$}
 %%%%%%Ambientes%%%%%%%%%
 %%%%%%%Macros%%%%%%%%%%%%
-\newtheorem{definicao}[section]{Defini\c c\~ao}
+\newtheorem{definicao}{Defini\c c\~ao}
 \newtheorem{proposicao}[section]{Proposi\c c\~ao}
 \newtheorem{teorema}[section]{Teorema}
 \newtheorem{corolario}[section]{Corol\'ario}
@@ -91,26 +91,25 @@ Visualização de Processos Estocásticos}
 
 Essas notas fazem parte de um projeto denominado \textit{Random View}; um projeto de visualização de Processos Estocásticos desenvolvido no Instituto Nacional de Matemática
 Pura e Aplicada, no Rio de Janeiro e serão utilizadas na Reunião Anual da Sociedade Brasileira para o Progresso da Ciência 2009, em Manaus, como uma forma de divulgação a alunos e pesquisadores presentes nesse encontro.
-Elas foram divididas em dois capítulos básicos.
+Tais notas foram divididas em dois capítulos básicos.
 
-No primeiro capítulo, introduzimos os modelos de Percolação e passeios em grafos.
-Nos concentramos especialmente no caso de percolação de elos em $\Z^{2}$ para facilitar a exposição. Incluimos o modelo de \textit{Corner Percolation} o qual temos grande interesse em visualização. Não foram incluidas demontrações.
+Na Seção \ref{percolacao}, introduzimos os modelos de Percolação e passeios em grafos.
+Nos concentramos especialmente no caso de percolação de elos em $\Z^{2}$ para facilitar a exposição. Incluimos o modelo de \textit{Corner Percolation} para o qual temos grande interesse em visualização. Não foram incluidas demonstrações.
 Para uma introdução rigorosa e demonstrações dos principais aspectos desse modelo remetemos o leitor a \cite{g}.
 
-No segundo capítulo são tratados os sistemas de Partículas, e o Limite Hidrodinâmico. Nos concentramos, principalmente, no processo de exclusão simples.
-Como referência sugerimos o livro \cite{kl}.
+Na Seção \ref{limite} são tratados os sistemas de Partículas, e o Limite Hidrodinâmico de tais sistemas, sendo tratado, 
+principalmente, o processo de exclusão simples. Para referências teóricas, veja \cite{kl}.
 
 
-\section{Percolação}
+\section{Percolação}\label{percolacao}
 
 \subsection{Introdução}
 
 Considere uma amostra de um material poroso que pode ser mergulhada em água.
-Modelamos essa amostra como conjunto pontos ligados por caminhos que
-podem estar abertos ou fechados
-com uma certa probabilidade, independentemente uns dos outros.
-Quando esses caminhos estão abertos, eles permitem a passagem de água, que é então transportada entre os pontos  ligados
-por esse caminho. Ao contrário, quando estão fechados, a água não pode ser transportada entre dois elos.
+Modelamos essa amostra como um conjunto de pontos ligados por caminhos que
+podem estar abertos ou fechados com uma certa probabilidade, independentemente uns dos outros.
+Quando esses caminhos estão abertos, eles permitem a passagem de água, que é então transportada entre os pontos ligados
+por esse caminho. Ao contrário, quando estão fechados, a água não pode ser transportada entre esses pontos.
 Nos perguntamos se é possível que a água possa ser transportada até o centro da amostra.
 
 O modelo de percolação de elos em $\mathbb{Z}^2$ surgiu na década de $50$ 
@@ -118,15 +117,15 @@ como um modelo matemático para tratar esse problema. Logo atraiu grande atenção 
  \textit{transição de fase}. Na seção \ref{sec-def-mod} vamos definir matematicamente o que se entende por transição de
 fase nesse modelo.
 
-Logo, vários outros modelos de percolação surgiram e, atualmente, existe uma vasta literatura em matemática e física
-que trata de várias questões a respeito. Os modelos de percolação, por um lado, não exigem muitos pré-requisitos matemáticos
+Rapidamente vários outros modelos de percolação foram introduzidos e, atualmente, existe uma vasta literatura em matemática e física
+que trata de muitas questões a respeito. Os modelos de percolação, por um lado, não exigem muitos pré-requisitos matemáticos
 para serem introduzidos. Um aluno de graduação em ciências exatas que possui um bom treinamento em probabilidade básica
 e análise real pode entender facilmente as definições matemáticas envolvidas e as primeiras questões de interesse sobre esse
 modelo. Por outro lado, a solução dessas questões não é sempre fácil e exigiu, durante as últimas décadas, um grande esforço
 para criar as ferramentas e as técnicas utilizadas no tratamento matemático do modelo.
 
 Além disso, esse modelo se relaciona com outros modelos de mecânica estatística do equilíbrio, sendo que as idéias
-utilizadas em percolação podem ser adaptadas para esse modelos e vice-versa. Por exemplo, o \textit{Argumento de Peierls}
+utilizadas em percolação podem ser adaptadas para esses modelos e vice-versa. Por exemplo, o \textit{Argumento de Peierls}
 utilizado para a demonstação da presença de transição de fase em \textit{modelos de spin}, como o Modelo de Ising, pode ser
 adaptado para demostrar também a presença de transição de fase em percolação de elos em $\Z^{2}$. Existe de fato um
 modelo mais geral em Mecânica Estatística que inclui o Modelo de Ising e a Percolação de Sítios como casos particulares.
@@ -137,30 +136,79 @@ Tal modelo é conhecido na literatura como \textit{Random Cluster Model}.
 
 \subsubsection{Definição do modelo}
 \label{sec-def-mod}
-O modelo de Percolação de elos em $\Z^2$ consiste, intuitivamente em tomar uma rede quadrada e excluir cada um de seus elos com alguma probabilidade fixa independentemente dos demais.
+Um grafo $G=(V,E)$ é um conjunto de \textit{vértices} $V$ e um conjunto de \textit{elos} $E$. 
+Os elementos de $V$ também serão denominados \textit{sítios} e devem
+ser entendidos como pontos. Por outro lado, um elo é uma ``ligação entre dois vértices".
+Representamos essa ligação como um par ordenado de vértices. 
+Vamos nos concentrar na rede $\Z^2$, na qual os vértices são os pontos de $\Z^2 = \Z \times \Z$ e
+os elos são os seguimentos que ligam dois vértices vizinhos.
+O modelo de \textit{Percolação de Elos} em $\Z^2$ consiste, intuitivamente,
+em excluir cada um de seus elos com alguma probabilidade fixa independentemente dos demais.
 
-Consideramos a rede $\Z^{2}$, isto é, o grafo  $G = (\Z^{2}, \mathbb{L}^2)$ cujo conjunto de vértices é $\Z^2$ e o conjunto de elos é $\mathbb{L}^2 = \left\{(x,y); x \in \Z^{2}, y \in \Z^{2}, \left\| x-y \right\| = 1 \right\}$ isto é, os pares (não ordenados) de primeiros vizinhos de $\Z^{2}$ na distância euclidiana.
+Mais formalmente, a rede $\Z^{2}$, é o grafo  
+$G = (\Z^{2}, \mathbb{L}^2)$ 
+cujo conjunto de vértices é $\Z^2$ 
+e o conjunto de elos é 
+$\mathbb{L}^2 = \left\{(x,y); x \in \Z^{2}, y \in \Z^{2}, \left\| x-y \right\| = 1 \right\}$ 
+isto é, os pares (não ordenados) de primeiros vizinhos de $\Z^{2}$ na distância euclidiana.
 
-Definimos uma família de variáveis aleatórias independentes $(X_{e})_{e \in \mathbb{L}^2}$ com distribuição comum de Bernoulli
-com parâmetro $p$. Observe que essa família deve ser definida em algum espaço de probabilidade adequado. Além disso elas induzem uma medida no conjunto de configurações $\chi = \{ -1, 1 \}^{\mathbb{L}^2}$, a saber, a \textit{Medida Produto Bernoulli com intensidade} $p$. Para uma dada configuração dizemos que o elo $e$ está aberto se $X_{e}=1$. Caso contrário dizemos que ele está fechado.
+Para cada elo dessa rede, escolhemos de maneira independente um número no conjunto $\{0, 1\}$.
+A escolha do numero $0$ indica
+que o respectivo elo se encontra fechado, enquanto a escolha do número $1$ indica que ele se encontra aberto.
 
-Estamos interessados em propriedades de conectividade do "subgrafo aleatório" gerado caso guardássemos todos os elos abertos e descartássemos todos os elos fechados, mais especificamente, o subgrafo dado por $\left\{ e \in \mathbb{L}^{2} ; X_{e} = 1 \right\}$. 
-Para estudar essas propriedades definimos,
+Matematicamente, definimos uma família de variáveis aleatórias 
+independentes $(X_{e})_{e \in \mathbb{L}^2}$ com distribuição comum de Bernoulli
+com parâmetro $p$. 
+Observe que essa família deve ser definida em algum espaço de probabilidade adequado. 
+Além disso elas induzem uma medida no conjunto de configurações
+ $\chi = \{ 0, 1 \}^{\mathbb{L}^2}$, a saber, 
+a \textit{Medida Produto Bernoulli com intensidade} $p$. 
+Para uma dada configuração dizemos que o elo $e$ está aberto se $X_{e}=1$. 
+Caso contrário dizemos que ele está fechado.
+
+Estamos interessados em propriedades de conectividade 
+do "subgrafo aleatório" gerado caso guardássemos todos os elos abertos 
+e descartássemos todos os elos fechados, mais especificamente, 
+o subgrafo dado por $\{ e \in \mathbb{L}^{2}; X_{e} = 1 \}$. 
+
+
+
+
+
+\begin{figure}[!htb]
+\begin{minipage}[h]{0.45\linewidth}
+\includegraphics[bb=0 0 632 364, scale=0.3]{screenshot1.png}
+\caption{Realização de um processo de percolação de elos em $\Z^2$ para $p=0.4$}
+\label{screenshot1}
+\end{minipage} \hfill
+\begin{minipage}[h]{0.45\linewidth}
+\includegraphics[bb=0 0 632 364, scale=0.3]{screenshot2.png}
+\caption{Realização de um processo de percolação de elos em $\Z^2$ para $p=0.6$}
+\label{screenshot1}
+\end{minipage}
+ \end{figure}
+
 
 \begin{definicao}
- Um \textit{caminho de comprimento $k$ na rede $\Z^{2}$} é uma sequência $ \Gamma = \{ x_{1}, x_{2}, \ldots, x_{k} \} \subseteq     \Z^{2}$ tal que
+ Um \textit{caminho de comprimento $k$ na rede $\Z^{2}$} 
+ é uma sequência $ \Gamma = \{ x_{1}, x_{2}, \ldots, x_{k} \} \subseteq \Z^{2}$ tal que
   \begin{itemize}
   \item para todo $i = 1, 2, \ldots, k-1$, $\left\| x_{i} - x_{i+1} \right\| = 1$;
   \item para todo $i \neq j$, $x_i \neq x_j$.
  \end{itemize}
-  Alem disso, para uma dada configuração, dizemos que o caminho $\Gamma$ é aberto se para cada elo $e_{i} = (x_i , x_{i+1})$, $X_{e_{i}}=1$.
+  Alem disso, para uma dada configuração, dizemos que o caminho 
+  $\Gamma$ é aberto se para cada elo $e_{i} = (x_i , x_{i+1})$, $X_{e_{i}}=1$.
  \end{definicao}
  
- Dizemos que \textit{$x \in \Z^2$ está conectado a $y \in \Z^2$} se existe um \textit{caminho aberto} $ \Gamma = \{ x_{1}, x_{2}, \ldots, x_{k} \}$     tal que $x_1 =  x$ e $x_2 = y$.
+ Dizemos que 
+ \textit{$x \in \Z^2$ está conectado a $y \in \Z^2$} 
+ se existe um \textit{caminho aberto} 
+ $ \Gamma = \{ x_{1}, x_{2}, \ldots, x_{k} \}$     tal que $x_1 =  x$ e $x_2 = y$.
  Denotamos esse evento por $ \left[x \leftrightarrow y \right]$. 
  
  Também definimos o evento
- $\left[ x \leftrightarrow \partial \Lambda_{n} \right] = \bigcup_{y \in \Lambda_{n}} \left[ x \leftrightarrow y \right]$ 
+ $\left[ x \leftrightarrow \partial \Lambda_{n} \right] 
+ = \bigcup_{y \in \Lambda_{n}} \left[ x \leftrightarrow y \right]$ 
  onde $\Lambda_{n} \subseteq \Z^2$ é a \textit{caixa de lado} $n$ e 
  $ \left[ x \leftrightarrow \infty \right]$ o evento: 
  $\bigcap_{n = 1}^{\infty} \left[ x \leftrightarrow \partial \Lambda_{n} \right]$.
@@ -169,21 +217,44 @@ Para estudar essas propriedades definimos,
  Definimos a função de percolação: $p \mapsto \T(p) = \P_p (0 \lr \infty)$, onde $p \in \left [0,1 \right]$.  
  É possível mostrar (e fácil de acreditar) que a função de percolação é não decrescente em $p$.
  Além disso é imediato verificar que $\T(0) = 0$ e que $\T(1) = 1$.
+ Um esboço do gráfico da função de percolação pode ser visto na figura \ref{screenshot7}.
+
  
- Isso nos sugere definir: $p_c = \inf \left\{ p~; \T(p) > 0 \right \}$. Então $p_c$ representa o valor do parâmetro $p$ a partir do qual é possível     observar uma componente conexa infinita a partir da origem. É possível mostrar que $0 < p_c <1$, indicando que exite um ponto critico não trivial      para o modelo. Utilizando as simetrias da rede $\Z^2$, é possível, de fato, mostrar que $p_c = \frac{1}{2}$ para essa rede.
- Para $p< \frac{1}{2}$ dizemos que o sistema é sub-crítico. Por outro lado, para $p > \frac{1}{2}$ dizemos que o modelo é super-crítico.
+ Isso nos sugere definir: 
+ $p_c = \inf \left\{ p~; \T(p) > 0 \right \}$. 
+ Então $p_c$ representa o valor do parâmetro $p$ a partir do qual é possível
+ observar uma componente conexa infinita a partir da origem. 
+ É possível mostrar que $0 < p_c <1$, indicando que existe um ponto crítico não trivial
+ para o modelo. 
  
- A existência de um ponto crítico não trivial nos permite falar em transição de fase para esse modelo. De fato, o comportamento do modelo sofre uma  
- mudança radical quando modificamos o valor do parâmetro $p$.
+ Utilizando as simetrias da rede $\Z^2$, é possível, de fato, mostrar que 
+ $p_c = \frac{1}{2}$ para essa rede.
+ Para $p< \frac{1}{2}$ dizemos que o sistema é sub-crítico. 
+ Por outro lado, para $p > \frac{1}{2}$ dizemos que o modelo é super-crítico.
+ Na Figura \ref{screenshot7} a parte tracejada do gráfico indica que, em geral,
+ não se sabe se essa função é contínua em $p = p_c$. No caso de $\Z^2$ tal
+ continuidade foi provada por Kesten em 1980 \cite{k}.
+ 
+ 
+\begin{figure}
+	\centering
+		\includegraphics[bb = 0 0 200 200, scale=0.8]{grafico.jpg}
+		\caption{Esboço da função de percolação}
+	\label{screenshot7}
+\end{figure}
+
+
+ A existência de um ponto crítico não trivial nos permite falar em transição de fase para esse modelo:
+ o comportamento  do modelo sofre uma mudança radical quando modificamos o valor do parâmetro $p$.
  
  Essa mudança radical de comportamento pode ser entendida matematicamente através, por exemplo,
  das propriedades de conectividade do subgrafo obtido.
  
  Nesse contexto, temos que: para valores pequenos de $p$ não existe componente conexa infinita. Por outro lado, para 
  valores de $p > p_c$ existe, quase certamente, uma componente infinita. 
- Considerando ainda a fase supercrítica, é possível mostar que a componente conexa é única.
+ Considerando ainda a fase supercrítica, é possível mostrar que a componente conexa é única.
  
- Podemos tambem olhar para a probabilidade de que existam caminhos abertos cruzando caixas.
+ Podemos também olhar para a probabilidade de que existam caminhos abertos cruzando caixas.
  Escolhendo uma caixa grande, esperamos não encontrar um cruzamento na fase sub-crítica, enquanto que,
  na fase super-crítica, esperamos encontrar um cruzamento.
    
@@ -203,16 +274,16 @@ Para estudar essas propriedades definimos,
     \item rede triangular.
   \end{itemize}
   
-  Podemos tambem considerar grafos \textit{não planares}, por exemplo a rede $\Z^{d}$ com $d > 2$.
+  Podemos também considerar grafos \textit{não planares}, por exemplo a rede $\Z^{d}$ com $d > 2$.
   Como existe uma maneira natural de inserir a rede $\Z^2$ nessa nova rede, fica claro que o  novo \textit{ponto crítico}
   deve ser menor ou igual ao valor $\frac{1}{2}$.
   
-  
+
   
   Finalmente é de grande interesse estudar também a percolação de sítios ao invés da percolação de elos.
-  A unica mudança relevante com relação ao modelo apresentado acima consiste em atribuir variáveis aleatórias
+  A única mudança relevante com relação ao modelo apresentado acima consiste em atribuir variáveis aleatórias
   de Bernoulli aos sítios e não aos elos. Então podemos dizer, de maneira análoga, que os elos estão fechados
-  ou abertos, conforme o valor dessas variáveis aleatórias. Todas as outras noções definindas acima se modificam
+  ou abertos, conforme o valor dessas variáveis aleatórias. Todas as outras noções definidas acima se modificam
   de maneira análoga.
   Um grande resultado que mostra a invariância conforme do modelo de percolação para $p=p_c$, isto é,
   exatamente no ponto crítico, foi provado no início dessa década para a percolação de sítios na rede
@@ -242,29 +313,42 @@ Para estudar essas propriedades definimos,
 
 \subsubsection{\label{corner} Definição dos modelos}
 
-O Modelo Corner Percolation pode ser visto como um modelo de percolação dependente, onde cada elo da rede $\Z^2$ está aberto com
-probabilidade $\frac{1}{2}$, porem seguindo a restrição de que, para cada, sítio, existem apenas dois elos abertos incidentes que
-formam, entre si, um ângulo de $90$ graus. Essa restrição gera dependência de longo alcance. De fato, para cada linha ou coluna
-basta determinar o estado de um elo para determinar o estado de todos os outros elo. O grafo aleatório obtido nesse modelo é também
+O Modelo Corner Percolation pode ser visto como um modelo de percolação, no qual cada elo da rede $\Z^2$ está aberto com
+probabilidade $\frac{1}{2}$. Porém, ao contrário do modelo apresentado na seção \ref{sec-def-mod},
+acrescentamos a restrição de que, para cada sítio, existem apenas dois elos abertos incidentes
+e que tais elos formam um ângulo de $90$ entre si. 
+Essa restrição gera dependência de longo alcance. De fato, para cada linha ou coluna
+basta determinar o estado de um elo para determinar o estado de todos os outros elo. 
+O grafo aleatório obtido nesse modelo é também
 o conjunto das trajetórias para partículas que realizam passeios determinísticos em uma rede cujas colunas e linha foram 
 orientadas de forma aleatória como descreveremos abaixo.
 
-Considere duas sequências independentes de variáveis aleatórias i.i.d. $\{\xi_i\}_{i \in \Z}$ e $\{\eta_i\}_{i \in \Z}$ com distribuiçao comum
+Considere duas sequências independentes de variáveis aleatórias i.i.d. 
+$\{\xi_i\}_{i \in \Z}$ e $\{\eta_i\}_{i \in \Z}$ com distribuição comum
 $\P \left( \xi_i = 1 \right) = \P \left( \xi_i = - 1 \right) = \frac{1}{2}$.
 A variável aleatória $\xi_i$ determina a orientação da $i$-ésima coluna da rede e variável aleatória $\eta_i$ determina a orientação da $i$-ésima
 linha $i$. 
+
+\begin{figure}
+	\centering
+		\includegraphics[bb = 0 0 1100 500, scale=0.3]{corner_percolation.png}
+		\caption{Realização do processo de Corner Percolation em $\Z^2$}
+	\label{fig:corner_percolation}
+\end{figure}
 
 Posicionamos uma partícula na origem e deixamos com que ela se desloque conforme a seguinte regra:
 \begin{itemize}
 
 \item Nos passos ímpares a partícula anda na direção horizontal seguindo o sentido da linha em que ela se encontra. Por exemplo, se ela se encontra
-na linha $i$ então a partícula anda para a direita ou para a esquerda dependendo, respectivamente se $\eta_i = + 1$ ou  $\eta_i = - 1$;
+na linha $i$ então a partícula anda para a direita ou para a esquerda dependendo, respectivamente, se $\eta_i = + 1$ ou  $\eta_i = - 1$;
 
 \item Nos passos pares a partícula anda na direção vertical seguindo o sentido da coluna em que ela se encontra. Por exemplo, se ela se encontra na coluna $j$ então a partícula anda para cima ou para baixo dependendo, respectivamente se $\xi_j = + 1$ ou  $\xi_j = - 1$.
 
 \end{itemize}
 
-Repetimos o mesmo processo para partículas inicialmente localizadas em todos os sítios $\left\{(x,y) \in \Z^2 : x+y \mbox{ é par} \right\}$.
+Repetimos o mesmo processo para partículas inicialmente localizadas em todos os sítios $\left\{(x,y) \in \Z^2 : x+y \mbox{ é par} \right\}$. A figura \ref{fig:corner_percolation} ilustra uma realização desse processo em uma caixa
+finita de $\Z^2$.
+
 
 Estamos interessados no comportamento das trajetórias de cada partícula. É possível mostrar que:
 
@@ -272,28 +356,40 @@ Estamos interessados no comportamento das trajetórias de cada partícula. É possí
 
 \item Cada trajetória é um circuito fechado na rede $\Z^2$.
 
-\item Esse circuito é necessariamente simples, isto é, a trajetória não pode intersectar-se a si mesma antes de fechar o circuito.
+\item Esse circuito é necessariamente simples, isto é, a trajetória não pode intersectar a si mesma antes de fechar o circuito.
 
 \end{itemize}
 
-Existe uma maneira rápida de gerar as trajetórias das partículas, mapeando esse modelo no modelo conhecido como \textit{Corner Percolation}.
-Para isso, consideramos a seguinte transformação: $\xi^*_i = (-1)^{n+1} \xi_i$ e $\eta^*_i = (-1)^n \eta_i$.
+Existe uma maneira rápida de gerar as trajetórias das partículas.
+De fato essas trajetórias são componentes conexas das configurações geradas pelo
+no modelo \textit{Corner Percolation}. 
+Vamos descrever como relacionar esses dois modelos abaixo.
+Para isso, consideramos a seguinte transformação: $\xi^*_i = (-1)^{i+1} \xi_i$ e $\eta^*_i = (-1)^i \eta_i$.
 
 Utilizando as novas variáveis aleatórias $\xi^*_i$ e $\eta^*_i$ geramos um processo de percolaçao dependente da seguinte maneira:
 
-Se $\xi^*_i = + 1$, então, mantemos os elos pares e deletamos os elos ímpares dessa coluna. Mais especificamente, dizemos que os elos da forma
-$\left\{ (i, 2k), (i, 2k+1) \right\}$ com $K \in \Z$ estão abertos enquanto os elos da forma $\left\{ (i,2k+1), (i, (2k+2)) \right\}$ estão fechados.
+Se $\xi^*_i = + 1$, então, mantemos os elos pares e deletamos os elos ímpares dessa coluna. Mais especificamente, dizemos que os elos da forma $\{ (i, 2k),$ $(i, 2k+1)\}$ com $K \in \Z$ estão abertos enquanto os elos da forma $\{ (i,2k+1),$ $(i, (2k+2))\}$ estão fechados.
 Por outro lado, se $\xi^*_i = - 1$ deletamos os elos pares e mantemos os elos ímpares.
 Analogamente, mantemos ou deletamos os elos pares e impares da coluna $i$ dependendo se $\eta^*_i = 1$ ou $\eta^*_i = -1$.
 
-Esse processo é chamado de \textit{Corner Percolation}. O conjunto dos elos abertos para a configuração gerada por $\left\{ \xi^*_i \right\}$ e $\left\{ \eta^*_i \right\}$ é exatamente o conjunto de trajetórias geradas por $\left\{ \xi_i \right\}$ e $\left\{ \eta_i \right \}$ no modelo do passeio na rede orientada aleatóriamente.
+Esse processo é chamado de \textit{Corner Percolation}. O conjunto dos elos abertos para a configuração gerada por $\{\xi^*_i\}$ e $\{ \eta^*_i\}$ é exatamente o conjunto de trajetórias geradas por $\left\{ \xi_i \right\}$ e $\{\eta_i \}$ no modelo do passeio na rede orientada aleatóriamente. A figura mostra a relação entre os dois processos. As sequências de sinais interiores representam as variáveis aleatórias $\xi_i$ e $\eta_i$. As sequência de sinais exteriores representam as variáveis aleatórias $\xi^*_i$ e $\eta^*_i$.
 
-A relação entre a trajetória da partícula descrita acima e o modelo de \textit{Corner Percolation} foi descoberta do Pete em [dar referência].
-Nesse mesmo trabalho ele prova o fato de que todas as compontes conexas desse processo de percolação são circuitos fechadas.
+\begin{figure}[t]
+ \centering
+ \includegraphics[bb=0 0 401 417, scale=0.7]{corner_percolation2.png}
+ % corner_percolation2.png: 1114x1159 pixel, 200dpi, 14.15x14.72 cm, bb=0 0 401 417
+ \caption{Relação entre os processos de Corner Percolation e o passeio descrito acima. A trajetória ilustrada em azul representa
+a trajetória da partícula que sai da origem. }
+ \label{corner_percolation2}
+\end{figure}
+
+
+A relação entre a trajetória da partícula descrita acima e o modelo de \textit{Corner Percolation} foi descoberta de Gabor Pete
+\cite{gp}. Nesse mesmo trabalho é provado o fato de que todas as compontes conexas desse processo de percolação são circuitos fechados.
 
 
 
-\subsubsection{\label{perturbado} Generalização Importante}
+\subsubsection{Generalização Importante}\label{perturbado}
 
 No passeio anterior, definido em uma rede aleatória, nossa partícula dava passos alternando as direções horizontal e vertical, e sempre seguindo
 o sentido determinado pelas variáveis aleatórias $\xi_i$ e $\eta_i$ adequadas. Poderíamos imaginar que, em cada sítio da rede $\Z^2$ existe um obstáculo que obriga a partícula
@@ -332,13 +428,15 @@ não sendo assim tão interessante compará-las.
 
 \end{enumerate}
 
-\section{Limite Hidrodinâmico}
+
+
+\section{Limite Hidrodinâmico}\label{limite}
 
 
 
 \subsection{Introdu\c c\~ao}
 
-O limite hidrodin\^amico de um sistema de part\'iculas corresponde, em termos gerais, \`a evolu\c c\~ao temporal 
+O limite hidrodin\^amico corresponde, em termos gerais, \`a evolu\c c\~ao temporal 
 da densidade espacial de part\'iculas que se movem segundo regras aleat\'orias de um determinado sistema. 
 Esta evolu\c c\~ao temporal \'e regida por uma equac\~ao diferencial parcial, ou seja, a densidade microsc\'opica de part\'iculas 
 (que \'e uma fun\c c\~ao do espa\c co e do tempo, j\'a que esta densidade muda no decorrer do tempo) \'e a solu\c c\~ao de uma equa\c c\~ao que envolve derivadas no tempo e no espa\c co. Esta equa\c c\~ao, em muitos casos, \'e a Equa\c c\~ao do Calor, que determina
@@ -352,7 +450,7 @@ H\'a limite hidrodin\^amico de diversos sistemas de part\'iculas, e intensa pesq
 O sistema de part\'iculas aqui considerado ser\'a o Processo de Exclus\~ao Simples Sim\'etrico. Seja $\bb{T}$ o toro unidimensional,
 ou seja, o intervalo $[0,1]$ identificando o n\'umero $0$ com o n\'umero $1$. Fixe um n\'umero inteiro positivo $N$ e divida o toro
 $\bb{T}$ em $N$ s\'itios igualmente espa\c cados. Representamos se h\'a ou n\~ao part\'icula em cada s\'tio colocando zero ou
-um e n\~ao permitindo mais de uma part\'icula por s\'itio. Logo, qualquer configura\c c\~ao de part\'iculas fica unicamente determinada por um vetor de zero e uns, o qual possui $N$ entradas. 
+um e n\~ao permitindo mais de uma part\'icula por s\'itio. Logo, qualquer configura\c c\~ao de part\'iculas fica únicamente determinada por um vetor de zero e uns, o qual possui $N$ entradas. 
 
 \begin{figure}[h]
  \centering
@@ -404,7 +502,19 @@ exponencial. Quando este rel\'ogio toca, um s\'itio \'e escolhido uniformemente 
 part\'icula neste s\'itio, o rel\'ogio \'e colocado para tocar novamente. Por\'em, se h\'a part\'icula neste s\'itio, \'e
 jogada uma moeda honesta e a part\'icula salta para o lado vizinho escolhido pela moeda caso este s\'itio vizinho esteja vazio.
 Se o s\'itio estiver ocupado por outra part\'icula, nada acontece. Feito isso, o rel\'ogio exponencial \'e posto para tocar novamente e o processo recome\c ca. Do fato de n\~ao serem permitidas mais de uma part\'iculas por s\'itio vem o nome Exclus\~ao. Part\'iculas
-em F\'isica que seguem regras de exclus\~ao como essa s\~ao denominadas f\'ermions.
+em F\'isica que seguem regras de exclus\~ao como essa s\~ao denominadas f\'ermions. Foi implementado pelo \textit{Random View} um programa para visualização do Processo de Exclusão Simples Simétrico, conforme pode ser visto na Figura \ref{SEP}. Neste programa,
+pontos são sorteados uniformente entre zero e um. Os situados acima do gráfico são excluidos, e os que situados abaixo preenchem
+seus respectivos sítios no eixo das abscissas. Em seguida, tal configuração de partículas no eixo das abscissas evolui conforme
+o processo de exclusão simples.  
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[bb=0 0 907 321, scale=0.4]{SEP.png}
+ % SEP.png: 907x321 pixel, 72dpi, 31.99x11.32 cm, bb=0 0 907 321
+ \caption{Processo de Exclusão Simples}
+ \label{SEP}
+\end{figure}
+
 
 \subsubsection{Limite Hidrodin\^amico em Exclus\~ao Simples Sim\'etrico}
 
@@ -494,11 +604,124 @@ sorteado proporcionalmente a $\frac{1}{N[W{\frac{x+1}{N}}-W{\frac{x}{N}}]}$ e s\
 dos s\'itios nas extremidades desse elo.
 \end{itemize}
 
-
 \end{enumerate}
 
 
+\subsubsection{Simulações Realizadas}
 
+
+Nesta seção, apresentamos uma série de figuras obtidas com o simulador implementado para o Limite
+Hidrodinâmico do Processo de Exclusão Simples.
+
+
+
+\newpage
+
+\begin{figure}[!htb]
+\begin{minipage}[h]{0.45\linewidth}
+\includegraphics[bb=0 0 633 361, scale=0.35]{Hidro2.png}
+\caption{64 sítios, 10000 iterações}
+\label{fig: 64}
+\end{minipage} \hfill
+\begin{minipage}[h]{0.45\linewidth}
+\includegraphics[bb=0 0 633 363, scale=0.35]{Hidro1.png}
+\caption{256 sítios, 4168 iterações}
+\label{fig:256}
+\end{minipage}
+ \end{figure}
+
+
+
+
+
+\begin{figure}[!hb]
+\begin{minipage}[h]{0.45\linewidth}
+\includegraphics[bb=0 0 631 361, scale=0.35]{Hidro5.png}
+\caption{512 sítio, 32 iterações}
+\label{fig: 64}
+\end{minipage} \hfill
+\begin{minipage}[h]{0.45\linewidth}
+ \includegraphics[bb=0 0 631 359, scale=0.35]{Hidro7.png}
+\caption{512 sítios, 56 iterações}
+\label{fig:256}
+\end{minipage}
+ \end{figure}
+
+
+
+\begin{figure}[!hb]
+\begin{minipage}[h]{0.45\linewidth}
+\includegraphics[bb=0 0 637 366, scale=0.35]{Hidro3.png}
+\caption{512 sítios, 695 iterações}
+\label{fig: 64}
+\end{minipage} \hfill
+\begin{minipage}[h]{0.45\linewidth}
+\includegraphics[bb=0 0 632 364, scale=0.35]{Hidro4.png}
+\caption{512 sítios, 1676 iterações}
+\label{fig:256}
+\end{minipage}
+ \end{figure}
+
+\newpage
+
+\begin{figure}[!htb]
+\begin{minipage}[h]{0.45\linewidth}
+\includegraphics[bb=0 0 637 366, scale=0.35]{Hidro10.png}
+\caption{256 sítios, 23 iterações}
+\label{fig: 64}
+\end{minipage} \hfill
+\begin{minipage}[h]{0.45\linewidth}
+\includegraphics[bb=0 0 632 364, scale=0.35]{Hidro8.png}
+\caption{256 sítios, 122 iterações}
+\label{fig:256}
+\end{minipage}
+ \end{figure}
+
+
+
+
+\begin{figure}[!hb]
+\begin{minipage}[h]{0.45\linewidth}
+\includegraphics[bb=0 0 637 366, scale=0.35]{Hidro11.png}
+\caption{256 sítios, 51 iterações}
+\label{fig: 64}
+\end{minipage} \hfill
+\begin{minipage}[h]{0.45\linewidth}
+\includegraphics[bb=0 0 632 364, scale=0.35]{Hidro12.png}
+\caption{256 sítios, 133 iterações}
+\label{fig:256}
+\end{minipage}
+ \end{figure}
+
+
+
+\begin{figure}[!hb]
+\begin{minipage}[h]{0.45\linewidth}
+\includegraphics[bb=0 0 637 366, scale=0.35]{Hidro13.png}
+\caption{256 sítios, 8 iterações}
+\label{fig: 64}
+\end{minipage} \hfill
+\begin{minipage}[h]{0.45\linewidth}
+\includegraphics[bb=0 0 632 364, scale=0.35]{Hidro14.png}
+\caption{256 sítios, 43 iterações}
+\label{fig:256}
+\end{minipage}
+ \end{figure}
+
+\newpage
+
+\begin{figure}[!htb]
+\begin{minipage}[h]{0.45\linewidth}
+\includegraphics[bb=0 0 637 366, scale=0.35]{Hidro15.png}
+\caption{256 sítios, 420 iterações}
+\label{fig: 64}
+\end{minipage} \hfill
+\begin{minipage}[h]{0.45\linewidth}
+\includegraphics[bb=0 0 632 364, scale=0.35]{Hidro16.png}
+\caption{256 sítios, 852 iterações}
+\label{fig:256}
+\end{minipage}
+ \end{figure}
 
 
 
@@ -512,6 +735,12 @@ dos s\'itios nas extremidades desse elo.
   particle systems}. Grundlehren der Mathematischen Wissenschaften
   [Fundamental Principles of Mathematical Sciences], 320.
   Springer-Verlag, Berlin, 1999.
+
+\bibitem{k} H. Kesten, \textit{The Critical Percolation of Bond Percolation on the Square Lattice equal $\frac{1}{2}$},
+
+Commun. Math. Phys. 74, 41-59 (1980).
+
+\bibitem{gp} Pete, G., Corner Percolation on $\mathbb{Z}^2$ and the square root of 17, Ann. Prob. vol. 36, Number 5, 1711-1747.
 
 \bibitem{fjl} A. Faggionato, M. Jara, C. Landim: \textit{Hydrodynamic behavior of one dimensional subdiffusive exclusion processes with random conductances}, Probab. Th. and Rel. Fields (2008), arXiv:0709.0306.
 
@@ -544,4 +773,4 @@ dos s\'itios nas extremidades desse elo.
 
 
 
-\end{document}
+
