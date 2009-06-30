@@ -1,4 +1,4 @@
-\documentclass[letterpaper,12pt]{article}
+\documentclass[a4paper,twocolumn]{article}
 % \oddsidemargin 0cm
 % \evensidemargin 0cm
 % \textwidth 17 cm
@@ -7,29 +7,23 @@
 % \unitlength=1cm
 
 %%%%Pacotes%%%%%%%%%
-\usepackage[brazil,portuges]{babel}
+\usepackage[brazil]{babel}
 \usepackage[latin1]{inputenc}
 \usepackage{amssymb,amscd,latexsym,amsthm}
 \usepackage{color}
 \usepackage{pstricks}
 \usepackage{ulem}
-%\usepackage{ifsym}
 \usepackage{amsfonts}
 \usepackage{amsmath}
-%\usepackage{pslatex}
-%\usepackage{pxfonts}
 \usepackage{graphicx}
-%\usepackage{wrapfig}
-%\pagestyle{empty}
-%\input{setbmp}
+\usepackage{times}
+
 
 %%%%%Hifenizaï¿½o%%%%%%%%
 \hyphenation{to-me-mos i-de-a-li-za-dor par-ti-cu-lar-men-te
 cha-ma-mos po-li-no-mios cor-res-pon-den-cia des-cen-den-te
 es-pe-ci-a-li-za-dos con-ti-nua-men-te ne-nhu-ma ins-tan-te}
-\def\cqd{$\hfill\square$}
 %%%%%%Ambientes%%%%%%%%%
-%%%%%%%Macros%%%%%%%%%%%%
 \newtheorem{definicao}{Defini\c c\~ao}
 \newtheorem{proposicao}[section]{Proposi\c c\~ao}
 \newtheorem{teorema}[section]{Teorema}
@@ -37,8 +31,6 @@ es-pe-ci-a-li-za-dos con-ti-nua-men-te ne-nhu-ma ins-tan-te}
 \newtheorem{exemplo}[section]{Exemplo}
 \newtheorem{lema}[section]{Lema}
 \newtheorem{propriedade}[section]{Propriedade}
-
-
 
 %%%%%%%Acentos%%%%%%%
 \def\cao{\c c\~ao }
@@ -48,8 +40,8 @@ es-pe-ci-a-li-za-dos con-ti-nua-men-te ne-nhu-ma ins-tan-te}
 \def\ii{\'{\i}}
 \def\dd{\displaystyle}
 
-%%%%%%%macros%%%%%%%%%%%%
-
+%%%%%%%Macros%%%%%%%%%%%%
+\def\cqd{$\hfill\square$}
 \def\R{\mathbb R}
 \def\C{\mathfrac C}
 \def\Z{\mathbb Z}
@@ -75,12 +67,9 @@ es-pe-ci-a-li-za-dos con-ti-nua-men-te ne-nhu-ma ins-tan-te}
 \newcommand{\bs}[1]{{\boldsymbol #1}}
 \def\p{\partial}
 
-
-
 \begin{document}
 
-
-\title{	Projeto Random View\\
+\title{Projeto Random View\\
 Visualização de Processos Estocásticos}
 \author{M. Cicconet, T. Franco, M. R. Hilário,\\
  I. Macêdo, J. D. Silva, E. Vital Brazil}
@@ -171,21 +160,18 @@ do "subgrafo aleatório" gerado caso guardássemos todos os elos abertos
 e descartássemos todos os elos fechados, mais especificamente, 
 o subgrafo dado por $\{ e \in \mathbb{L}^{2}; X_{e} = 1 \}$. 
 
-
-
-
-
-\begin{figure}[!htb]
-\begin{minipage}[h]{0.45\linewidth}
-\includegraphics[bb=0 0 632 364, scale=0.3]{screenshot1.png}
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{fig/screenshot1.png}
 \caption{Realização de um processo de percolação de elos em $\Z^2$ para $p=0.4$}
 \label{screenshot1}
-\end{minipage} \hfill
-\begin{minipage}[h]{0.45\linewidth}
-\includegraphics[bb=0 0 632 364, scale=0.3]{screenshot2.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{fig/screenshot2.png}
 \caption{Realização de um processo de percolação de elos em $\Z^2$ para $p=0.6$}
-\label{screenshot1}
-\end{minipage}
+\label{screenshot2}
  \end{figure}
 
 
@@ -238,7 +224,7 @@ o subgrafo dado por $\{ e \in \mathbb{L}^{2}; X_{e} = 1 \}$.
  
 \begin{figure}
 	\centering
-		\includegraphics[bb = 0 0 200 200, scale=0.8]{grafico.jpg}
+		\includegraphics[scale=0.8]{fig/grafico.jpg}
 		\caption{Esboço da função de percolação}
 	\label{screenshot7}
 \end{figure}
@@ -331,7 +317,7 @@ linha $i$.
 
 \begin{figure}
 	\centering
-		\includegraphics[bb = 0 0 1100 500, scale=0.3]{corner_percolation.png}
+		\includegraphics[scale=0.3]{fig/corner_percolation.png}
 		\caption{Realização do processo de Corner Percolation em $\Z^2$}
 	\label{fig:corner_percolation}
 \end{figure}
@@ -374,9 +360,9 @@ Analogamente, mantemos ou deletamos os elos pares e impares da coluna $i$ depend
 
 Esse processo é chamado de \textit{Corner Percolation}. O conjunto dos elos abertos para a configuração gerada por $\{\xi^*_i\}$ e $\{ \eta^*_i\}$ é exatamente o conjunto de trajetórias geradas por $\left\{ \xi_i \right\}$ e $\{\eta_i \}$ no modelo do passeio na rede orientada aleatóriamente. A figura mostra a relação entre os dois processos. As sequências de sinais interiores representam as variáveis aleatórias $\xi_i$ e $\eta_i$. As sequência de sinais exteriores representam as variáveis aleatórias $\xi^*_i$ e $\eta^*_i$.
 
-\begin{figure}[t]
+\begin{figure}
  \centering
- \includegraphics[bb=0 0 401 417, scale=0.7]{corner_percolation2.png}
+ \includegraphics[scale=0.6]{fig/corner_percolation2.png}
  % corner_percolation2.png: 1114x1159 pixel, 200dpi, 14.15x14.72 cm, bb=0 0 401 417
  \caption{Relação entre os processos de Corner Percolation e o passeio descrito acima. A trajetória ilustrada em azul representa
 a trajetória da partícula que sai da origem. }
@@ -452,7 +438,7 @@ ou seja, o intervalo $[0,1]$ identificando o n\'umero $0$ com o n\'umero $1$. Fi
 $\bb{T}$ em $N$ s\'itios igualmente espa\c cados. Representamos se h\'a ou n\~ao part\'icula em cada s\'tio colocando zero ou
 um e n\~ao permitindo mais de uma part\'icula por s\'itio. Logo, qualquer configura\c c\~ao de part\'iculas fica únicamente determinada por um vetor de zero e uns, o qual possui $N$ entradas. 
 
-\begin{figure}[h]
+\begin{figure*}
  \centering
 \setlength{\unitlength}{4144sp}%
 %
@@ -495,7 +481,7 @@ um e n\~ao permitindo mais de uma part\'icula por s\'itio. Logo, qualquer config
 \end{picture}%
  \caption{S\'itios em $\bb{T}$}
  \label{fig:1}
-\end{figure}
+\end{figure*}
 
 O Processo de Exclus\~ao Simples corresponde \`a seguinte evolu\c c\~ao aleat\'oria do sistema: considere um rel\'ogio 
 exponencial. Quando este rel\'ogio toca, um s\'itio \'e escolhido uniformemente dentre os $N$ existentes. Se n\~ao h\'a 
@@ -507,13 +493,13 @@ pontos são sorteados uniformente entre zero e um. Os situados acima do gráfico s
 seus respectivos sítios no eixo das abscissas. Em seguida, tal configuração de partículas no eixo das abscissas evolui conforme
 o processo de exclusão simples.  
 
-\begin{figure}[h]
+\begin{figure*}
  \centering
- \includegraphics[bb=0 0 907 321, scale=0.4]{SEP.png}
+ \includegraphics[scale=0.4]{fig/SEP.png}
  % SEP.png: 907x321 pixel, 72dpi, 31.99x11.32 cm, bb=0 0 907 321
  \caption{Processo de Exclusão Simples}
  \label{SEP}
-\end{figure}
+\end{figure*}
 
 
 \subsubsection{Limite Hidrodin\^amico em Exclus\~ao Simples Sim\'etrico}
@@ -614,116 +600,103 @@ Nesta seção, apresentamos uma série de figuras obtidas com o simulador implement
 Hidrodinâmico do Processo de Exclusão Simples.
 
 
-
-\newpage
-
-\begin{figure}[!htb]
-\begin{minipage}[h]{0.45\linewidth}
-\includegraphics[bb=0 0 633 361, scale=0.35]{Hidro2.png}
+\begin{figure}[f]
+\centering
+\includegraphics[scale=0.35]{fig/Hidro2.png}
 \caption{64 sítios, 10000 iterações}
-\label{fig: 64}
-\end{minipage} \hfill
-\begin{minipage}[h]{0.45\linewidth}
-\includegraphics[bb=0 0 633 363, scale=0.35]{Hidro1.png}
+\label{fig:64_g}
+ \end{figure}
+
+\begin{figure}[f]
+\centering
+\includegraphics[scale=0.35]{fig/Hidro1.png}
 \caption{256 sítios, 4168 iterações}
-\label{fig:256}
-\end{minipage}
+\label{fig:256_aaa}
  \end{figure}
 
-
-
-
-
-\begin{figure}[!hb]
-\begin{minipage}[h]{0.45\linewidth}
-\includegraphics[bb=0 0 631 361, scale=0.35]{Hidro5.png}
+\begin{figure}[f]
+\centering
+\includegraphics[scale=0.35]{fig/Hidro5.png}
 \caption{512 sítio, 32 iterações}
-\label{fig: 64}
-\end{minipage} \hfill
-\begin{minipage}[h]{0.45\linewidth}
- \includegraphics[bb=0 0 631 359, scale=0.35]{Hidro7.png}
+\label{fig:512_d}
+ \end{figure}
+
+\begin{figure}[f]
+\centering
+\includegraphics[scale=0.35]{fig/Hidro7.png}
 \caption{512 sítios, 56 iterações}
-\label{fig:256}
-\end{minipage}
+\label{fig:512_e}
  \end{figure}
 
-
-
-\begin{figure}[!hb]
-\begin{minipage}[h]{0.45\linewidth}
-\includegraphics[bb=0 0 637 366, scale=0.35]{Hidro3.png}
+\begin{figure}[f]
+\centering
+\includegraphics[scale=0.35]{fig/Hidro3.png}
 \caption{512 sítios, 695 iterações}
-\label{fig: 64}
-\end{minipage} \hfill
-\begin{minipage}[h]{0.45\linewidth}
-\includegraphics[bb=0 0 632 364, scale=0.35]{Hidro4.png}
+\label{fig:512_f}
+\end{figure}
+
+\begin{figure}[f]
+\centering
+\includegraphics[scale=0.35]{fig/Hidro4.png}
 \caption{512 sítios, 1676 iterações}
-\label{fig:256}
-\end{minipage}
- \end{figure}
+\label{fig:512_g}
+\end{figure}
 
-\newpage
-
-\begin{figure}[!htb]
-\begin{minipage}[h]{0.45\linewidth}
-\includegraphics[bb=0 0 637 366, scale=0.35]{Hidro10.png}
+\begin{figure}[f]
+\centering
+\includegraphics[scale=0.35]{fig/Hidro10.png}
 \caption{256 sítios, 23 iterações}
-\label{fig: 64}
-\end{minipage} \hfill
-\begin{minipage}[h]{0.45\linewidth}
-\includegraphics[bb=0 0 632 364, scale=0.35]{Hidro8.png}
+\label{fig:256_aa}
+\end{figure}
+
+\begin{figure}[f]
+\centering
+\includegraphics[scale=0.35]{fig/Hidro8.png}
 \caption{256 sítios, 122 iterações}
 \label{fig:256}
-\end{minipage}
  \end{figure}
 
-
-
-
-\begin{figure}[!hb]
-\begin{minipage}[h]{0.45\linewidth}
-\includegraphics[bb=0 0 637 366, scale=0.35]{Hidro11.png}
+\begin{figure}[f]
+\centering
+\includegraphics[scale=0.35]{fig/Hidro11.png}
 \caption{256 sítios, 51 iterações}
-\label{fig: 64}
-\end{minipage} \hfill
-\begin{minipage}[h]{0.45\linewidth}
-\includegraphics[bb=0 0 632 364, scale=0.35]{Hidro12.png}
+\label{fig:256_a}
+ \end{figure}
+ 
+\begin{figure}[f]
+\centering
+\includegraphics[scale=0.35]{fig/Hidro12.png}
 \caption{256 sítios, 133 iterações}
-\label{fig:256}
-\end{minipage}
+\label{fig:256_b}
  \end{figure}
 
-
-
-\begin{figure}[!hb]
-\begin{minipage}[h]{0.45\linewidth}
-\includegraphics[bb=0 0 637 366, scale=0.35]{Hidro13.png}
+\begin{figure}[f]
+\centering
+\includegraphics[scale=0.35]{fig/Hidro13.png}
 \caption{256 sítios, 8 iterações}
-\label{fig: 64}
-\end{minipage} \hfill
-\begin{minipage}[h]{0.45\linewidth}
-\includegraphics[bb=0 0 632 364, scale=0.35]{Hidro14.png}
+\label{fig:256_c}
+ \end{figure}
+ 
+\begin{figure}[f]
+\centering
+\includegraphics[scale=0.35]{fig/Hidro14.png}
 \caption{256 sítios, 43 iterações}
-\label{fig:256}
-\end{minipage}
+\label{fig:256_d}
  \end{figure}
 
-\newpage
-
-\begin{figure}[!htb]
-\begin{minipage}[h]{0.45\linewidth}
-\includegraphics[bb=0 0 637 366, scale=0.35]{Hidro15.png}
+\begin{figure}[f]
+\centering
+\includegraphics[scale=0.35]{fig/Hidro15.png}
 \caption{256 sítios, 420 iterações}
-\label{fig: 64}
-\end{minipage} \hfill
-\begin{minipage}[h]{0.45\linewidth}
-\includegraphics[bb=0 0 632 364, scale=0.35]{Hidro16.png}
-\caption{256 sítios, 852 iterações}
-\label{fig:256}
-\end{minipage}
+\label{fig:256_e}
  \end{figure}
 
-
+\begin{figure}[f]
+\centering
+\includegraphics[scale=0.35]{fig/Hidro16.png}
+\caption{256 sítios, 852 iterações}
+\label{fig:256_f}
+ \end{figure}
 
 
 
