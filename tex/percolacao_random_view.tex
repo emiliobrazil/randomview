@@ -17,9 +17,9 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{times}
+\usepackage{subfigure}
 
-
-%%%%%Hifenizaï¿½o%%%%%%%%
+%%%%%Hifenização%%%%%%%%
 \hyphenation{to-me-mos i-de-a-li-za-dor par-ti-cu-lar-men-te
 cha-ma-mos po-li-no-mios cor-res-pon-den-cia des-cen-den-te
 es-pe-ci-a-li-za-dos con-ti-nua-men-te ne-nhu-ma ins-tan-te}
@@ -78,12 +78,12 @@ Visualização de Processos Estocásticos}
 
 \section{Introdução}
 
-Essas notas fazem parte de um projeto denominado \textit{Random View}; um projeto de visualização de Processos Estocásticos desenvolvido no Instituto Nacional de Matemática
+Essas notas fazem parte de um projeto denominado \textit{Random View}; um projeto de visualização de Processos Estocásticos desenvolvido por alunos do Instituto Nacional de Matemática
 Pura e Aplicada, no Rio de Janeiro e serão utilizadas na Reunião Anual da Sociedade Brasileira para o Progresso da Ciência 2009, em Manaus, como uma forma de divulgação a alunos e pesquisadores presentes nesse encontro.
 Tais notas foram divididas em dois capítulos básicos.
 
 Na Seção \ref{percolacao}, introduzimos os modelos de Percolação e passeios em grafos.
-Nos concentramos especialmente no caso de percolação de elos em $\Z^{2}$ para facilitar a exposição. Incluimos o modelo de \textit{Corner Percolation} para o qual temos grande interesse em visualização. Não foram incluidas demonstrações.
+Nos concentramos especialmente no caso de percolação de elos em $\Z^{2}$ para facilitar a exposição. Incluimos o modelo de \textit{Corner Percolation} para o qual temos grande interesse. Não foram incluidas demonstrações, pois fogiria do escopo destas notas introdutorias.
 Para uma introdução rigorosa e demonstrações dos principais aspectos desse modelo remetemos o leitor a \cite{g}.
 
 Na Seção \ref{limite} são tratados os sistemas de Partículas, e o Limite Hidrodinâmico de tais sistemas, sendo tratado, 
@@ -98,8 +98,8 @@ Considere uma amostra de um material poroso que pode ser mergulhada em água.
 Modelamos essa amostra como um conjunto de pontos ligados por caminhos que
 podem estar abertos ou fechados com uma certa probabilidade, independentemente uns dos outros.
 Quando esses caminhos estão abertos, eles permitem a passagem de água, que é então transportada entre os pontos ligados
-por esse caminho. Ao contrário, quando estão fechados, a água não pode ser transportada entre esses pontos.
-Nos perguntamos se é possível que a água possa ser transportada até o centro da amostra.
+por esse caminho.
+uma questão interesante seria: é possível que a água possa ser transportada até o centro da amostra?
 
 O modelo de percolação de elos em $\mathbb{Z}^2$ surgiu na década de $50$ 
 como um modelo matemático para tratar esse problema. Logo atraiu grande atenção por ser um modelo simples que exibe
@@ -112,7 +112,6 @@ para serem introduzidos. Um aluno de graduação em ciências exatas que possui um 
 e análise real pode entender facilmente as definições matemáticas envolvidas e as primeiras questões de interesse sobre esse
 modelo. Por outro lado, a solução dessas questões não é sempre fácil e exigiu, durante as últimas décadas, um grande esforço
 para criar as ferramentas e as técnicas utilizadas no tratamento matemático do modelo.
-
 Além disso, esse modelo se relaciona com outros modelos de mecânica estatística do equilíbrio, sendo que as idéias
 utilizadas em percolação podem ser adaptadas para esses modelos e vice-versa. Por exemplo, o \textit{Argumento de Peierls}
 utilizado para a demonstação da presença de transição de fase em \textit{modelos de spin}, como o Modelo de Ising, pode ser
@@ -125,6 +124,17 @@ Tal modelo é conhecido na literatura como \textit{Random Cluster Model}.
 
 \subsubsection{Definição do modelo}
 \label{sec-def-mod}
+
+\begin{figure*}
+\subfigure[$p=0.4$]
+{\includegraphics[scale=0.3]{fig/screenshot1.png}
+\label{screenshot1}}
+\subfigure[$p=0.6$]
+{\includegraphics[scale=0.3]{fig/screenshot2.png}
+\label{screenshot2}}
+\caption{Realização de um processo de percolação de elos em $\Z^2$ \label{fig:elos}}
+\end{figure*}
+
 Um grafo $G=(V,E)$ é um conjunto de \textit{vértices} $V$ e um conjunto de \textit{elos} $E$. 
 Os elementos de $V$ também serão denominados \textit{sítios} e devem
 ser entendidos como pontos. Por outro lado, um elo é uma ``ligação entre dois vértices".
@@ -157,22 +167,8 @@ Caso contrário dizemos que ele está fechado.
 
 Estamos interessados em propriedades de conectividade 
 do "subgrafo aleatório" gerado caso guardássemos todos os elos abertos 
-e descartássemos todos os elos fechados, mais especificamente, 
+e descartássemos todos os elos fechados (figura~\ref{fig:elos}), mais especificamente, 
 o subgrafo dado por $\{ e \in \mathbb{L}^{2}; X_{e} = 1 \}$. 
-
-\begin{figure}
-\centering
-\includegraphics[scale=0.3]{fig/screenshot1.png}
-\caption{Realização de um processo de percolação de elos em $\Z^2$ para $p=0.4$}
-\label{screenshot1}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[scale=0.3]{fig/screenshot2.png}
-\caption{Realização de um processo de percolação de elos em $\Z^2$ para $p=0.6$}
-\label{screenshot2}
- \end{figure}
 
 
 \begin{definicao}
@@ -189,7 +185,7 @@ o subgrafo dado por $\{ e \in \mathbb{L}^{2}; X_{e} = 1 \}$.
  Dizemos que 
  \textit{$x \in \Z^2$ está conectado a $y \in \Z^2$} 
  se existe um \textit{caminho aberto} 
- $ \Gamma = \{ x_{1}, x_{2}, \ldots, x_{k} \}$     tal que $x_1 =  x$ e $x_2 = y$.
+ $ \Gamma = \{ x_{1}, x_{2}, \ldots, x_{k} \}$     tal que $x_1 =  x$ e $x_k = y$.
  Denotamos esse evento por $ \left[x \leftrightarrow y \right]$. 
  
  Também definimos o evento
@@ -224,8 +220,8 @@ o subgrafo dado por $\{ e \in \mathbb{L}^{2}; X_{e} = 1 \}$.
  
 \begin{figure}
 	\centering
-		\includegraphics[scale=0.8]{fig/grafico.jpg}
-		\caption{Esboço da função de percolação}
+	\includegraphics[scale=0.7]{fig/grafico.jpg}
+	\caption{Esboço da função de percolação}
 	\label{screenshot7}
 \end{figure}
 
@@ -248,8 +244,8 @@ o subgrafo dado por $\{ e \in \mathbb{L}^{2}; X_{e} = 1 \}$.
  \subsubsection{Outros possíveis casos de interesse}
  
  Nessa seção descrevemos algumas modificações no modelo de percolação apresentado acima. A maior parte
- dos resultados descritos acima se generaliza para os modelos que apresentaremos abaixo. A principal exceção
- é o fato de que $p_c = \frac{1}{2}$.
+ dos resultados descritos acima se generaliza para os modelos que apresentaremos abaixo. A principal exceção é o resultado sobre
+ o valor do ponto crítico, $p_c = \frac{1}{2}$.
  
  A primeira modificação consite em considerar outras redes bi-dimensionais. As de maior interesse estão listadas
  abaixo:
@@ -279,25 +275,24 @@ o subgrafo dado por $\{ e \in \mathbb{L}^{2}; X_{e} = 1 \}$.
  \subsubsection{Esboço dos passos importantes para o algoritmo de modelagem da Percolação em $\Z^{2}$}
  
  \begin{enumerate}
- 
- \item Para cada elo $e \in \Z^2$ escolher variáveis aleatórias independentes $U_e \thicksim unif[0,1]$.
+  \item Para cada elo $e \in \Z^2$ escolher variáveis aleatórias independentes $U_e \thicksim unif[0,1]$.
  \item Escolher o valor de $p$ e definir para cada elo $e$, $X_e = 1$ se $U_e \geq p$ e zero caso contrário.
  \item Verificar se, para uma caixa grande, a origem está conectada à borda dessa caixa com probabilidade positiva
        (observe que, para fazer isso pode ser necessário repetir o experimento várias vezes).
  \item Tentar determinar o ponto crítico numericamente.
+  \end{enumerate}
  
- \end{enumerate}
-
- 
- 
- 
- 
- 
-
 
 \subsection{Corner Percolation e Passeio Determinístico em uma Rede Orientada Aleatoriamente}
 
 \subsubsection{\label{corner} Definição dos modelos}
+
+\begin{figure*}
+	\centering
+		\includegraphics[scale=0.5]{fig/corner_percolation.png}
+		\caption{Realização do processo de Corner Percolation em $\Z^2$}
+	\label{fig:corner_percolation}
+\end{figure*}
 
 O Modelo Corner Percolation pode ser visto como um modelo de percolação, no qual cada elo da rede $\Z^2$ está aberto com
 probabilidade $\frac{1}{2}$. Porém, ao contrário do modelo apresentado na seção \ref{sec-def-mod},
@@ -313,14 +308,8 @@ Considere duas sequências independentes de variáveis aleatórias i.i.d.
 $\{\xi_i\}_{i \in \Z}$ e $\{\eta_i\}_{i \in \Z}$ com distribuição comum
 $\P \left( \xi_i = 1 \right) = \P \left( \xi_i = - 1 \right) = \frac{1}{2}$.
 A variável aleatória $\xi_i$ determina a orientação da $i$-ésima coluna da rede e variável aleatória $\eta_i$ determina a orientação da $i$-ésima
-linha $i$. 
+linha. 
 
-\begin{figure}
-	\centering
-		\includegraphics[scale=0.3]{fig/corner_percolation.png}
-		\caption{Realização do processo de Corner Percolation em $\Z^2$}
-	\label{fig:corner_percolation}
-\end{figure}
 
 Posicionamos uma partícula na origem e deixamos com que ela se desloque conforme a seguinte regra:
 \begin{itemize}
@@ -332,7 +321,7 @@ na linha $i$ então a partícula anda para a direita ou para a esquerda dependendo
 
 \end{itemize}
 
-Repetimos o mesmo processo para partículas inicialmente localizadas em todos os sítios $\left\{(x,y) \in \Z^2 : x+y \mbox{ é par} \right\}$. A figura \ref{fig:corner_percolation} ilustra uma realização desse processo em uma caixa
+Repetimos o mesmo processo para partículas inicialmente localizadas em todos os sítios $\left\{(x,y) \in \Z^2 : x+y \mbox{ é par} \right\}$. A figura~\ref{fig:corner_percolation} ilustra uma realização desse processo em uma caixa
 finita de $\Z^2$.
 
 
@@ -358,7 +347,7 @@ Se $\xi^*_i = + 1$, então, mantemos os elos pares e deletamos os elos ímpares de
 Por outro lado, se $\xi^*_i = - 1$ deletamos os elos pares e mantemos os elos ímpares.
 Analogamente, mantemos ou deletamos os elos pares e impares da coluna $i$ dependendo se $\eta^*_i = 1$ ou $\eta^*_i = -1$.
 
-Esse processo é chamado de \textit{Corner Percolation}. O conjunto dos elos abertos para a configuração gerada por $\{\xi^*_i\}$ e $\{ \eta^*_i\}$ é exatamente o conjunto de trajetórias geradas por $\left\{ \xi_i \right\}$ e $\{\eta_i \}$ no modelo do passeio na rede orientada aleatóriamente. A figura mostra a relação entre os dois processos. As sequências de sinais interiores representam as variáveis aleatórias $\xi_i$ e $\eta_i$. As sequência de sinais exteriores representam as variáveis aleatórias $\xi^*_i$ e $\eta^*_i$.
+Esse processo é chamado de \textit{Corner Percolation}. O conjunto dos elos abertos para a configuração gerada por $\{\xi^*_i\}$ e $\{ \eta^*_i\}$ é exatamente o conjunto de trajetórias geradas por $\left\{ \xi_i \right\}$ e $\{\eta_i \}$ no modelo do passeio na rede orientada aleatóriamente. A figura~\ref{corner_percolation2} mostra a relação entre os dois processos. As sequências de sinais interiores representam as variáveis aleatórias $\xi_i$ e $\eta_i$. As sequência de sinais exteriores representam as variáveis aleatórias $\xi^*_i$ e $\eta^*_i$.
 
 \begin{figure}
  \centering
@@ -438,51 +427,6 @@ ou seja, o intervalo $[0,1]$ identificando o n\'umero $0$ com o n\'umero $1$. Fi
 $\bb{T}$ em $N$ s\'itios igualmente espa\c cados. Representamos se h\'a ou n\~ao part\'icula em cada s\'tio colocando zero ou
 um e n\~ao permitindo mais de uma part\'icula por s\'itio. Logo, qualquer configura\c c\~ao de part\'iculas fica únicamente determinada por um vetor de zero e uns, o qual possui $N$ entradas. 
 
-\begin{figure*}
- \centering
-\setlength{\unitlength}{4144sp}%
-%
-\begingroup\makeatletter\ifx\SetFigFontNFSS\undefined%
-\gdef\SetFigFontNFSS#1#2#3#4#5{%
-  \reset@font\fontsize{#1}{#2pt}%
-  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
-  \selectfont}%
-\fi\endgroup%
-\begin{picture}(4973,1017)(4261,-6245)
-{\color[rgb]{0,0,0}\thinlines
-\put(5401,-5461){\circle{450}}
-}%
-{\color[rgb]{0,0,0}\put(6301,-5461){\circle{450}}
-}%
-{\color[rgb]{0,0,0}\put(7201,-5461){\circle{450}}
-}%
-{\color[rgb]{0,0,0}\put(8101,-5461){\circle{450}}
-}%
-{\color[rgb]{0,0,0}\put(9001,-5461){\circle{450}}
-}%
-{\color[rgb]{0,0,0}\put(4501,-5461){\circle{450}}
-}%
-{\color[rgb]{0,0,0}\put(4726,-5461){\line( 1, 0){450}}
-}%
-{\color[rgb]{0,0,0}\put(5626,-5461){\line( 1, 0){450}}
-}%
-{\color[rgb]{0,0,0}\put(6526,-5461){\line( 1, 0){450}}
-}%
-{\color[rgb]{0,0,0}\put(7426,-5461){\line( 1, 0){450}}
-}%
-{\color[rgb]{0,0,0}\put(8326,-5461){\line( 1, 0){450}}
-}%
-\put(4276,-6136){\makebox(0,0)[lb]{\smash{{\SetFigFontNFSS{20}{24.0}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$0$}%
-}}}}
-\put(8776,-6136){\makebox(0,0)[lb]{\smash{{\SetFigFontNFSS{20}{24.0}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$\frac{N}{N}$}%
-}}}}
-\put(5176,-6136){\makebox(0,0)[lb]{\smash{{\SetFigFontNFSS{20}{24.0}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$\frac{1}{N}$}%
-}}}}
-\end{picture}%
- \caption{S\'itios em $\bb{T}$}
- \label{fig:1}
-\end{figure*}
-
 O Processo de Exclus\~ao Simples corresponde \`a seguinte evolu\c c\~ao aleat\'oria do sistema: considere um rel\'ogio 
 exponencial. Quando este rel\'ogio toca, um s\'itio \'e escolhido uniformemente dentre os $N$ existentes. Se n\~ao h\'a 
 part\'icula neste s\'itio, o rel\'ogio \'e colocado para tocar novamente. Por\'em, se h\'a part\'icula neste s\'itio, \'e
@@ -512,9 +456,10 @@ deixamos o processo de exclus\~ao evoluir at\'e um tempo $N^2t$, onde $t$ \'e um
 $N^2t$ teremos uma configura\c c\~ao final das part\'iculas. Repetimos a simula\c c\~ao desde o sorteio da configura\c c\~ao inicial um n\'umero infinito de vezes (obviamente, para visualiza\c c\~ao computacional, toma-se uma aproxima\c c\~ao atrav\'es de um n\'umero grande e finito de vezes). Para cada s\'itio, tiramos o limite da m\'edia de quantas vezes havia part\'icula na configura\c c\~ao final. 
 Deste modo, obtemos uma fun\c c\~ao $\rho_N(\frac{x}{N}, t)$ que nos retorna essa freq\"u\^encia de part\'iculas em cada s\'itio ao
 final do processo. Um resultado cl\'assico na \'area nos diz que esta fun\c c\~ao $\rho_N(\frac{x}{N}, t)$, quando $N$ \'e tomado
-cada vez maior, se aproxima (num certo sentido matem\'atico rigoroso) da solu\c c\~ao $\rho(u,t)$ da Equa\c c\~ao do Calor, que \'e:
+cada vez maior, se aproxima (num certo sentido matem\'atico rigoroso) da solu\c c\~ao $\rho(u,t)$ da Equa\c c\~ao do Calor, que \'e
+mostrada na na equação~(\ref{calor}).
 
-\begin{equation*}
+\begin{equation}\label{calor}
 \left\{
 \begin{array}{l}
  \dfrac{\p \rho}{\p t}(u,t)-\dfrac{\p^2 \rho}{\p x^2}(u,t)=0\\
@@ -522,7 +467,7 @@ cada vez maior, se aproxima (num certo sentido matem\'atico rigoroso) da solu\c 
 \rho(u,0)=\gamma(u)
 \end{array}
 \right.
-\end{equation*}
+\end{equation}
 
 Como comentado antes, esta equa\c c\~ao modela, entre outros fen\^omenos, o espalhamento de calor numa barra isolada
  termicamente. Sem recorrer a ferramentas t\'ecnicas, \'e f\'acil se convencer de que a solu\c c\~ao $\rho(u,t)$, com
@@ -594,111 +539,112 @@ dos s\'itios nas extremidades desse elo.
 
 
 \subsubsection{Simulações Realizadas}
-
-
 Nesta seção, apresentamos uma série de figuras obtidas com o simulador implementado para o Limite
-Hidrodinâmico do Processo de Exclusão Simples.
+Hidrodinâmico do Processo de Exclusão Simples. A figura \ref{fig:sitios} ilustra 
+como a curva, para um tempo fixo ($t=0.5$s) é suavisada quando o número de sítios cresce, 
+de acordo com a teoria. As figura~\ref{fig:itera}
+mostra como a convergência melhora quando o número de iterações aumenta, sendo tomado um tempo fixo
+($t=0.5$s) e um número de sítios constante (512 sítios). A figuras~\ref{fig:itera_s} mostram o mesmo fenômeno, agora usando menos pontos (256 sítios) e como condição inicial uma função não diferenciavel em dois pontos, no ponto 0.5 e na origem (lembramos que a topologia é a mesmo do toro $0\equiv1$). Por fim, as figuras~\ref{fig:tempo} e~\ref{fig:tempod} comparam diferentes tempos para uma mesma 
+condição inicial com número fixo de sítios (igual a 256), sendo
+feito, para todas, um número grande de iterações (no caso, em torno de 1330). 
+Observe a convergência, com o aumento do tempo, para uma
+constante, condizente com o esperado para a solução da Equação do Calor~(\ref{calor}).
 
-
-\begin{figure}[f]
-\centering
-\includegraphics[scale=0.35]{fig/Hidro2.png}
-\caption{64 sítios, 10000 iterações}
-\label{fig:64_g}
- \end{figure}
-
-\begin{figure}[f]
-\centering
-\includegraphics[scale=0.35]{fig/Hidro1.png}
-\caption{256 sítios, 4168 iterações}
-\label{fig:256_aaa}
- \end{figure}
-
-\begin{figure}[f]
-\centering
-\includegraphics[scale=0.35]{fig/Hidro5.png}
-\caption{512 sítio, 32 iterações}
-\label{fig:512_d}
- \end{figure}
-
-\begin{figure}[f]
-\centering
-\includegraphics[scale=0.35]{fig/Hidro7.png}
-\caption{512 sítios, 56 iterações}
-\label{fig:512_e}
- \end{figure}
-
-\begin{figure}[f]
-\centering
-\includegraphics[scale=0.35]{fig/Hidro3.png}
-\caption{512 sítios, 695 iterações}
-\label{fig:512_f}
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}
+\subfigure[64 sítios, 10000 iterações]{
+\includegraphics[width=0.9\columnwidth]{fig/Hidro2.png}
+\label{fig:64_g}}
+%
+\subfigure[256 sítios, 4168 iterações]{
+\includegraphics[width=0.9\columnwidth]{fig/Hidro1.png}
+\label{fig:256_aaa}}
+%
+\caption{Comparação de suavidade para um tempo fixo ($t=0.5$s) variando o numéro de sítios \label{fig:sitios}}
 \end{figure}
 
-\begin{figure}[f]
-\centering
-\includegraphics[scale=0.35]{fig/Hidro4.png}
-\caption{512 sítios, 1676 iterações}
-\label{fig:512_g}
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}
+\subfigure[512 sítio, 32 iterações]{
+\includegraphics[width=0.9\columnwidth]{fig/Hidro5.png}
+\label{fig:512_d}}
+%
+\subfigure[512 sítios, 56 iterações]{
+\includegraphics[width=0.9\columnwidth]{fig/Hidro7.png}
+\label{fig:512_e} }
+%
+\subfigure[512 sítios, 695 iterações]{
+\includegraphics[width=0.9\columnwidth]{fig/Hidro3.png}
+\label{fig:512_f}}
+%
+\subfigure[512 sítios, 1676 iterações]{
+\includegraphics[width=0.9\columnwidth]{fig/Hidro4.png}
+\label{fig:512_g}}
+%
+\caption{Comparação de convergência para uma função suave, variando o numéro de iterações com tempo fixo
+($t=0.5$s) e um número de sítios constante (512 sítios) \label{fig:itera}}
 \end{figure}
 
-\begin{figure}[f]
-\centering
-\includegraphics[scale=0.35]{fig/Hidro10.png}
-\caption{256 sítios, 23 iterações}
-\label{fig:256_aa}
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}
+\subfigure[256 sítios, 8 iterações]{
+\includegraphics[width=0.9\columnwidth]{fig/Hidro13.png}
+\label{fig:256_c}}
+%
+\subfigure[256 sítios, 43 iterações]{
+\includegraphics[width=0.9\columnwidth]{fig/Hidro14.png}
+\label{fig:256_d}}
+%
+\subfigure[256 sítios, 420 iterações]{
+\includegraphics[width=0.9\columnwidth]{fig/Hidro15.png}
+\label{fig:256_e}}
+%
+\subfigure[256 sítios, 852 iterações]{
+\includegraphics[width=0.9\columnwidth]{fig/Hidro16.png}
+\label{fig:256_f}}
+%
+\caption{Comparação de convergência para uma função não diferenciavel nos pontos 0{,}5 e 0, variando o numéro de iterações com tempo fixo ($t=0.5$s) e um número de sítios constante (256 sítios) \label{fig:itera_s}}
 \end{figure}
-
-\begin{figure}[f]
-\centering
-\includegraphics[scale=0.35]{fig/Hidro8.png}
-\caption{256 sítios, 122 iterações}
-\label{fig:256}
- \end{figure}
-
-\begin{figure}[f]
-\centering
-\includegraphics[scale=0.35]{fig/Hidro11.png}
-\caption{256 sítios, 51 iterações}
-\label{fig:256_a}
- \end{figure}
  
-\begin{figure}[f]
-\centering
-\includegraphics[scale=0.35]{fig/Hidro12.png}
-\caption{256 sítios, 133 iterações}
-\label{fig:256_b}
- \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}
+\subfigure[tempo = 0.5s]{
+\includegraphics[width=0.9\columnwidth]{fig/Tempo05.png}
+\label{Tempo05}}
+%
+\subfigure[tempo = 1.0s]{
+\includegraphics[width=0.9\columnwidth]{fig/Tempo10.png}
+\label{Tempo10}}
+%
+\subfigure[tempo = 2.0s]{
+\includegraphics[width=0.9\columnwidth]{fig/Tempo20.png}
+\label{Tempo20}}
+%
+\subfigure[tempo = 4.0s]{
+\includegraphics[width=0.9\columnwidth]{fig/Tempo40.png}
+\label{Tempo40}}
+\caption{Comparação da variação do tempo para um número de sítios constante (256 sítios) usando uma função suave\label{fig:tempo}}
+\end{figure}
 
-\begin{figure}[f]
-\centering
-\includegraphics[scale=0.35]{fig/Hidro13.png}
-\caption{256 sítios, 8 iterações}
-\label{fig:256_c}
- \end{figure}
- 
-\begin{figure}[f]
-\centering
-\includegraphics[scale=0.35]{fig/Hidro14.png}
-\caption{256 sítios, 43 iterações}
-\label{fig:256_d}
- \end{figure}
-
-\begin{figure}[f]
-\centering
-\includegraphics[scale=0.35]{fig/Hidro15.png}
-\caption{256 sítios, 420 iterações}
-\label{fig:256_e}
- \end{figure}
-
-\begin{figure}[f]
-\centering
-\includegraphics[scale=0.35]{fig/Hidro16.png}
-\caption{256 sítios, 852 iterações}
-\label{fig:256_f}
- \end{figure}
-
-
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}
+\subfigure[tempo = 0.5s]{
+\includegraphics[width=0.9\columnwidth]{fig/Tempo05b.png}
+\label{Tempo05b}}
+%
+\subfigure[tempo = 1.0s]{
+\includegraphics[width=0.9\columnwidth]{fig/Tempo10b.png}
+\label{Tempo10b}}
+%
+\subfigure[tempo = 2.0s]{
+\includegraphics[width=0.9\columnwidth]{fig/Tempo20b.png}
+\label{Tempo20b}}
+%
+\subfigure[tempo = 4.0s]{
+\includegraphics[width=0.9\columnwidth]{fig/Tempo40b.png}
+\label{Tempo40b}}
+\caption{Comparação da variação do tempo para um número de sítios constante (256 sítios) usando uma função não diferenciavel nos pontos 0{,}2 e 0\label{fig:tempod}}
+\end{figure}
 
 \begin{thebibliography}{}
 
