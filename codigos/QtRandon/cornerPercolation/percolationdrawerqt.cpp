@@ -6,9 +6,10 @@ PercolationDrawerQT::PercolationDrawerQT()
     widh = 60; heiht = 60; startX = -30;   startY = -30;
 }
 
-void PercolationDrawerQT::setWindow( QPainter &painter , int windowWidh , int windowHeight ,
-                                     int systemStartX , int systemEndX ,
-                                     int systemStartY , int systemEndY )
+void PercolationDrawerQT::setWindow( QPainter &painter ,
+                                     int windowWidh   , int windowHeight ,
+                                     int systemStartX , int systemEndX   ,
+                                     int systemStartY , int systemEndY   )
 {
 
     int systemWidh   = systemEndX - systemStartX;

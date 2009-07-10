@@ -17,26 +17,28 @@
 
 /* Implementation */
 PercolationProcess::PercolationProcess() {
-    PercolationProcess tmp( 100, 100 );
+    PercolationProcess tmp( 100, 100 , 0.5 );
     (*this) = tmp;
 }
 
-PercolationProcess::PercolationProcess( unsigned int radiusX , unsigned int radiusY ) {
+PercolationProcess::PercolationProcess( unsigned int radiusX , unsigned int radiusY , double probS ) {
 
     pRadiusX = radiusX;
     pRadiusY = radiusY;
     pType = CORNER;
 
+    pProbS = probS;
+
     int n, coin, signal;
 
     const unsigned int size = (pRadiusX + 1) * (pRadiusY + 1);
 
-    for( int i = 0; i <= size; ++i ) {
+    for( unsigned int i = 0; i <= size; ++i ) {
         pVisitedSites.push_back( false );
         pKeysOfSitesVisited.push_back( false );
     }
 
-    for( int i = 0; i < (2*pRadiusX+1); ++i ) {
+    for( unsigned int i = 0; i < (2*pRadiusX+1); ++i ) {
          coin = ( (double) rand() / (double) RAND_MAX ) < 0.5 ? 1 : -1;
         pPrimalX.push_back( coin == 1 );
 
@@ -45,7 +47,7 @@ PercolationProcess::PercolationProcess( unsigned int radiusX , unsigned int radi
         pDualX.push_back( (signal * coin) == 1 );
     }
 
-    for( int i = 0; i < (2*pRadiusY+1); ++i ) {
+    for( unsigned int i = 0; i < (2*pRadiusY+1); ++i ) {
         coin = ( (double) rand() / (double) RAND_MAX ) < 0.5 ? 1 : -1;
         pPrimalY.push_back( coin == 1 );
 
@@ -154,17 +156,17 @@ unsigned int PercolationProcess::getIndex( const Site& s ) const {
 
 unsigned int PercolationProcess::getX( int i ) const {
 
-    assert( abs(i) <= pRadiusX );
+    assert( (unsigned int)abs(i) <= pRadiusX );
     return ( i + pRadiusX );
 }
 
 unsigned int PercolationProcess::getY( int j ) const {
 
-    assert( abs(j) <= pRadiusY );
+    assert( (unsigned int)abs(j) <= pRadiusY );
     return ( j + pRadiusY );
 }
 
 bool PercolationProcess::inBox( const Site &s ) const {
 
-    return (abs(s.X()) <= pRadiusX) && (abs(s.Y()) <= pRadiusY);
+    return ((unsigned int)abs(s.X()) <= pRadiusX) && ((unsigned int)abs(s.Y()) <= pRadiusY);
 }

@@ -2,6 +2,7 @@
 #define PATHVIEWER_H
 
 #include <QWidget>
+#include "percolationdrawerqt.h"
 
 #include "path.hpp"
 
@@ -21,7 +22,16 @@ private:
 
     void drawPath( QPainter &painter );
 
+protected:
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+
     QSize frameSize;
+
+    QTransform transfor;
+
+    PercolationProcess process;
+
 
     std::vector<Path> allPath;
 };

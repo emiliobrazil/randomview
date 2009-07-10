@@ -1,6 +1,9 @@
 #include "pathviewer.h"
 
-#include "percolationdrawerqt.h"
+
+#include <iostream>
+
+#include <QtGui>
 
 #include<QPainter>
 #include<QPolygon>
@@ -18,17 +21,18 @@ void PathViewer::draw()
 void PathViewer::paintEvent( QPaintEvent *event )
 {
 //    qreal scale = 30.0;
-    PercolationProcess process;
     QPainter painter(this);
     PercolationDrawerQT drawertmp;
     drawertmp.setWindow( painter , frameSize.width() , frameSize.height() , -15 , 15 , -5 , 5 );
+
+    transfor = drawertmp.getTransform();
 
 //    drawPath( painter );
 
     drawertmp.drawSistemEdges( painter , process);
     drawertmp.drawSistemSites( painter , process);
 
-    painter.setPen( QPen( QBrush( Qt::green ), 0.2f ) );
+    painter.setPen( QPen( QBrush( Qt::magenta ), 0.3f ) );
     painter.drawPoint( 0 , 0 );
 
 }
@@ -36,7 +40,7 @@ void PathViewer::paintEvent( QPaintEvent *event )
 void PathViewer::drawPath( QPainter &painter )
 {
     PercolationDrawerQT drawertmp;
-    for( int i = 0 ; i < allPath.size() ; ++i)
+    for( unsigned int i = 0 ; i < allPath.size() ; ++i)
     {
         drawertmp.drawPath( painter , this->allPath[i] );
     }
@@ -48,3 +52,20 @@ void PathViewer::addPath( Path& path )
 {
     this->allPath.push_back(path);
 }
+
+
+void PathViewer::mousePressEvent(QMouseEvent *event)
+{
+    QPoint o = event->pos();
+    std::cout << o.x()<< " vv " << o.y() << std::endl;
+    QTransform teste = transfor.inverted();
+    QPoint p = teste.map( o );
+    std::cout << p.x() << " xx " << p.y() << std::endl;
+
+}
+
+void PathViewer::mouseMoveEvent(QMouseEvent *event)
+{
+
+}
+
