@@ -43,6 +43,8 @@ private:
 
     int dx , dy;
 
+    QPoint oldPoint;
+
 };
 
 #endif // PERCOLATIONSHOW_H
