@@ -62,3 +62,18 @@ void PercolationShow::paintEvent( QPaintEvent *event )
     painter.drawPoint( 0 , 0 );
 
 }
+
+void PercolationShow::mousePressEvent(QMouseEvent *event)
+{
+    QPoint o = event->pos();
+    std::cout << o.x()<< " vv " << o.y() << std::endl;
+    QTransform teste = transfor.inverted();
+    QPoint p = teste.map( o );
+    std::cout << p.x() << " xx " << p.y() << std::endl;
+
+}
+
+void PercolationShow::mouseMoveEvent(QMouseEvent *event)
+{
+
+}
