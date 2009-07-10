@@ -4,7 +4,7 @@
 #include "ui_mainwindow.h"
 
 #include <QtGui/QMainWindow>
-#include "pathviewer.h"
+#include "percolationshow.h"
 
 namespace Ui
 {
@@ -19,12 +19,24 @@ public:
     MainWindow( void );
     ~MainWindow();
 
+private slots:
+    void startProcess( void );
+    void changeScale( int S );
+    void changeRadius( int R );
+    void changeProb( double P );
+
 private:
     Ui::MainWindow ui;
 
-    PathViewer *viewer;
+    PercolationShow *viewer;
 
-    Path path;
+    std::vector<Path> paths;
+
+    PercolationProcess process;
+    unsigned int processRadius;
+    double probS;
+    unsigned int scale;
+
 };
 
 #endif // MAINWINDOW_H

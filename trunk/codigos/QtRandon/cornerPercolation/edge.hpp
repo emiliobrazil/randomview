@@ -17,7 +17,7 @@ public:
 
     Edge& operator=( const Edge& );
 
-    const ORIENTATION orientation( void ) const;
+    ORIENTATION orientation( void ) const;
     const Site& position( void ) const;
 };
 

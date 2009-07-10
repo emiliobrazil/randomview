@@ -88,7 +88,7 @@ bool Path::isClosed( void ) const {
         Site s_base( pPath[0] ), s_head;
 
         // Insert the edges into the set
-        for( int i = 1; i <= pPath.size(); ++i ) {
+        for( unsigned int i = 1; i <= pPath.size(); ++i ) {
 
             s_head = pPath[i];
             Edge edge( s_base, getHead(s_base, s_head) );

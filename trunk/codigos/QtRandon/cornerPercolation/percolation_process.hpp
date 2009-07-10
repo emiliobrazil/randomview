@@ -11,6 +11,23 @@
 
 class PercolationProcess
 {
+public:
+    PercolationProcess();
+    PercolationProcess( unsigned int radiusX, unsigned int radiusY, double probS );
+    PercolationProcess( const PercolationProcess& );
+
+    PercolationProcess& operator=( const PercolationProcess& );
+
+    bool isOpen( const Edge& ) const;
+    bool isOpen( const Site& ) const;
+    bool isVisited( Site ) const;
+    bool dualX( int i ) const;
+    bool dualY( int j ) const;
+    bool primalX( int i  ) const;
+    bool primalY( int j ) const;
+
+    bool visit( const Site & );
+
 private:
     PERCOLATION pType;
     std::vector<bool> pPrimalX;
@@ -21,22 +38,8 @@ private:
     std::vector<bool> pVisitedSites;
     std::vector<bool>  pKeysOfSitesVisited;
 
-public:
-    PercolationProcess();
-    PercolationProcess( unsigned int radiusX, unsigned int radiusY );
-    PercolationProcess( const PercolationProcess& );
+    double pProbS;
 
-    PercolationProcess& operator=( const PercolationProcess& );
-
-    bool isOpen( const Edge& ) const;// { return ((double)rand()/(double)RAND_MAX) < 0.4;}
-    bool isOpen( const Site& ) const;//  { return((double)rand()/(double)RAND_MAX) < 0.4;} // key
-    bool isVisited( Site ) const;
-    bool dualX( int i ) const;
-    bool dualY( int j ) const;
-    bool primalX( int i  ) const;
-    bool primalY( int j ) const;
-
-    bool visit( const Site & );
 
     // Helper functions: as long as the box is fixed
 private:
@@ -44,6 +47,7 @@ private:
     unsigned int getX( int i ) const;
     unsigned int getY( int j ) const;
     bool inBox( const Site & ) const;
+
 };
 
 
