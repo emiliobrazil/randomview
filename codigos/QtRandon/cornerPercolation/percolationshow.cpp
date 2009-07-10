@@ -29,6 +29,8 @@ void PercolationShow::clearPaths( void )
 void PercolationShow::changeisDropingParticle( bool B )
 {
     isDropingParticle = B;
+    isMoving = !B;
+
     if( isDropingParticle ) this->setCursor(Qt::PointingHandCursor);
 }
 
@@ -36,6 +38,8 @@ void PercolationShow::changeisDropingParticle( bool B )
 void PercolationShow::changeIsMoving( bool B )
 {
     isMoving = B;
+    isDropingParticle = !B;
+
     if( isMoving ) this->setCursor(Qt::OpenHandCursor);
 }
 
@@ -51,16 +55,17 @@ void PercolationShow::paintEvent( QPaintEvent *event )
     drawertmp.setWindow( painter , frameSize.width() , frameSize.height() , -Rx - dx , Rx - dx , -Ry - dy , Ry - dy );
     transfor = drawertmp.getTransform();
 
+    painter.setPen( QPen( QBrush( Qt::blue ), 3.0/scale ) );
+    drawPaths( painter );
+
     painter.setPen( QPen( QBrush( Qt::magenta ), 4.0/scale ) );
     painter.drawPoint( 0 , 0 );
 
 
-    painter.setPen( QPen( QBrush( Qt::black ), 2.0/scale ) );
+    painter.setPen( QPen( QBrush( Qt::black ), 1/scale ) );
     drawertmp.drawSistemEdges( painter , process);
     drawertmp.drawSistemSites( painter , process);
 
-    painter.setPen( QPen( QBrush( Qt::blue ), 4.0/scale ) );
-    drawPaths( painter );
 }
 
 
@@ -71,7 +76,7 @@ void PercolationShow::mousePressEvent(QMouseEvent *event)
     QPoint oI = Ti.map( oldPoint );
     if(isDropingParticle) dropParticle( oldPoint );
     if(isMoving)  this->setCursor(Qt::ClosedHandCursor);
-
+    update();
 }
 
 void PercolationShow::mouseMoveEvent(QMouseEvent *event)
@@ -101,7 +106,10 @@ void PercolationShow::mouseReleaseEvent(QMouseEvent *event)
 
 void PercolationShow::dropParticle( QPoint start )
 {
-    Site startS( start.x() , start.y() );
+    std::cout << "void PercolationShow::dropParticle( QPoint start )" <<  std::endl;
+    QTransform Ti = transfor.inverted();
+    QPoint sI = Ti.map(start);
+    Site startS( sI.x() , sI.y() );
     Particle tmpParticle( startS );
     tmpParticle.walk( process );
     particles.push_back(tmpParticle);
@@ -109,10 +117,11 @@ void PercolationShow::dropParticle( QPoint start )
 
 void PercolationShow::drawPaths( QPainter& painter )
 {
-    for( int i ; i < particles.size() ; ++i )
+    for( int i = 0 ; i < particles.size() ; ++i )
     {
         std::vector<Path> pathsTmp = particles[i].getPaths();
-        for( int j ; j < pathsTmp.size() ; ++j )
+
+        for( int j = 0 ; j < pathsTmp.size() ; ++j )
         {
             PercolationDrawerQT drawertmp;
             drawertmp.drawPath( painter , pathsTmp[j] );

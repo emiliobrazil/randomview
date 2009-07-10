@@ -40,6 +40,8 @@ void Site::setX( int x ) { this -> position[0] = x; }
 
 void Site::setY( int y ) { this -> position[1] = y; } 
 
+void Site::add( int stepX , int stepY ) { this -> position[0] += stepX; this -> position[1] += stepY;}
+
 void Site::addX( int step ) { this -> position[0] += step;/* fprintf( stderr, "Site::addX %d\n" , position[0] );*/ }
 
 void Site::addY( int step ) { this -> position[1] += step;/* fprintf( stderr, "Site::addY %d\n" , position[1] );*/ }
