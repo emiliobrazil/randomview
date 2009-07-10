@@ -7,12 +7,12 @@ PercolationShow::PercolationShow( QWidget *parent ) : QWidget(parent)
     setAutoFillBackground(true);
 }
 
-void PercolationShow::drawAll( PercolationProcess& processNew , double scaleNew , bool isMovingNew , bool isDropingPathNew )
+void PercolationShow::drawAll( PercolationProcess& processNew , double scaleNew , bool isMovingNew , bool isDropingParticleNew )
 {
     process = processNew;
     isMoving = isMovingNew;
-    isDropingPath = isDropingPathNew;
-    if( isDropingPath ) this->setCursor(Qt::PointingHandCursor);
+    isDropingParticle = isDropingParticleNew;
+    if( isDropingParticle ) this->setCursor(Qt::PointingHandCursor);
     if( isMoving ) this->setCursor(Qt::OpenHandCursor);
     scale = scaleNew;
     update();
@@ -24,10 +24,10 @@ void PercolationShow::clearPaths( void )
     update();
 }
 
-void PercolationShow::changeIsDropingPath( bool B )
+void PercolationShow::changeisDropingParticle( bool B )
 {
-    isDropingPath = B;
-    if( isDropingPath ) this->setCursor(Qt::PointingHandCursor);
+    isDropingParticle = B;
+    if( isDropingParticle ) this->setCursor(Qt::PointingHandCursor);
 }
 
 
@@ -63,13 +63,13 @@ void PercolationShow::paintEvent( QPaintEvent *event )
 
 }
 
+
 void PercolationShow::mousePressEvent(QMouseEvent *event)
 {
-    QPoint o = event->pos();
-    std::cout << o.x()<< " vv " << o.y() << std::endl;
-    QTransform teste = transfor.inverted();
-    QPoint p = teste.map( o );
-    std::cout << p.x() << " xx " << p.y() << std::endl;
+    oldPoint = event->pos();
+    QTransform Ti = transfor.inverted();
+    QPoint oI = Ti.map( oldPoint );
+    if(isDropingParticle) dropParticle( oldPoint );
 
 }
 
@@ -77,3 +77,9 @@ void PercolationShow::mouseMoveEvent(QMouseEvent *event)
 {
 
 }
+
+void PercolationShow::dropParticle( QPoint start )
+{
+
+}
+
