@@ -26,7 +26,7 @@ private slots:
     void changeRadius( int R );
     void changeProb( double P );
     void changeIsMoving( bool B );
-    void changeIsDropingPath( bool B );
+    void changeisDropingParticle( bool B );
 
 private:
     void drawSystem( void );

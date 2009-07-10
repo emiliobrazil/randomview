@@ -22,7 +22,7 @@ MainWindow::MainWindow( void )
     connect( ui.boxRadiusSpinBox , SIGNAL( valueChanged(int) ) , this , SLOT( changeRadius(int) ) ) ;
     connect( ui.probSpinBox, SIGNAL( valueChanged(double) ) , this , SLOT( changeProb(double) ) ) ;
     connect( ui.moveButton, SIGNAL( clicked(bool) ), this , SLOT( changeIsMoving(bool)  ) );
-    connect( ui.pathButton, SIGNAL( clicked(bool) ), this , SLOT( changeIsDropingPath(bool) ) );
+    connect( ui.pathButton, SIGNAL( clicked(bool) ), this , SLOT( changeisDropingParticle(bool) ) );
 
     startProcess();
 
@@ -65,17 +65,17 @@ void MainWindow::changeIsMoving( bool B )
     viewer->changeIsMoving( B );
 }
 
-void MainWindow::changeIsDropingPath( bool B )
+void MainWindow::changeisDropingParticle( bool B )
 {
-    viewer->changeIsDropingPath( B );
+    viewer->changeisDropingParticle( B );
 }
 
 void MainWindow::drawSystem( void )
 {
     scale = ui.scaleSpinBox->value();
     bool isMoving = ui.moveButton->isChecked();
-    bool isDropingPath = ui.pathButton->isChecked();
-    viewer->drawAll( process , scale , isMoving , isDropingPath );
+    bool isDropingParticle = ui.pathButton->isChecked();
+    viewer->drawAll( process , scale , isMoving , isDropingParticle );
 }
 
 void MainWindow::keyPressEvent ( QKeyEvent * event )

@@ -14,18 +14,19 @@ class PercolationShow : public QWidget
 public:
     PercolationShow( QWidget *parent = 0 );
 
-    void drawAll( PercolationProcess& process , double scale , bool isMoving , bool isDropingPath );
+    void drawAll( PercolationProcess& process , double scale , bool isMoving , bool isDropingParticle );
 
 public slots:
     void clearPaths( void );
     void changeIsMoving( bool B );
-    void changeIsDropingPath( bool B );
+    void changeisDropingParticle( bool B );
 
 protected:
     void paintEvent( QPaintEvent *event );
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
 
+    void dropParticle( QPoint start );
 
 private:
     std::vector<Path> paths;
@@ -35,7 +36,7 @@ private:
     int scale;
 
     bool isMoving;
-    bool isDropingPath;
+    bool isDropingParticle;
 
     QSize frameSize;
 
