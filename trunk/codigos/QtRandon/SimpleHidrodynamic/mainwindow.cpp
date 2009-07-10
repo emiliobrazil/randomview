@@ -25,6 +25,7 @@ MainWindow::MainWindow( void )
     connect( ui.comboBox , SIGNAL( currentIndexChanged( int ) ) , this , SLOT( changeInitialFunc( int )) );
 
     CV = new CounterViewer;
+//    ui.spaceGrid->addWidget( CV );
     ui.spaceGrid->addWidget( CV );
 
     this->initialFunc = QUADRATIC;

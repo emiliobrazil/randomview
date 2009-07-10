@@ -17,7 +17,7 @@
 
 /* Implementation */
 PercolationProcess::PercolationProcess() {
-    PercolationProcess tmp( 100, 100 , 0.5 );
+    PercolationProcess tmp( 500, 500 , 0.5 );
     (*this) = tmp;
 }
 
