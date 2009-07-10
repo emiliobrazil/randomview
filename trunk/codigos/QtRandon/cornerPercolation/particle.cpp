@@ -1,16 +1,21 @@
 #include "particle.hpp"
+#include <iostream>
 
 Site Particle::walk( const PercolationProcess& percolation )
 {
     Site head = startPosition;
+    std::cout << "Site Particle::walk( const PercolationProcess& percolation )  " << head.X() << "   " << head.Y() << std::endl;
 
-    Path path;
+    Path path( head );
+
 
     for( int i = 0 ; i < 100 ; ++i)
     {
-       ( head.X()%2 == 0 || !percolation.isVisited(head) ) ? head.addX(1) :  head.addX(-1) ;
-       ( head.Y()%2 == 1 )                                 ? head.addY(1) :  head.addY(-1) ;
+       head.add( 1,0);
+       path.add( head );
+       head.add( 0,1);
        path.add( head );
     }
     paths.push_back( path);
+    return head;
 }
