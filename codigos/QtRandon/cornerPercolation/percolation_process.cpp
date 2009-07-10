@@ -170,3 +170,13 @@ bool PercolationProcess::inBox( const Site &s ) const {
 
     return ((unsigned int)abs(s.X()) <= pRadiusX) && ((unsigned int)abs(s.Y()) <= pRadiusY);
 }
+
+unsigned int PercolationProcess::radiusX( void )
+{
+    return pRadiusX;
+}
+
+unsigned int PercolationProcess::radiusY( void )
+{
+    return pRadiusY;
+}

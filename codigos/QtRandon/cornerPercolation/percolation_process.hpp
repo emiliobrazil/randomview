@@ -28,6 +28,11 @@ public:
 
     bool visit( const Site & );
 
+    bool inBox( const Site & ) const;
+
+    unsigned int radiusX( void );
+    unsigned int radiusY( void );
+
 private:
     PERCOLATION pType;
     std::vector<bool> pPrimalX;
@@ -46,8 +51,6 @@ private:
     unsigned int getIndex( const Site& s ) const;
     unsigned int getX( int i ) const;
     unsigned int getY( int j ) const;
-    bool inBox( const Site & ) const;
-
 };
 
 
