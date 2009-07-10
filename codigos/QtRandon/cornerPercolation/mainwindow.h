@@ -4,6 +4,7 @@
 #include "ui_mainwindow.h"
 
 #include <QtGui/QMainWindow>
+
 #include "percolationshow.h"
 
 namespace Ui
@@ -24,15 +25,21 @@ private slots:
     void changeScale( int S );
     void changeRadius( int R );
     void changeProb( double P );
+    void changeIsMoving( bool B );
+    void changeIsDropingPath( bool B );
+
+private:
+    void drawSystem( void );
+    void keyPressEvent ( QKeyEvent * event );
+
 
 private:
     Ui::MainWindow ui;
 
     PercolationShow *viewer;
 
-    std::vector<Path> paths;
-
     PercolationProcess process;
+
     unsigned int processRadius;
     double probS;
     unsigned int scale;
