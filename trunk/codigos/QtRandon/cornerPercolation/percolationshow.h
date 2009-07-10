@@ -25,12 +25,13 @@ protected:
     void paintEvent( QPaintEvent *event );
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
 
     void dropParticle( QPoint start );
+    void drawPaths(  QPainter& painter );
 
 private:
-    std::vector<Path> paths;
-    Particle particle;
+    std::vector<Particle> particles;
     PercolationProcess process;
 
     int scale;

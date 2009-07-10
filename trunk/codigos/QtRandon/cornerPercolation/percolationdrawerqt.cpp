@@ -61,7 +61,6 @@ void PercolationDrawerQT::drawPath( QPainter& painter , Path& path )
 {
     QPolygon poligonTMP;
     int numberOfSites = path.size();
-     fprintf(stderr, "PercolationDrawerQT::drawPath path.size() %d\n", path.size());
 
     for ( int i = 0 ; i < numberOfSites ; i++)
     {
@@ -80,11 +79,16 @@ void PercolationDrawerQT::drawSistemEdges( QPainter& painter , PercolationProces
             int tmpY = j + startY - 5;
             bool drw;
 
-            drw = process.isOpen( Edge( Site( tmpX , tmpY ) , H ) );
-            if(drw) painter.drawLine( QPoint(tmpX,tmpY) , QPoint(tmpX+1,tmpY) );
+            Site sTmp( tmpX , tmpY );
 
-            drw = process.isOpen( Edge( Site( tmpX , tmpY ) , V ) );
-            if(drw) painter.drawLine( QPoint(tmpX,tmpY) , QPoint(tmpX,tmpY+1) );
+            if( process.inBox(sTmp) )
+            {
+                drw = process.isOpen( Edge( sTmp , H ) );
+                if(drw) painter.drawLine( QPoint(tmpX,tmpY) , QPoint(tmpX+1,tmpY) );
+
+                drw = process.isOpen( Edge( sTmp , V ) );
+                if(drw) painter.drawLine( QPoint(tmpX,tmpY) , QPoint(tmpX,tmpY+1) );
+            }
         }
     }
 }
@@ -93,6 +97,7 @@ void PercolationDrawerQT::drawSistemEdges( QPainter& painter , PercolationProces
 void PercolationDrawerQT::drawSistemSites( QPainter& painter , PercolationProcess& process )
 {
     QPen oldPen = painter.pen();
+    double sizeBrush = 4.0f/scale ;
     for( int i = 0 ; i < widh + 10 ; ++i )
     {
         for( int j = 0 ; j < heiht + 10 ; ++j )
@@ -102,15 +107,16 @@ void PercolationDrawerQT::drawSistemSites( QPainter& painter , PercolationProces
 
             bool otherColor;
 
-            // DON'T PASS A CLASS DEFINITION!!!
-            otherColor = process.isOpen( Site( tmpX , tmpY )  );
+            Site sTmp( tmpX , tmpY );
 
-           /* Site s( tmpX, tmpY );
-            otherColor = process.isOpen( s );*/
-
-            painter.setPen( QPen( QBrush( Qt::darkRed ), 4.0f/scale ) );
-            if(otherColor) painter.setPen( QPen( QBrush( Qt::darkGreen ), 4.0f/scale ) );
-            painter.drawPoint( QPoint(tmpX,tmpY) );
+            if( process.inBox(sTmp) && scale > 5 )
+            {
+                otherColor = process.isOpen( sTmp  );
+                QColor colorTmp;
+                colorTmp  = (otherColor) ? Qt::darkGreen : Qt::darkRed ;
+                painter.setPen( QPen( QBrush( colorTmp ), sizeBrush ) );
+                painter.drawPoint( QPoint(tmpX,tmpY) );
+            }
         }
     }
     painter.setPen( oldPen );

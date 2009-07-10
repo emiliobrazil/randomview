@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     path.cpp \
     edge.cpp \
     percolationdrawerqt.cpp \
-    percolationshow.cpp
+    percolationshow.cpp \
+    particle.cpp
 HEADERS += mainwindow.h \
     pathviewer.h \
     types.hpp \
