@@ -2,6 +2,9 @@
 #define PATHVIEWER_H
 
 #include <QWidget>
+#include <QtGui>
+#include <QPainter>
+
 #include "percolationdrawerqt.h"
 
 #include "path.hpp"

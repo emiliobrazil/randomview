@@ -2,6 +2,8 @@
 #define PERCOLATIONSHOW_H
 
 #include <QWidget>
+#include <QtGui>
+#include<QPainter>
 
 #include "percolationdrawerqt.h"
 #include "path.hpp"
@@ -21,6 +23,8 @@ public slots:
 
 protected:
     void paintEvent( QPaintEvent *event );
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
 
 
 private:
@@ -36,6 +40,8 @@ private:
     QSize frameSize;
 
     QTransform transfor;
+
+    int dx , dy;
 
 };
 
