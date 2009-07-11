@@ -26,5 +26,7 @@ HEADERS += mainwindow.h \
     edge.hpp \
     percolationdrawerqt.h \
     percolationshow.h \
-    random_functions.h
+    random_functions.h \
+    primitive_types.h \
+    primitive_const.h
 FORMS += mainwindow.ui
