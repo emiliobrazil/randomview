@@ -1,0 +1,118 @@
+\documentclass[a4paper,twocolumn]{article}
+
+%%%%Pacotes%%%%%%%%%
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amssymb,amscd,latexsym,amsthm}
+\usepackage{color}
+\usepackage{pstricks}
+\usepackage{ulem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{times}
+\usepackage{subfigure}
+
+\newcommand{\captions}[1]{\caption{{#1}}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+    \title{Amostras de Pesquisa Matemática}
+    \date{}
+\author{M. Cicconet, T. Franco, M. R. Hilário,\\
+ I. Macêdo, J. D. Silva, E. Vital Brazil}
+    \maketitle
+
+Ao contrário do que o senso comum costuma pregar,
+o trabalho de um matemático não se resume a \textit{fazer contas}.
+Daremos aqui dois exemplos de problemas com que os
+matemáticos se ocupam, tirados de uma de suas muitas
+sub-áreas, a probabilidade.
+Eles exemplificam algo muito frequente neste campo:
+os problemas têm enunciado razoavelmente simples,
+mas a resposta não é conseguida sem muito esforço
+e técnicas sofisticadas.
+Ambos têm motivação física, algo que não necessariamente
+determina o modo como eles serão atacados. Porém
+algum tipo de \textit{intuição} é ingrediente muito importante
+na tentativa de resolução dos mesmos.
+
+\paragraph{Percolacão de Elos}
+Considere uma amostra de um material poroso que pode ser mergulhada em água.
+Modelamos essa amostra como um conjunto de pontos ligados por caminhos (elos) que
+podem estar abertos ou fechados com uma certa probabilidade, independentemente uns dos outros.
+Quando esses caminhos estão abertos, eles permitem a passagem de água, que é então transportada entre os pontos ligados
+por esse caminho.
+Uma questão interesante seria: é possível que a água possa ser transportada até o centro da amostra?
+As figuras~\ref{edge_perc}~e~\ref{corn_perc} ilustram duas amostras com regras distintas de
+abertura ou fechamento dos elos.
+
+\paragraph{Limite Hidrodinâmico}
+O movimento de um fluido pode ser modelado matematicamente como um conjunto de partículas
+que interagem entre sí. 
+O limite hidrodin\^amico corresponde, em termos gerais, \`a evolu\c c\~ao temporal 
+da densidade espacial de part\'iculas que se movem segundo regras aleat\'orias de um determinado sistema. 
+Esta evolu\c c\~ao pode ser descrita por equações que envolvem grandezas e suas variações no tempo e no espa\c co, como a Equa\c c\~ao do Calor, que determina, por exemplo,
+o espalhamento do calor numa barra.
+H\'a limites hidrodin\^amicos de diversos sistemas de part\'iculas, onde se costuma perguntar
+como evoluirá o sistema dada uma configuração inicial e uma regra de evolução.
+O sistema hidrodinâmico ilustrado na página a seguir compara as médias das configurações,
+para diferentes tempos, do processo ilustrado pela figura \ref{sep}.
+
+Ete texto foi elaborado por um grupo de alunos do IMPA - Instituto Nacional de Matemáica Pura e Aplicada, interesados em divulgar a pesquisa em matemática. Para maiores informações sobre este grupo ou pesquisa em matematica entre em contato pelo e-mail random-view@googlegroups.com.  
+
+\begin{figure}[b]
+ \centering
+ \includegraphics[width=\columnwidth]{ShortPaperFig/EdgePerc.png}
+ \captions{Percolação de elos simples. Neste exemplo, a probabilidade de um elo estar aberto é de 0.6.}
+ \label{edge_perc}
+ \vspace{.5cm}
+\end{figure}
+
+\begin{figure}[bh!]
+ \centering
+ \includegraphics[width=\columnwidth]{ShortPaperFig/CornPerc.png}
+ \captions{Corner Percolation, um caso particular de percolação de elos.
+          Um elo horizontal está aberto ou fechado dependendo do sinal
+          sorteado para sua correspondente linha. Analogamente para elos verticais.}
+ \label{corn_perc}
+ \vspace{0.0cm}
+\end{figure}
+
+\begin{figure*}
+ \centering
+ \includegraphics[width=1.5\columnwidth]{ShortPaperFig/Sep1.png}
+ \includegraphics[width=1.5\columnwidth]{ShortPaperFig/Sep2.png}
+ \captions{Processo de Exclusão Simples. Dada uma função inicial entre zero e um, o estado inicial é dado
+ 		  pelas amostras que ficam abaixo de seu gráfico. Em determinados instantes é sorteado um sítio,
+		  e se o mesmo estiver ocupado, a partícula escolhe se pula para a direita ou para a esquerda,
+		  fazendo-o se o destino estiver vago. A configuração final é a posição das partículas
+		  após um tempo pré-definido.}
+ \label{sep}
+ \vspace{.7cm}
+\end{figure*}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}
+\subfigure[tempo = 0.5s]{
+\includegraphics[width=\columnwidth]{fig/Tempo05Small.png}
+\label{Tempo05}}
+%
+\subfigure[tempo = 1.0s]{
+\includegraphics[width=\columnwidth]{fig/Tempo10Small.png}
+\label{Tempo10}}
+%
+\subfigure[tempo = 2.0s]{
+\includegraphics[width=\columnwidth]{fig/Tempo20Small.png}
+\label{Tempo20}}
+%
+\subfigure[tempo = 4.0s]{
+\includegraphics[width=\columnwidth]{fig/Tempo40Small.png}
+\label{Tempo40}}
+\captions{Comparação da variação do tempo para um número de sítios constante (256 sítios) usando uma função suave\label{fig:tempo}}
+\end{figure*}
+
+
+\end{document}
