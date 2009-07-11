@@ -1,6 +1,5 @@
 #include "pathviewer.h"
 
-
 #include <iostream>
 
 #include <QtGui>

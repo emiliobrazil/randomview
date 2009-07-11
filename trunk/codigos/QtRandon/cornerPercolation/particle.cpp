@@ -71,6 +71,7 @@ bool Particle::walk( PercolationProcess& percolation )
         in_box_c = percolation.inBox( next );
     }
 
+    // Begin perturbed path implementation.
     next = startPosition;
     in_box_p = percolation.visit( next );
 
