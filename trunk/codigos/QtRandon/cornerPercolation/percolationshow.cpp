@@ -119,10 +119,12 @@ void PercolationShow::drawPaths( QPainter& painter )
 {
     for( int i = 0 ; i < particles.size() ; ++i )
     {
-        std::vector<Path> pathsTmp = particles[i].getPaths();
+        Particle partTMP = particles[i];
+        std::vector<Path> pathsTmp = partTMP.getPaths();
 
         for( int j = 0 ; j < pathsTmp.size() ; ++j )
         {
+            Path tmp = pathsTmp[j];
             PercolationDrawerQT drawertmp;
             drawertmp.drawPath( painter , pathsTmp[j] );
         }
