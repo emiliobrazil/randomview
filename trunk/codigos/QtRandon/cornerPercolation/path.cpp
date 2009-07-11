@@ -77,7 +77,7 @@ struct less {
 };
 
 // beware with the last Site in Path: possible logical error in Path::isClosed( void )
-bool Path::isClosed( void ) const {
+bool Path::isClosed( void ) {
 
     if( !pIsClosed && !pPath.empty() ) {
 
@@ -95,7 +95,7 @@ bool Path::isClosed( void ) const {
             it_pair = bag.insert(edge);
             s_base = s_head;
 
-            if( it_pair.second == false ) { return true; }
+            if( it_pair.second == false ) { pIsClosed = true; }
         }
     }
     return pIsClosed;

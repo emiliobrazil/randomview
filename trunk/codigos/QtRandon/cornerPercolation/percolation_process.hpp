@@ -20,16 +20,16 @@ public:
     PercolationProcess& operator=( const PercolationProcess& );
 
     bool isOpen( const Edge& ) const;
-    bool isOpen( const Site& ) const;
+    bool isOpen( Site& ) const;
     bool isVisited( Site ) const;
     bool dualX( int i ) const;
     bool dualY( int j ) const;
     bool primalX( int i  ) const;
     bool primalY( int j ) const;
 
-    bool visit( const Site & );
+    bool visit( Site & ) ;
 
-    bool inBox( const Site & ) const;
+    bool inBox( Site & ) const;
 
     unsigned int radiusX( void );
     unsigned int radiusY( void );

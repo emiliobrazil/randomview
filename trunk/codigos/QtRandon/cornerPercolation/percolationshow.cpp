@@ -55,8 +55,6 @@ void PercolationShow::paintEvent( QPaintEvent *event )
     drawertmp.setWindow( painter , frameSize.width() , frameSize.height() , -Rx - dx , Rx - dx , -Ry - dy , Ry - dy );
     transfor = drawertmp.getTransform();
 
-    painter.setPen( QPen( QBrush( Qt::blue ), 3.0/scale ) );
-    drawPaths( painter );
 
     painter.setPen( QPen( QBrush( Qt::magenta ), 4.0/scale ) );
     painter.drawPoint( 0 , 0 );
@@ -64,7 +62,9 @@ void PercolationShow::paintEvent( QPaintEvent *event )
 
     painter.setPen( QPen( QBrush( Qt::black ), 1/scale ) );
     drawertmp.drawSistemEdges( painter , process);
-    drawertmp.drawSistemSites( painter , process);
+    //drawertmp.drawSistemSites( painter , process);
+
+    drawPaths( painter );
 
 }
 
@@ -120,13 +120,23 @@ void PercolationShow::drawPaths( QPainter& painter )
     for( int i = 0 ; i < particles.size() ; ++i )
     {
         Particle partTMP = particles[i];
-        std::vector<Path> pathsTmp = partTMP.getPaths();
+        std::vector<Path> pathsTmp;
+        pathsTmp.push_back( partTMP.getCorner() );
+        pathsTmp.push_back( partTMP.getPerturbed() );
 
         for( int j = 0 ; j < pathsTmp.size() ; ++j )
         {
+            if( j % 2 == 0 ) painter.setPen( QPen( QBrush( Qt::blue ), 3.0/scale ) );
+            if( j % 2 == 1 ) painter.setPen( QPen( QBrush( Qt::red ), 2.0/scale ) );
             Path tmp = pathsTmp[j];
             PercolationDrawerQT drawertmp;
             drawertmp.drawPath( painter , pathsTmp[j] );
         }
     }
+}
+
+void PercolationShow::changeScale( double s )
+{
+    scale = s;
+    update();
 }

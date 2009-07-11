@@ -26,7 +26,7 @@ public:
     unsigned int size( void );
     bool isInPath( const Site& s );
     void add( const Site& s );
-    bool isClosed( void ) const;
+    bool isClosed( void );
     const Site& getSite( int index ) const; 
 
     // helper functions -- exists only because Path is a vector of Site

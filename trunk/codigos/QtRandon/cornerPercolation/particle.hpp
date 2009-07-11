@@ -13,12 +13,12 @@ public:
     Particle( const Particle &p );
     Particle& operator=( const Particle &p );
 
-    bool walk( const PercolationProcess& percolation );
+    bool walk( PercolationProcess& percolation );
     bool isOutBox( void ){ return false;}
     std::vector<Path>& getPaths( void );
 
-    Path& getCorner( void ){}
-    Path& getPerturbed( void ){}
+    Path& getCorner( void );
+    Path& getPerturbed( void );
 
 
 
