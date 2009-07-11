@@ -7,9 +7,9 @@
 
 Path::Path( void )
 {
-    Site s;
-    this -> pPath.push_back( s );
-//    this -> iterator = pPath.begin();
+//    Site s;
+//    this -> pPath.push_back( s );
+
     this -> pIsClosed = false;
 }
 
@@ -79,7 +79,7 @@ struct less {
 // beware with the last Site in Path: possible logical error in Path::isClosed( void )
 bool Path::isClosed( void ) const {
 
-    if( !pIsClosed ) {
+    if( !pIsClosed && !pPath.empty() ) {
 
         // Make a set
         std::set<Edge, less> bag;
@@ -88,7 +88,7 @@ bool Path::isClosed( void ) const {
         Site s_base( pPath[0] ), s_head;
 
         // Insert the edges into the set
-        for( unsigned int i = 1; i <= pPath.size(); ++i ) {
+        for( unsigned int i = 1; i < pPath.size(); ++i ) {
 
             s_head = pPath[i];
             Edge edge( s_base, getHead(s_base, s_head) );

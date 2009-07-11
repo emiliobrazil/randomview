@@ -14,7 +14,8 @@ SOURCES += main.cpp \
     edge.cpp \
     percolationdrawerqt.cpp \
     percolationshow.cpp \
-    particle.cpp
+    particle.cpp \
+    random_functions.cpp
 HEADERS += mainwindow.h \
     pathviewer.h \
     types.hpp \
@@ -24,5 +25,6 @@ HEADERS += mainwindow.h \
     particle.hpp \
     edge.hpp \
     percolationdrawerqt.h \
-    percolationshow.h
+    percolationshow.h \
+    random_functions.h
 FORMS += mainwindow.ui

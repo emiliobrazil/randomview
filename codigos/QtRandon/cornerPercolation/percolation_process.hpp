@@ -1,6 +1,7 @@
 #include "types.hpp" 
 #include "site.hpp" 
 #include "edge.hpp" 
+#include "random_functions.h"
 #include <vector>
 
 #include <cstdlib>

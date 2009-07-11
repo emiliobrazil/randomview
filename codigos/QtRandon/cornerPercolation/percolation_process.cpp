@@ -144,6 +144,7 @@ bool PercolationProcess::visit( const Site &s ) {
     if ( !inBox( s ) ) { return false; }
 
     pVisitedSites[ getIndex(s) ] = true;
+    pKeysOfSitesVisited[ getIndex(s) ] = bernoulli( pProbS );
     return true;
 }
 
