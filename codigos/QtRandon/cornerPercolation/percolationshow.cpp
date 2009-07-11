@@ -117,21 +117,35 @@ void PercolationShow::dropParticle( QPoint start )
 
 void PercolationShow::drawPaths( QPainter& painter )
 {
+    std::vector<Particle>::iterator iPaths = particles.begin();
+
     for( int i = 0 ; i < particles.size() ; ++i )
     {
-        Particle partTMP = particles[i];
-        std::vector<Path> pathsTmp;
-        pathsTmp.push_back( partTMP.getCorner() );
-        pathsTmp.push_back( partTMP.getPerturbed() );
-
-        for( int j = 0 ; j < pathsTmp.size() ; ++j )
+        //Particle partTMP = particles[i];
+//        std::vector<Path> pathsTmp;
+//        pathsTmp.push_back( partTMP.getCorner() );
+//        pathsTmp.push_back( partTMP.getPerturbed() );
+//
+        //for( int j = 0 ; j < pathsTmp.size() ; ++j )
         {
-            if( j % 2 == 0 ) painter.setPen( QPen( QBrush( Qt::blue ), 3.0/scale ) );
-            if( j % 2 == 1 ) painter.setPen( QPen( QBrush( Qt::red ), 2.0/scale ) );
-            Path tmp = pathsTmp[j];
+            //if( j % 2 == 0 ) painter.setPen( QPen( QBrush( Qt::blue ), 3.0/scale ) );
+            //if( j % 2 == 1 ) painter.setPen( QPen( QBrush( Qt::red ), 2.0/scale ) );
+            //Path tmp = pathsTmp[j];
+            painter.setPen( QPen( QBrush( Qt::blue ), 3.0/scale ) );
             PercolationDrawerQT drawertmp;
-            drawertmp.drawPath( painter , pathsTmp[j] );
+            drawertmp.drawPath( painter , (*iPaths).getCorner() );
+            //++iPaths;
         }
+
+        //iPaths = particles.begin();
+        //for( int j = 0 ; j < pathsTmp.size() ; ++j )
+        {
+            painter.setPen( QPen( QBrush( Qt::red ), 2.0/scale ) );
+            PercolationDrawerQT drawertmp;
+            drawertmp.drawPath( painter , (*iPaths).getPerturbed() );
+        }
+
+        ++iPaths;
     }
 }
 
