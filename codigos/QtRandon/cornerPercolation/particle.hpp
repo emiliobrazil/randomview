@@ -15,7 +15,7 @@ public:
 
     bool walk( const PercolationProcess& percolation );
     bool isOutBox( void ){ return false;}
-    std::vector<Path>& getPaths( void ) const;
+    std::vector<Path>& getPaths( void );
 
     Path& getCorner( void ){}
     Path& getPerturbed( void ){}

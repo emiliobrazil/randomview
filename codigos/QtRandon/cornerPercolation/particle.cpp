@@ -59,10 +59,13 @@ bool Particle::walk( const PercolationProcess& percolation )
         corner_path.add( next );
     }
 
-    perturbed_path.add( startPosition );
+    next = startPosition;
+    perturbed_path.add( next );
+    next.addX( 1 );
+    perturbed_path.add( next );
 }
 
-std::vector<Path>& Particle::getPaths( void ) const {
+std::vector<Path>& Particle::getPaths( void ) {
 
     std::vector<Path> paths;
 
