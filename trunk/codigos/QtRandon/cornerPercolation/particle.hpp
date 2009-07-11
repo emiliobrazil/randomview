@@ -8,18 +8,28 @@
 class Particle
 {
 public:
-    Particle(){ }
-    Particle( Site startPositionNew ){ startPosition = startPositionNew; }
-    // TODO Copy builder
-    Site walk( const PercolationProcess& percolation );
+    Particle();
+    Particle( Site startPositionNew );
+    Particle( const Particle &p );
+    Particle& operator=( const Particle &p );
+
+    bool walk( const PercolationProcess& percolation );
     bool isOutBox( void ){ return false;}
-    std::vector<Path>& getPaths( void ){ return paths; }
+    std::vector<Path>& getPaths( void ) const;
+
+    Path& getCorner( void ){}
+    Path& getPerturbed( void ){}
+
+
 
 
 private:
-    ORIENTATION pOri;
+//    ORIENTATION pOri;
     Site startPosition;
-    std::vector<Path> paths;
+//    std::vector<Path> paths;
+
+    Path corner_path;
+    Path perturbed_path;
 };
 
 #endif
