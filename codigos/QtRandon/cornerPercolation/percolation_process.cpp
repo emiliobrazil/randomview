@@ -17,7 +17,7 @@
 
 /* Implementation */
 PercolationProcess::PercolationProcess() {
-    PercolationProcess tmp( 500, 500 , 0.5 );
+    PercolationProcess tmp( 500, 500 , 0.95 );
     (*this) = tmp;
 }
 
@@ -62,6 +62,7 @@ PercolationProcess::PercolationProcess( const PercolationProcess& p ) { (*this) 
 PercolationProcess& PercolationProcess::operator=( const PercolationProcess& p ) {
 
     this -> pType = p.pType;
+    this -> pProbS = p.pProbS;
     this -> pPrimalX = p.pPrimalX;
     this -> pPrimalY = p.pPrimalY;
     this -> pDualX = p.pDualX;
@@ -107,7 +108,7 @@ bool PercolationProcess::isOpen( const Edge& e ) const {
 }
 
 
-bool PercolationProcess::isOpen( const Site& s ) const { //return true; } // key
+bool PercolationProcess::isOpen( Site& s ) const { //return true; } // key
 
     assert( inBox( s ) );
     return pKeysOfSitesVisited[ getIndex( s ) ];
@@ -139,9 +140,11 @@ bool PercolationProcess::primalY( int j ) const {
     return pPrimalY[ getY(j) ];
 }
 
-bool PercolationProcess::visit( const Site &s ) {
+bool PercolationProcess::visit( Site &s ) {
 
-    if ( !inBox( s ) ) { return false; }
+    if ( !inBox(s) ) { return false; }
+
+    if ( isVisited(s) ) { return pKeysOfSitesVisited[ getIndex(s) ]; }
 
     pVisitedSites[ getIndex(s) ] = true;
     pKeysOfSitesVisited[ getIndex(s) ] = bernoulli( pProbS );
@@ -167,7 +170,7 @@ unsigned int PercolationProcess::getY( int j ) const {
     return ( j + pRadiusY );
 }
 
-bool PercolationProcess::inBox( const Site &s ) const {
+bool PercolationProcess::inBox( Site &s ) const {
 
     return ((unsigned int)abs(s.X()) <= pRadiusX) && ((unsigned int)abs(s.Y()) <= pRadiusY);
 }

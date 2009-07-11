@@ -64,7 +64,7 @@
         <number>1</number>
        </property>
        <property name="value">
-        <number>20</number>
+        <number>5</number>
        </property>
       </widget>
      </item>
@@ -110,7 +110,7 @@
       </layout>
      </item>
      <item row="1" column="2" rowspan="2" colspan="9">
-      <layout class="QHBoxLayout" name="spaceGrid" stretch="">
+      <layout class="QHBoxLayout" name="spaceGrid">
        <property name="sizeConstraint">
         <enum>QLayout::SetFixedSize</enum>
        </property>
@@ -138,10 +138,10 @@
         <number>10000</number>
        </property>
        <property name="singleStep">
-        <number>200</number>
+        <number>50</number>
        </property>
        <property name="value">
-        <number>1000</number>
+        <number>100</number>
        </property>
       </widget>
      </item>

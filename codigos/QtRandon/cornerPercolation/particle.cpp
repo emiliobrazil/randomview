@@ -28,18 +28,24 @@ Particle& Particle::operator=( const Particle &p ) {
     return (*this);
 }
 
-bool Particle::walk( const PercolationProcess& percolation )
+bool Particle::walk( PercolationProcess& percolation )
 {
     Site next( startPosition );
-    bool in_box = true;
+    bool in_box_c = percolation.inBox( next );
+    bool in_box_p = percolation.inBox( next );
 
     // Corner Path
     ORIENTATION o;
-    o = (startPosition.X() + startPosition.Y()) % 2 == 0  ? H : V;
+    int x, y;
+
+    x = startPosition.X();
+    y = startPosition.Y();
+
+    o = ( abs(x) + abs(y) ) % 2 == 0  ? H : V;
 
     corner_path.add( startPosition );
 
-    while ( !corner_path.isClosed() && percolation.inBox( next ) ) {
+    while ( !corner_path.isClosed() && in_box_c ) {
 
         int step = 0;
 
@@ -57,12 +63,69 @@ bool Particle::walk( const PercolationProcess& percolation )
         }
 
         corner_path.add( next );
+
+        x = next.X();
+        y = next.Y();
+
+        o = ( abs(x) + abs(y) ) % 2 == 0  ? H : V;
+        in_box_c = percolation.inBox( next );
     }
 
     next = startPosition;
+    in_box_p = percolation.visit( next );
+
+    x = startPosition.X();
+    y = startPosition.Y();
+
+    o = ( abs(x) + abs(y) ) % 2 == 0  ? H : V;
+
     perturbed_path.add( next );
-    next.addX( 1 );
-    perturbed_path.add( next );
+
+    int stepX = 0, stepY = 0;
+
+    switch( o ) {
+    case H:
+        stepX = percolation.primalY( next.Y() ) == true ? 1 : -1;
+        stepY = 0;
+        break;
+    case V:
+        stepY = percolation.primalX( next.X() ) == true ? 1 : -1;
+        stepX = 0;
+        break;
+
+    default: break;
+    }
+
+    while ( !perturbed_path.isClosed() && in_box_p ) {
+
+        if ( !percolation.isOpen( next ) ) {
+            x = next.X();
+            y = next.Y();
+
+            o = ( abs(x) + abs(y) ) % 2 == 0  ? H : V;
+
+            switch( o ) {
+            case H:
+                stepX = percolation.primalY( next.Y() ) == true ? 1 : -1;
+                stepY = 0;
+                break;
+            case V:
+                stepY = percolation.primalX( next.X() ) == true ? 1 : -1;
+                stepX = 0;
+                break;
+
+            default: break;
+            }
+
+            next.add( stepX, stepY );
+        }
+        else {
+            next.add( stepX, stepY );
+        }
+
+        in_box_p = percolation.visit( next );
+        perturbed_path.add( next );
+    }    
 }
 
 std::vector<Path>& Particle::getPaths( void ) {
@@ -73,6 +136,16 @@ std::vector<Path>& Particle::getPaths( void ) {
     paths.push_back(perturbed_path);
 
     return paths;
+}
+
+Path& Particle::getCorner( void ) {
+
+    return corner_path;
+}
+
+Path& Particle::getPerturbed( void ) {
+
+    return perturbed_path;
 }
 
     // Perturbed Path

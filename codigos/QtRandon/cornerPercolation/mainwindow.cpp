@@ -47,7 +47,7 @@ void MainWindow::startProcess( void )
 void  MainWindow::changeScale( int S )
 {
     scale = S;
-    drawSystem();
+    viewer->changeScale( scale );
 }
 
 void  MainWindow::changeRadius( int R )

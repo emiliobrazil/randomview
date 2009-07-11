@@ -16,6 +16,8 @@ public:
 
     void drawAll( PercolationProcess& process , double scale , bool isMoving , bool isDropingParticle );
 
+    void changeScale( double s );
+
 public slots:
     void clearPaths( void );
     void changeIsMoving( bool B );
