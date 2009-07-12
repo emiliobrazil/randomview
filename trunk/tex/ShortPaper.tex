@@ -4,16 +4,14 @@
 \usepackage[brazil]{babel}
 \usepackage[latin1]{inputenc}
 \usepackage{amssymb,amscd,latexsym,amsthm}
-\usepackage{color}
-\usepackage{pstricks}
-\usepackage{ulem}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{times}
 \usepackage{subfigure}
+\usepackage[hmargin=3cm,vmargin=3cm]{geometry}
 
-\newcommand{\captions}[1]{\caption{{#1}}}
+\newcommand{\captions}[1]{\caption{\small{#1}}}
 
 \pagestyle{empty}
 
@@ -27,58 +25,58 @@
 
 Ao contrário do que o senso comum costuma pregar,
 o trabalho de um matemático não se resume a \textit{fazer contas}.
-Daremos aqui dois exemplos de problemas com que os
-matemáticos se ocupam, tirados de uma de suas muitas
-sub-áreas, a probabilidade.
-Eles exemplificam algo muito frequente neste campo:
-os problemas têm enunciado razoavelmente simples,
-mas a resposta não é conseguida sem muito esforço
-e técnicas sofisticadas.
+Daremos aqui dois exemplos de problemas com os quais
+matemáticos se ocupam, tirados de uma entre as muitas formas de fazer matemática,
+a probabilidade.
+São exemplos de algo muito frequente:
+os problemas têm enunciado simples,
+mas a resposta não é alcançada sem muito esforço
+e, às vezes, técnicas sofisticadas.
 Ambos têm motivação física, algo que não necessariamente
 determina o modo como eles serão atacados. Porém
 algum tipo de \textit{intuição} é ingrediente muito importante
 na tentativa de resolução dos mesmos.
 
 \paragraph{Percolacão de Elos}
-Considere uma amostra de um material poroso que pode ser mergulhada em água.
-Modelamos essa amostra como um conjunto de pontos ligados por caminhos (elos) que
-podem estar abertos ou fechados com uma certa probabilidade, independentemente uns dos outros.
-Quando esses caminhos estão abertos, eles permitem a passagem de água, que é então transportada entre os pontos ligados
-por esse caminho.
-Uma questão interesante seria: é possível que a água possa ser transportada até o centro da amostra?
-As figuras~\ref{edge_perc}~e~\ref{corn_perc} ilustram duas amostras com regras distintas de
-abertura ou fechamento dos elos.
+Imagine uma pequena rocha bem porosa, como uma pedra pome, que pode ser mergulhada em água.
+Imaginamos esta rocha como um conjunto de pontos ligados por caminhos (elos) que
+podem estar abertos ou fechados com uma certa probabilidade.
+Quando abertos estes caminhos permitem a passagem de água, que é então transportada.
+Uma questão interessante seria: é possível que a água possa ser transportada de um lado para outro da rocha?
+As figuras~\ref{edge_perc}~e~\ref{corn_perc} ilustram duas regras distintas de
+abertura ou fechamento dos elos. Observe que na figura~\ref{edge_perc06} facilmente
+se enconta um caminho que leva de lado a lado enquanto que na figura~\ref{edge_perc04} não existe caminho cruzando.
 
 \paragraph{Limite Hidrodinâmico}
-O movimento de um fluido pode ser modelado matematicamente como um conjunto de partículas
-que interagem entre sí. 
-O limite hidrodin\^amico corresponde, em termos gerais, \`a evolu\c c\~ao temporal 
-da densidade espacial de part\'iculas que se movem segundo regras aleat\'orias de um determinado sistema. 
-Esta evolu\c c\~ao pode ser descrita por equações que envolvem grandezas e suas variações no tempo e no espa\c co, como a Equa\c c\~ao do Calor, que determina, por exemplo,
-o espalhamento do calor numa barra.
-H\'a limites hidrodin\^amicos de diversos sistemas de part\'iculas, onde se costuma perguntar
-como evoluirá o sistema dada uma configuração inicial e uma regra de evolução.
-O sistema hidrodinâmico ilustrado na página a seguir compara as médias das configurações,
-para diferentes tempos, do processo ilustrado pela figura \ref{sep}.
+O movimento de um fluido, como água, sempre intrigou ao homem. 
+Uma maneira útil de se pensar neste fluido é como um conjunto de partículas
+que interagem entre si (as moléculas que o compõe). 
+O inverso também é possivel, podemos pensar em uma multidão saindo de um estádio como um fluido sendo escoado. 
+Em linhas gerais este é o sentido
+do limite hidrodin\^amico: compreender a interação ``desordenada'' entre as partículas que formam a matéria.
+H\'a limites hidrodin\^amicos de diversos sistemas de partículas, onde se costuma perguntar
+como evoluirá o sistema dada uma configuração inicial e uma regra de ``movimentação''.
+A figura~\ref{tempo} compara evolução de um sistema hidrodin\^amico,
+para diferentes tempos do processo ilustrado pela figura~\ref{sep}, dando uma ideia do comportamento deste sistema.
+Este sistema específico se dá pela média das configurações finais de um Processo de Exclusão Simples.
 
-Ete texto foi elaborado por um grupo de alunos do IMPA - Instituto Nacional de Matemáica Pura e Aplicada, interesados em divulgar a pesquisa em matemática. Para maiores informações sobre este grupo ou pesquisa em matematica entre em contato pelo e-mail random-view@googlegroups.com.  
+\paragraph{} Este texto foi elaborado por um grupo de alunos do IMPA - Instituto Nacional de Matemáica Pura e Aplicada, interesados em divulgar a pesquisa em matemática. Para maiores informações sobre este grupo ou pesquisa em matematica entre em contato pelo e~-~mail random-view@googlegroups.com.  
+\vspace*{1cm}
+\begin{figure}[h]
+ \centering
+  \subfigure[$p=0{,}6$]{\includegraphics[width=1\columnwidth]{ShortPaperFig/EdgePerc.png} \label{edge_perc06}}
+  \subfigure[$p=0{,}4$]{\includegraphics[width=1\columnwidth]{ShortPaperFig/EdgePerc0p4.png} \label{edge_perc04}}
+ \captions{Percolação de elos simples. Neste exemplo, a probabilidade de um elo estar aberto é $p$.}
+ \label{edge_perc}
+\end{figure}
 
 \begin{figure}[b]
  \centering
- \includegraphics[width=\columnwidth]{ShortPaperFig/EdgePerc.png}
- \captions{Percolação de elos simples. Neste exemplo, a probabilidade de um elo estar aberto é de 0.6.}
- \label{edge_perc}
- \vspace{.5cm}
-\end{figure}
-
-\begin{figure}[bh!]
- \centering
- \includegraphics[width=\columnwidth]{ShortPaperFig/CornPerc.png}
+ \includegraphics[width=.9\columnwidth]{ShortPaperFig/CornPerc.png}
  \captions{Corner Percolation, um caso particular de percolação de elos.
           Um elo horizontal está aberto ou fechado dependendo do sinal
           sorteado para sua correspondente linha. Analogamente para elos verticais.}
  \label{corn_perc}
- \vspace{0.0cm}
 \end{figure}
 
 \begin{figure*}
@@ -111,7 +109,7 @@ Ete texto foi elaborado por um grupo de alunos do IMPA - Instituto Nacional de M
 \subfigure[tempo = 4.0s]{
 \includegraphics[width=\columnwidth]{fig/Tempo40Small.png}
 \label{Tempo40}}
-\captions{Comparação da variação do tempo para um número de sítios constante (256 sítios) usando uma função suave\label{fig:tempo}}
+\captions{Comparação da variação do tempo para um número de sítios constante (256 sítios) usando uma função suave\label{tempo}}
 \end{figure*}
 
 
