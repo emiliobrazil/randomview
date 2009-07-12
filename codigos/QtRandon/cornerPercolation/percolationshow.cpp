@@ -71,12 +71,15 @@ void PercolationShow::paintEvent( QPaintEvent *event )
 
 void PercolationShow::mousePressEvent(QMouseEvent *event)
 {
-    oldPoint = event->pos();
-    QTransform Ti = transfor.inverted();
-    QPoint oI = Ti.map( oldPoint );
-    if(isDropingParticle) dropParticle( oldPoint );
-    if(isMoving)  this->setCursor(Qt::ClosedHandCursor);
-    update();
+    if( event->buttons() == Qt::LeftButton )
+    {
+        oldPoint = event->pos();
+        QTransform Ti = transfor.inverted();
+        QPoint oI = Ti.map( oldPoint );
+        if(isDropingParticle) dropParticle( oldPoint );
+        if(isMoving)  this->setCursor(Qt::ClosedHandCursor);
+        //    update();
+    }
 }
 
 void PercolationShow::mouseMoveEvent(QMouseEvent *event)
@@ -94,29 +97,34 @@ void PercolationShow::mouseMoveEvent(QMouseEvent *event)
         dy += nI.y()-oI.y();
 
         oldPoint = newPoint;
-        update();
     }
 }
 
 void PercolationShow::mouseReleaseEvent(QMouseEvent *event)
 {
     if(isMoving) this->setCursor(Qt::OpenHandCursor);
-
+    update();
 }
 
 void PercolationShow::dropParticle( QPoint start )
 {
-    std::cout << "void PercolationShow::dropParticle( QPoint start )" <<  std::endl;
+    //std::cout << "void PercolationShow::dropParticle( QPoint start )" <<  std::endl;
+    Qt::CursorShape oldCursor = this->cursor().shape();
+    this->setCursor(Qt::WaitCursor);
     QTransform Ti = transfor.inverted();
     QPoint sI = Ti.map(start);
     Site startS( sI.x() , sI.y() );
     Particle tmpParticle( startS );
     tmpParticle.walk( process );
     particles.push_back(tmpParticle);
+    this->setCursor( oldCursor );
 }
 
 void PercolationShow::drawPaths( QPainter& painter )
 {
+    Qt::CursorShape oldCursor = this->cursor().shape();
+    this->setCursor(Qt::WaitCursor);
+
     std::vector<Particle>::iterator iPaths = particles.begin();
 
     for( int i = 0 ; i < particles.size() ; ++i )
@@ -147,6 +155,7 @@ void PercolationShow::drawPaths( QPainter& painter )
 
         ++iPaths;
     }
+    this->setCursor( oldCursor );
 }
 
 void PercolationShow::changeScale( double s )
