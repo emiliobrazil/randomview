@@ -1,48 +1,40 @@
 #include "percolation_process.hpp"
 #include <iostream>
 
-//class PercolationProcess
-//{
-//private:
-//    PERCOLATION pType;
-//    std::vector<bool> pPrimalX;
-//    std::vector<bool> pPrimalY;
-//    std::vector<bool> pDualX;
-//    std::vector<bool> pDualY;
-//    unsigned int pRadiusX , pRadiusY;
-//    std::vector<bool> pVisitedSites;
-//    std::vector<bool>  pKeysOfSitesVisited;
-//
-//public:
-
-/* Implementation */
-PercolationProcess::PercolationProcess() {
-    PercolationProcess tmp( 500, 500 , 0.002 );
-    (*this) = tmp;
-}
-
 PercolationProcess::PercolationProcess( unsigned int radiusX , unsigned int radiusY , double probS )
-    :pVisitedSites( (radiusX + 1) * (radiusY + 1), false ), pKeysOfSitesVisited( (radiusX + 1) * (radiusY + 1), false ),
-    pPrimalX( (2*radiusX+1) ), pDualX( (2*radiusX+1) ), pPrimalY( 2*radiusY+1 ), pDualY( 2*radiusY+1 )
-{
+    : pRadiusX( radiusX ), pRadiusY( radiusY ), pType( CORNER ), pProbS( probS ) {
 
-    pRadiusX = radiusX;
-    pRadiusY = radiusY;
-    pType = CORNER;
+    const unsigned int size = (2 * radiusX + 1) * (2 * radiusY + 1);
 
-    pProbS = probS;
+    pKeysOfSitesVisited = new bool[ size ];
+    assert( pKeysOfSitesVisited != 0 );
+
+    pVisitedSites = new bool[ size ];
+    assert( pVisitedSites != 0 );
+
+    for( unsigned int i = 0; i < size; ++i ) {
+        pVisitedSites[ i ] = false;
+        pKeysOfSitesVisited[ i ] = false;
+    }
+
+    const unsigned int sizeX = (2 * radiusX + 1);
+
+    pPrimalX = new bool[ sizeX ];
+    assert( pPrimalX != 0 );
+    pDualX = new bool[ sizeX ];
+    assert( pDualX != 0 );
+
+    const unsigned int sizeY = (2 * radiusY + 1);
+
+    pPrimalY = new bool[ sizeY ];
+    assert( pPrimalY != 0 );
+    pDualY = new bool[ sizeY ];
+    assert( pDualY != 0 );
 
     int n, coin, signal;
 
-//    const unsigned int size = (pRadiusX + 1) * (pRadiusY + 1);
-//
-//    for( unsigned int i = 0; i <= size; ++i ) {
-//        pVisitedSites.push_back( false );
-//        pKeysOfSitesVisited.push_back( false );
-//    }
-
-    for( unsigned int i = 0; i < (2*pRadiusX+1); ++i ) {
-        coin = ( (double) rand() / (double) RAND_MAX ) < 0.5 ? 1 : -1;
+    for( unsigned int i = 0; i < sizeX; ++i ) {
+        coin = uniform01() < 0.5 ? 1 : -1;
         pPrimalX[ i ] = ( coin == 1 );
 
         n = i - pRadiusX;
@@ -50,8 +42,8 @@ PercolationProcess::PercolationProcess( unsigned int radiusX , unsigned int radi
         pDualX[ i ] = ( (signal * coin) == 1 );
     }
 
-    for( unsigned int i = 0; i < (2*pRadiusY+1); ++i ) {
-        coin = ( (double) rand() / (double) RAND_MAX ) < 0.5 ? 1 : -1;
+    for( unsigned int i = 0; i < sizeY; ++i ) {
+        coin = uniform01() < 0.5 ? 1 : -1;
         pPrimalY[ i ] = ( coin == 1 );
 
         n = i - pRadiusY;
@@ -60,29 +52,134 @@ PercolationProcess::PercolationProcess( unsigned int radiusX , unsigned int radi
     }
 }
 
-PercolationProcess::PercolationProcess( const PercolationProcess& p ) { (*this) = p; }
+PercolationProcess::~PercolationProcess() {
 
-PercolationProcess& PercolationProcess::operator=( const PercolationProcess& p ) {
+    delete pVisitedSites;
+    delete pKeysOfSitesVisited;
+    delete pPrimalX;
+    delete pDualX;
+    delete pPrimalY;
+    delete pDualY;
+}
 
-    this -> pType = p.pType;
-    this -> pProbS = p.pProbS;
-    pPrimalX.clear();
-    this -> pPrimalX = p.pPrimalX;
-    pPrimalY.clear();
-    this -> pPrimalY = p.pPrimalY;
-    pDualX.clear();
-    this -> pDualX = p.pDualX;
-    pDualY.clear();
-    this -> pDualY = p.pDualY;
-    this -> pRadiusX = p.pRadiusX,
-    this -> pRadiusY = p.pRadiusY;
-    pVisitedSites.clear();
-    this -> pVisitedSites = p.pVisitedSites;
-    pKeysOfSitesVisited.clear();
-    pPrimalX.clear();
-    this -> pKeysOfSitesVisited = p.pKeysOfSitesVisited;
+PercolationProcess::PercolationProcess( const PercolationProcess& p )
+: pRadiusX( p.pRadiusX ), pRadiusY( p.pRadiusY ), pType( p.pType ), pProbS( p.pProbS ) {
 
-    return (*this);
+    const unsigned int size = (2 * pRadiusX + 1) * (2 * pRadiusY + 1);
+
+    //delete pKeysOfSitesVisited;
+    pKeysOfSitesVisited = new bool[ size ];
+    assert( pKeysOfSitesVisited != 0 );
+
+    //delete pVisitedSites;
+    pVisitedSites = new bool[ size ];
+    assert( pVisitedSites != 0 );
+
+    for( unsigned int i = 0; i < size; ++i ) {
+        pVisitedSites[i] = p.pVisitedSites[i];
+        pKeysOfSitesVisited[i] = p.pKeysOfSitesVisited[i];
+    }
+
+    const unsigned int sizeX = (2 * pRadiusX + 1);
+
+    pPrimalX = new bool[ sizeX ];
+    assert( pPrimalX != 0 );
+    pDualX = new bool[ sizeX ];
+    assert( pDualX != 0 );
+
+    const unsigned int sizeY = (2 * pRadiusY + 1);
+
+    pPrimalY = new bool[ sizeY ];
+    assert( pPrimalY != 0 );
+    pDualY = new bool[ sizeY ];
+    assert( pDualY != 0 );
+
+    for( unsigned int i = 0; i < sizeX; ++i ) {
+        pPrimalX[i] = p.pPrimalX[i];
+        pDualX[i] = p.pDualX[i];
+    }
+
+    for( unsigned int i = 0; i < sizeY; ++i ) {
+        pPrimalY[i] = p.pPrimalY[i];
+        pDualY[i] = p.pDualY[i];
+    }
+}
+
+const PercolationProcess& PercolationProcess::operator=( const PercolationProcess& right ) {
+
+    if ( this != &right ) {
+
+        pType = right.pType;
+        pProbS = right.pProbS;
+
+        bool change_x = false, change_y = false;
+
+        if ( pRadiusX != right.pRadiusX ) {
+            pRadiusX = right.pRadiusX;
+
+            const unsigned int sizeX = (2 * pRadiusX + 1);
+
+            delete pPrimalX;
+            pPrimalX = new bool[ sizeX ];
+            assert( pPrimalX != 0 );
+
+            delete pDualX;
+            pDualX = new bool[ sizeX ];
+            assert( pDualX != 0 );
+
+            change_x = true;
+        }
+
+        if ( pRadiusY != right.pRadiusY ) {
+            pRadiusY = right.pRadiusY;
+
+            const unsigned int sizeY = (2 * pRadiusY + 1);
+
+            delete pPrimalY;
+            pPrimalY = new bool[ sizeY ];
+            assert( pPrimalY != 0 );
+
+            delete pDualY;
+            pDualY = new bool[ sizeY ];
+            assert( pDualY != 0 );
+
+            change_y = true;
+        }
+
+        if ( change_x && change_y ) {
+            const unsigned int size = (2 * pRadiusX + 1) * (2 * pRadiusY + 1);
+
+            delete pKeysOfSitesVisited;
+            pKeysOfSitesVisited = new bool[ size ];
+            assert( pKeysOfSitesVisited != 0 );
+
+            delete pVisitedSites;
+            pVisitedSites = new bool[ size ];
+            assert( pVisitedSites != 0 );
+        }
+
+        const unsigned int size = (2 * pRadiusX + 1) * (2 * pRadiusY + 1);
+
+        for( unsigned int i = 0; i < size; ++i ) {
+            pVisitedSites[i] = right.pVisitedSites[i];
+            pKeysOfSitesVisited[i] = right.pKeysOfSitesVisited[i];
+        }
+
+        const unsigned int sizeX = (2 * pRadiusX + 1);
+
+        for( unsigned int i = 0; i < sizeX; ++i ) {
+            pPrimalX[i] = right.pPrimalX[i];
+            pDualX[i] = right.pDualX[i];
+        }
+
+        const unsigned int sizeY = (2 * pRadiusY + 1);
+
+        for( unsigned int i = 0; i < sizeY; ++i ) {
+            pPrimalY[i] = right.pPrimalY[i];
+            pDualY[i] = right.pDualY[i];
+        }
+    }
+    return *this;    
 }
 
 bool PercolationProcess::isOpen( const Edge& e ) const {
@@ -157,11 +254,7 @@ bool PercolationProcess::visit( Site &s ) {
     if ( isVisited(s) ) { return true; }
 
     pVisitedSites[ getIndex(s) ] = true;
-    const int d = 1000;
-    double p = (double) ( rand() % d ) / d;
-    bool b = (p < pProbS);
-    pKeysOfSitesVisited[ getIndex(s) ] = b;
-//    pKeysOfSitesVisited[ getIndex(s) ] = bernoulli( pProbS );
+    pKeysOfSitesVisited[ getIndex(s) ] = bernoulli( pProbS );
     return true;
 }
 
