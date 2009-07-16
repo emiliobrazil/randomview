@@ -17,11 +17,14 @@
 
 /* Implementation */
 PercolationProcess::PercolationProcess() {
-    PercolationProcess tmp( 500, 500 , 0.95 );
+    PercolationProcess tmp( 500, 500 , 0.002 );
     (*this) = tmp;
 }
 
-PercolationProcess::PercolationProcess( unsigned int radiusX , unsigned int radiusY , double probS ) {
+PercolationProcess::PercolationProcess( unsigned int radiusX , unsigned int radiusY , double probS )
+    :pVisitedSites( (radiusX + 1) * (radiusY + 1), false ), pKeysOfSitesVisited( (radiusX + 1) * (radiusY + 1), false ),
+    pPrimalX( (2*radiusX+1) ), pDualX( (2*radiusX+1) ), pPrimalY( 2*radiusY+1 ), pDualY( 2*radiusY+1 )
+{
 
     pRadiusX = radiusX;
     pRadiusY = radiusY;
@@ -31,29 +34,29 @@ PercolationProcess::PercolationProcess( unsigned int radiusX , unsigned int radi
 
     int n, coin, signal;
 
-    const unsigned int size = (pRadiusX + 1) * (pRadiusY + 1);
-
-    for( unsigned int i = 0; i <= size; ++i ) {
-        pVisitedSites.push_back( false );
-        pKeysOfSitesVisited.push_back( false );
-    }
+//    const unsigned int size = (pRadiusX + 1) * (pRadiusY + 1);
+//
+//    for( unsigned int i = 0; i <= size; ++i ) {
+//        pVisitedSites.push_back( false );
+//        pKeysOfSitesVisited.push_back( false );
+//    }
 
     for( unsigned int i = 0; i < (2*pRadiusX+1); ++i ) {
-         coin = ( (double) rand() / (double) RAND_MAX ) < 0.5 ? 1 : -1;
-        pPrimalX.push_back( coin == 1 );
+        coin = ( (double) rand() / (double) RAND_MAX ) < 0.5 ? 1 : -1;
+        pPrimalX[ i ] = ( coin == 1 );
 
         n = i - pRadiusX;
         signal = (n + 1) % 2 == 0 ? 1 : -1;
-        pDualX.push_back( (signal * coin) == 1 );
+        pDualX[ i ] = ( (signal * coin) == 1 );
     }
 
     for( unsigned int i = 0; i < (2*pRadiusY+1); ++i ) {
         coin = ( (double) rand() / (double) RAND_MAX ) < 0.5 ? 1 : -1;
-        pPrimalY.push_back( coin == 1 );
+        pPrimalY[ i ] = ( coin == 1 );
 
         n = i - pRadiusY;
         signal = n % 2 == 0 ? 1 : -1;
-        pDualY.push_back( (signal * coin) == 1 );
+        pDualY[ i ] = ( (signal * coin) == 1 );
     }
 }
 
@@ -63,13 +66,20 @@ PercolationProcess& PercolationProcess::operator=( const PercolationProcess& p )
 
     this -> pType = p.pType;
     this -> pProbS = p.pProbS;
+    pPrimalX.clear();
     this -> pPrimalX = p.pPrimalX;
+    pPrimalY.clear();
     this -> pPrimalY = p.pPrimalY;
+    pDualX.clear();
     this -> pDualX = p.pDualX;
+    pDualY.clear();
     this -> pDualY = p.pDualY;
     this -> pRadiusX = p.pRadiusX,
     this -> pRadiusY = p.pRadiusY;
+    pVisitedSites.clear();
     this -> pVisitedSites = p.pVisitedSites;
+    pKeysOfSitesVisited.clear();
+    pPrimalX.clear();
     this -> pKeysOfSitesVisited = p.pKeysOfSitesVisited;
 
     return (*this);
@@ -144,8 +154,14 @@ bool PercolationProcess::visit( Site &s ) {
 
     if ( !inBox(s) ) { return false; }
 
+    if ( isVisited(s) ) { return true; }
+
     pVisitedSites[ getIndex(s) ] = true;
-    pKeysOfSitesVisited[ getIndex(s) ] = bernoulli( pProbS );
+    const int d = 1000;
+    double p = (double) ( rand() % d ) / d;
+    bool b = (p < pProbS);
+    pKeysOfSitesVisited[ getIndex(s) ] = b;
+//    pKeysOfSitesVisited[ getIndex(s) ] = bernoulli( pProbS );
     return true;
 }
 
