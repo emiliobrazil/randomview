@@ -13,11 +13,11 @@
 class PercolationProcess
 {
 public:
-    PercolationProcess();
-    PercolationProcess( unsigned int radiusX, unsigned int radiusY, double probS );
+    ~PercolationProcess();
+    PercolationProcess( unsigned int radiusX = 150, unsigned int radiusY = 150, double probS = 0.002 );
     PercolationProcess( const PercolationProcess& );
 
-    PercolationProcess& operator=( const PercolationProcess& );
+    const PercolationProcess& operator=( const PercolationProcess & );
 
     bool isOpen( const Edge& ) const;
     bool isOpen( Site& ) const;
@@ -36,16 +36,15 @@ public:
 
 private:
     PERCOLATION pType;
-    std::vector<bool> pPrimalX;
-    std::vector<bool> pPrimalY;
-    std::vector<bool> pDualX;
-    std::vector<bool> pDualY;
+    bool *pPrimalX;
+    bool *pPrimalY;
+    bool *pDualX;
+    bool *pDualY;
     unsigned int pRadiusX , pRadiusY;
-    std::vector<bool> pVisitedSites;
-    std::vector<bool>  pKeysOfSitesVisited;
+    bool *pVisitedSites;
+    bool *pKeysOfSitesVisited;
 
     double pProbS;
-
 
     // Helper functions: as long as the box is fixed
 private:
