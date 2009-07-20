@@ -3,6 +3,10 @@
 
 #include "primitive_types.h"
 
+extern "C" {
+#include "rand/ranlib.h"
+}
+
 void setSeed( unsigned int seed );
 real uniform01( void );
 real uniforAB( real A , real B );

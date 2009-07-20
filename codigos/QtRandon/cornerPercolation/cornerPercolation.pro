@@ -15,7 +15,10 @@ SOURCES += main.cpp \
     percolationdrawerqt.cpp \
     percolationshow.cpp \
     particle.cpp \
-    random_functions.cpp
+    random_functions.cpp \
+    rand/ranlib.c \
+    rand/linpack.c \
+    rand/com.c
 HEADERS += mainwindow.h \
     pathviewer.h \
     types.hpp \
@@ -28,5 +31,6 @@ HEADERS += mainwindow.h \
     percolationshow.h \
     random_functions.h \
     primitive_types.h \
-    primitive_const.h
+    primitive_const.h \
+    rand/ranlib.h
 FORMS += mainwindow.ui
