@@ -72,6 +72,8 @@ bool Particle::walk( PercolationProcess& percolation )
     }
 
     // Begin perturbed path implementation.
+    unsigned int holes = 0;
+
     next = startPosition;
     in_box_p = percolation.visit( next );
 
@@ -103,7 +105,11 @@ bool Particle::walk( PercolationProcess& percolation )
             x = next.X();
             y = next.Y();
 
-            o = ( abs(x) + abs(y) ) % 2 == 0  ? H : V;
+            if ( holes == 0 ) {
+                o = ( abs(x) + abs(y) ) % 2 == 0  ? H : V;
+            } else {
+                o = ( abs(x) + abs(y) ) % 2 == 0  ? V : H;
+            }
 
             switch( o ) {
             case H:
@@ -122,6 +128,7 @@ bool Particle::walk( PercolationProcess& percolation )
         }
         else {
             next.add( stepX, stepY );
+            holes = (holes + 1) % 2;
         }
 
         in_box_p = percolation.visit( next );
