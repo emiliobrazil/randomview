@@ -23,7 +23,7 @@ public:
 
     Path& operator=( const Path& p );
 
-    unsigned int size( void );
+    unsigned int size( void ) const;
     bool isInPath( const Site& s );
     void add( const Site& s );
     bool isClosed( void );
@@ -35,7 +35,28 @@ private:
 
 private:
     std::vector<Site> pPath;
-//    std::vector<Site>::iterator iterator;
+    //    std::vector<Site>::iterator iterator;
+
+    // Lexicographic order in Edges ( < )
+    struct less {
+        bool operator()( const Edge& e1, const Edge& e2 ) const {
+            int dx = 0, dy = 0;
+            bool dO;
+
+            dx = e1.position().X() - e2.position().X();
+            dy = e1.position().Y() - e2.position().Y();
+            dO = e1.orientation() == H && e2.orientation() == V;
+
+            if ( dx < 0 ) { return true; }
+            else if ( dx == 0 && dy < 0 ) { return true; }
+            else if ( dy == 0 && dO ) { return true; }
+
+            return false;
+        }
+    };
+    std::set<Edge, less> tail_path;
+    Site head_site;
+
     bool pIsClosed;
 };
 
