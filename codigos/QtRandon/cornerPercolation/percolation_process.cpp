@@ -54,12 +54,12 @@ PercolationProcess::PercolationProcess( unsigned int radiusX , unsigned int radi
 
 PercolationProcess::~PercolationProcess() {
 
-    delete pVisitedSites;
-    delete pKeysOfSitesVisited;
-    delete pPrimalX;
-    delete pDualX;
-    delete pPrimalY;
-    delete pDualY;
+    delete[] pVisitedSites;
+    delete[] pKeysOfSitesVisited;
+    delete[] pPrimalX;
+    delete[] pDualX;
+    delete[] pPrimalY;
+    delete[] pDualY;
 }
 
 PercolationProcess::PercolationProcess( const PercolationProcess& p )
@@ -67,11 +67,9 @@ PercolationProcess::PercolationProcess( const PercolationProcess& p )
 
     const unsigned int size = (2 * pRadiusX + 1) * (2 * pRadiusY + 1);
 
-    //delete pKeysOfSitesVisited;
     pKeysOfSitesVisited = new bool[ size ];
     assert( pKeysOfSitesVisited != 0 );
 
-    //delete pVisitedSites;
     pVisitedSites = new bool[ size ];
     assert( pVisitedSites != 0 );
 
@@ -119,11 +117,11 @@ const PercolationProcess& PercolationProcess::operator=( const PercolationProces
 
             const unsigned int sizeX = (2 * pRadiusX + 1);
 
-            delete pPrimalX;
+            delete[] pPrimalX;
             pPrimalX = new bool[ sizeX ];
             assert( pPrimalX != 0 );
 
-            delete pDualX;
+            delete[] pDualX;
             pDualX = new bool[ sizeX ];
             assert( pDualX != 0 );
 
@@ -135,11 +133,11 @@ const PercolationProcess& PercolationProcess::operator=( const PercolationProces
 
             const unsigned int sizeY = (2 * pRadiusY + 1);
 
-            delete pPrimalY;
+            delete[] pPrimalY;
             pPrimalY = new bool[ sizeY ];
             assert( pPrimalY != 0 );
 
-            delete pDualY;
+            delete[] pDualY;
             pDualY = new bool[ sizeY ];
             assert( pDualY != 0 );
 
@@ -149,11 +147,11 @@ const PercolationProcess& PercolationProcess::operator=( const PercolationProces
         if ( change_x && change_y ) {
             const unsigned int size = (2 * pRadiusX + 1) * (2 * pRadiusY + 1);
 
-            delete pKeysOfSitesVisited;
+            delete[] pKeysOfSitesVisited;
             pKeysOfSitesVisited = new bool[ size ];
             assert( pKeysOfSitesVisited != 0 );
 
-            delete pVisitedSites;
+            delete[] pVisitedSites;
             pVisitedSites = new bool[ size ];
             assert( pVisitedSites != 0 );
         }

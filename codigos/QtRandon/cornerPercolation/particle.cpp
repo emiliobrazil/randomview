@@ -76,6 +76,8 @@ bool Particle::walk( PercolationProcess& percolation )
 
     next = startPosition;
     in_box_p = percolation.visit( next );
+    // cannot include first site in holes count!
+    if( percolation.isOpen( next ) ) { --holes; }
 
     x = startPosition.X();
     y = startPosition.Y();
