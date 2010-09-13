@@ -33,10 +33,10 @@ public:
 
     bool isOpen( const Edge& e) const {
         lua_getglobal(L,"isOpen");
-        lua_pushnumber(L,e.position().X());
-        lua_pushnumber(L,lua_gettop(L));
-        lua_call(L,2,1);
-        bool r=lua_toboolean(L,-1);
+        lua_pushnumber( L , e.position().X() );
+        lua_pushnumber( L , e.position().Y() );
+        lua_call( L , 2 , 1 );
+        bool r =lua_toboolean(L,-1);
         lua_pop(L,1);
         return r;
     }

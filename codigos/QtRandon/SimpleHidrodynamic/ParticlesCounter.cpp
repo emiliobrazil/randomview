@@ -1,4 +1,5 @@
 #include "ParticlesCounter.hpp"
+#include <iostream>
 
 const ParticlesCounter &ParticlesCounter::operator=( const ParticlesCounter &counter )
 {
@@ -82,11 +83,11 @@ const ParticlesCounter &ParticlesCounter::operator*=( real alpha )
 
 void ParticlesCounter::print( void )
 {
-	for( uint32 i = 0 ; i < this->size() ; ++i )
-	{
-		fprintf( stdout , "%f " , this->get(i) ) ;
-	}
-	fprintf( stdout , "\n" ) ;
+    for( uint32 i = 0 ; i < this->size() ; ++i )
+    {
+        std::cout << this->get(i) << " " ;
+    }
+    std::cout << std::endl;
 }
 
 //  std::vector<real> _sites;

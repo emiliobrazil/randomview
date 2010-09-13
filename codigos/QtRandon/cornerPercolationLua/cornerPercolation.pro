@@ -24,3 +24,7 @@ HEADERS += mainwindow.h \
     percolationdrawerqt.h
 FORMS += mainwindow.ui
 LIBS += -llua5.1
+
+OTHER_FILES += \
+    rule.lua \
+    init.lua
