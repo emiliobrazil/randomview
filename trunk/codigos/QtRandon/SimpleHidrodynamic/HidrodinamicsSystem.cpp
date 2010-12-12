@@ -7,6 +7,12 @@ HidrodinamicsSystem::HidrodinamicsSystem( uint32 N , real t , real alpha , FDP f
 	this->_clocks = Clocks( N , t , alpha );
 }
 
+HidrodinamicsSystem::HidrodinamicsSystem( uint32 N , real t , real alpha , FDP function , real beta )
+{
+        this->_particles =  HidrodinamicsParticles(  N , function  , beta );
+        this->_clocks = Clocks( N , t , alpha , beta );
+}
+
 ParticlesCounter HidrodinamicsSystem::process( void )
 {
 	while( !this->_clocks.isEmpty() )

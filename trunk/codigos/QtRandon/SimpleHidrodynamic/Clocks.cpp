@@ -21,6 +21,24 @@ Clocks::Clocks(  uint32 N , real t , real alpha )
         this->_numberOfEvents = (uint32)tmp*N ;
 
         this->_N = N;
+
+}
+
+Clocks::Clocks(  uint32 N , real t , real alpha , real beta)
+{
+        setSeed(  time(NULL) );
+
+        this->_actualTime = 0 ;
+
+        real tmp = pow( (real)N , alpha )  * t;
+
+        real Nbeta =  pow( (real)N , -beta );
+
+        this->_numberOfEvents = (uint32)tmp*(N-1+Nbeta) ;
+
+        this->_N = N;
+
+
 }
 
 Clocks::~Clocks( void )
@@ -35,8 +53,10 @@ bool Clocks::isEmpty( void )
 
 uint32 Clocks::findNext( void )
 {
-        this->_actualTime += exponential( 0.04 );
-        return (uint32)( rand() % this->_N );
+    this->_actualTime += exponential( 0.04 );
+
+    return (uint32)( rand() % this->_N );
+
 }
 
 std::pair<uint32,real> minimun( const std::vector<real>& clock )

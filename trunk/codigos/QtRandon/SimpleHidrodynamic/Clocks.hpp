@@ -7,13 +7,18 @@
 class Clocks
 {
 public:
+
         Clocks( void ){ }
         Clocks(  uint32 N , real t , real alpha );
+        Clocks(  uint32 N , real t , real alpha , real beta);
+
         ~Clocks( void );
 
         bool isEmpty( void );
 
         uint32 findNext( void );
+
+
 private:
         uint32 _actualTime;
         uint32 _numberOfEvents;
