@@ -12,15 +12,27 @@
 class HidrodinamicsParticles
 {
 public:
-	HidrodinamicsParticles( void ){}
-	HidrodinamicsParticles( uint32 N , FDP function );
-	~HidrodinamicsParticles( void );
+    enum dynamicType { ALPHA , ALPHABETA };
 
-	void visit( uint32 site );
-	ParticlesCounter counter( void );
+    HidrodinamicsParticles( void ){}
+    HidrodinamicsParticles( uint32 N , FDP function );
+    HidrodinamicsParticles( uint32 N , FDP function ,  real beta );
+    ~HidrodinamicsParticles( void );
+
+    void visit( uint32 site );
+    ParticlesCounter counter( void );
+
+protected:
+    void normalVisit( uint32 site );
+    void badVisit(uint32 site);
 
 private:
-	std::vector<bool> _particles;
+    std::vector<bool> _particles;
+    dynamicType _type;
+    real _beta;
+    real _betaN;
+    uint32 _badSite;
+
 };
 
 #endif // _HIDRODINAMICSPARTICLES_HPP_

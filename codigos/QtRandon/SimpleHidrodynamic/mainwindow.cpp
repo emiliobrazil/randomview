@@ -83,7 +83,7 @@ void MainWindow::start( void )
         this->isReseted = false;
         while( ( !this->isPaused && !this->isReseted ) && ( this->numberOfIterations < this->maxIteration ) )
         {
-            HidrodinamicsSystem system(  this->numberOfSites ,  this->t ,  this->alpha ,  FDP( this->initialFunc ) );
+            HidrodinamicsSystem system(  this->numberOfSites ,  this->t ,  this->alpha ,  FDP( this->initialFunc ) ,2);
             counter += system.process();
             ++this->numberOfIterations;
             emit sendIteration( this->numberOfIterations);
