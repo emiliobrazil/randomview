@@ -53,7 +53,8 @@ bool Clocks::isEmpty( void )
 
 uint32 Clocks::findNext( void )
 {
-    this->_actualTime += exponential( 0.04 );
+//    this->_actualTime += exponential( 0.04 );
+    this->_actualTime += exponential( 1.0 );
 
     return (uint32)( rand() % this->_N );
 

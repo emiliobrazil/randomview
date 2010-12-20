@@ -1,5 +1,5 @@
 
-#include <math.h>
+#include <cmath>
 #include <stdlib.h>
 
 #include "random_functions.h"
@@ -13,12 +13,12 @@ void setSeed( unsigned int seed )
 
 real uniform01( void )
 {
-	return (real)rand()/(real)RAND_MAX;
+        return (real)rand()/(real)RAND_MAX;
 }
 
 uint32 uniform1max( uint32 max )
 {
-	return (rand() % max) + 1 ;
+        return (rand() % max) + 1 ;
 }
 
 real uniformAB( real A , real B )
