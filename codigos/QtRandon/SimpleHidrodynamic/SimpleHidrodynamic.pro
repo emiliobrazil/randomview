@@ -9,12 +9,11 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     ParticlesCounter.cpp \
     HidrodinamicsSystem.cpp \
-    random_functions.cpp \
     HidrodinamicsParticles.cpp \
     Clocks.cpp \
-    counterviewer.cpp
+    counterviewer.cpp \
+    random_functions.cpp
 HEADERS += mainwindow.h \
-    random_functions.h \
     primitive_types.h \
     primitive_const.h \
     ParticlesCounter.hpp \
@@ -22,5 +21,6 @@ HEADERS += mainwindow.h \
     HidrodinamicsParticles.hpp \
     FDP.hpp \
     Clocks.hpp \
-    counterviewer.h
+    counterviewer.h \
+    random_functions.h
 FORMS += interface.ui

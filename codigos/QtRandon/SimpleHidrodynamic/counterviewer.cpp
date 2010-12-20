@@ -7,6 +7,7 @@ CounterViewer::CounterViewer( QWidget *parent ) : QWidget(parent)
 
 void CounterViewer::paintEvent( QPaintEvent *event )
 {
+    Q_UNUSED(event);
     QPainter painter( this );
     drawCounter( painter );
 }

@@ -2,6 +2,7 @@
 #define _CLOCKS_HPP_
 
 #include "primitive_types.h"
+#include "random_functions.h"
 
 
 class Clocks
